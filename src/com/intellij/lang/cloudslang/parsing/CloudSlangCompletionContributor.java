@@ -10,12 +10,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 
-    private CloudSlangTokenTypes cloudSlangTokenTypes;
+    public CloudSlangCompletionContributor() throws Exception{
+        CloudSlangTokenTypes cloudSlangTokenTypes = new CloudSlangTokenTypes();
 
-    public CloudSlangCompletionContributor() {
         extend(CompletionType.BASIC,
 
-                PlatformPatterns.psiElement(cloudSlangTokenTypes.WHITE_SPACE).withLanguage(CloudSlangLanguage.INSTANCE),
+                PlatformPatterns.psiElement(cloudSlangTokenTypes.VALUE_CHARACTERS).withLanguage(CloudSlangLanguage.INSTANCE),
                 new CompletionProvider<CompletionParameters>() {
                     public void addCompletions(@NotNull CompletionParameters parameters,
                                                ProcessingContext context,
