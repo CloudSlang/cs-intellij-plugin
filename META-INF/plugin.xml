@@ -30,7 +30,10 @@
         <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
         <!-- Add your extensions here -->
         <completion.contributor language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>
-        
+        <lang.commenter language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCommenter"/>
+        <lang.syntaxHighlighterFactory key="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangSyntaxHighlighterFactory"/>
+
+
         <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->
         <!--<lang.syntaxHighlighterFactory key="Simple"-->
                                        <!--language="Simple"-->
