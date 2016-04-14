@@ -1,0 +1,21 @@
+{
+  parserClass="com.intellij.lang.cloudslang.CloudSlangParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="CloudSlang"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.intellij.lang.cloudslang.plugin.psi"
+  psiImplPackage="com.intellij.lang.cloudslang.psi.impl"
+
+  elementTypeHolderClass="com.intellij.lang.cloudslang.plugin.psi.CloudSlangTypes"
+  elementTypeClass="com.intellij.lang.cloudslang.parsing.CloudSlangElementType"
+  tokenTypeClass="com.intellij.lang.cloudslang.parsing.CloudSlangTokenType"
+}
+
+simpleFile ::= item_*
+
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY

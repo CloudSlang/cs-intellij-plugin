@@ -6,10 +6,14 @@ import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
 
 
-public class CloudSlangElementType extends IElementType {
+public class CloudSlangTokenType extends IElementType {
 
-    public CloudSlangElementType(@NonNls String debugName) {
+    public CloudSlangTokenType(@NonNls String debugName) {
         super(debugName, CloudSlangLanguage.INSTANCE);
     }
 
+    @SuppressWarnings({"HardCodedStringLiteral"})
+    public String toString() {
+        return "Cloud Slang:" + super.toString();
+    }
 }
