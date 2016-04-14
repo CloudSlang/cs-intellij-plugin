@@ -8,6 +8,6 @@ public class CloudSlangLanguage extends Language {
     public static final CloudSlangLanguage INSTANCE = new CloudSlangLanguage();
 
     protected CloudSlangLanguage() {
-        super("slang");
+        super("CloudSlang");
     }
 }

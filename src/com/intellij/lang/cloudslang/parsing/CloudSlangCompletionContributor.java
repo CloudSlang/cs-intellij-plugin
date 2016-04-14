@@ -8,11 +8,11 @@ import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
 import org.jetbrains.annotations.NotNull;
 
-public class SimpleCompletionContributor extends CompletionContributor {
+public class CloudSlangCompletionContributor extends CompletionContributor {
 
     private CloudSlangTokenTypes cloudSlangTokenTypes;
 
-    public SimpleCompletionContributor() {
+    public CloudSlangCompletionContributor() {
         extend(CompletionType.BASIC,
 
                 PlatformPatterns.psiElement(cloudSlangTokenTypes.WHITE_SPACE).withLanguage(CloudSlangLanguage.INSTANCE),

@@ -24,11 +24,33 @@
   <depends>com.intellij.modules.lang</depends>
   -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
-    <!-- Add your extensions here -->
-      <completion.contributor language="slang" implementationClass="com.intellij.lang.cloudslang.parsing.SimpleCompletionContributor"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <lang.parserDefinition language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.plugin.CloudSlangParserDefinition"/>
+        <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
+        <!-- Add your extensions here -->
+        <completion.contributor language="slang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>
+        
+        <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->
+        <!--<lang.syntaxHighlighterFactory key="Simple"-->
+                                       <!--language="Simple"-->
+                                       <!--implementationClass="com.simpleplugin.SimpleSyntaxHighlighterFactory"/>-->
+        <!--<colorSettingsPage implementation="com.simpleplugin.SimpleColorSettingsPage"/>-->
+        <!--<annotator language="JAVA" implementationClass="com.simpleplugin.SimpleAnnotator"/>-->
+        <!--<codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.simpleplugin.SimpleLineMarkerProvider"/>-->
+        <!--<completion.contributor language="Simple" implementationClass="com.simpleplugin.SimpleCompletionContributor"/>-->
+        <!--<psi.referenceContributor implementation="com.simpleplugin.SimpleReferenceContributor"/>-->
+        <!--<lang.findUsagesProvider language="Simple" implementationClass="com.simpleplugin.SimpleFindUsagesProvider"/>-->
+        <!--<lang.refactoringSupport language="Simple" implementationClass="com.simpleplugin.SimpleRefactoringSupportProvider"/>-->
+        <!--<lang.foldingBuilder language="JAVA" implementationClass="com.simpleplugin.SimpleFoldingBuilder"/>-->
+        <!--<gotoSymbolContributor implementation="com.simpleplugin.SimpleChooseByNameContributor"/>-->
+        <!--<lang.psiStructureViewFactory language="Simple" implementationClass="com.simpleplugin.SimpleStructureViewFactory"/>-->
+        <!--<lang.formatter language="Simple" implementationClass="com.simpleplugin.SimpleFormattingModelBuilder"/>-->
+        <!--<codeStyleSettingsProvider implementation="com.simpleplugin.SimpleCodeStyleSettingsProvider"/>-->
+        <!--<langCodeStyleSettingsProvider implementation="com.simpleplugin.SimpleLanguageCodeStyleSettingsProvider"/>-->
+        <!--<lang.commenter language="Simple" implementationClass="com.simpleplugin.SimpleCommenter"/>-->
+        <!--<todoIndexer filetype="Simple file" implementationClass="com.simpleplugin.SimpleTodoIndexer"/>-->
+    </extensions>
 
   <application-components>
     <!-- Add your application components here -->

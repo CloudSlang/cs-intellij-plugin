@@ -4,9 +4,6 @@ import com.intellij.openapi.fileTypes.LanguageFileType;
 
 import javax.swing.Icon;
 
-/**
- * Created by utiud on 4/14/2016.
- */
 public class CloudSlangFileType extends LanguageFileType {
 
     public static final CloudSlangFileType INSTANCE = new CloudSlangFileType();
