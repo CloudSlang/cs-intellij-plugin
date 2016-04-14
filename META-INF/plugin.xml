@@ -33,7 +33,7 @@
         <lang.commenter language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCommenter"/>
         <lang.syntaxHighlighterFactory key="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangSyntaxHighlighterFactory"/>
         <codeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CloudSlangCodeStyleSettingsProvider"/>
-        <langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>
+        <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->
 
 
         <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->

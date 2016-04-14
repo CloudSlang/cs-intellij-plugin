@@ -1,5 +1,6 @@
 package com.intellij.lang.cloudslang.plugin;
 
+import com.intellij.lang.cloudslang.parsing.CloudSlangTokenType;
 import com.intellij.lang.cloudslang.plugin.psi.CloudSlangTypes;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
@@ -42,7 +43,15 @@ public class CloudSlangSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(CloudSlangTypes.NAMESPACE_SEPARATOR)) {
             return SEPARATOR_KEYS;
-        } else if (tokenType.equals(CloudSlangTypes.NAMESPACE_KEYWORD)) {
+        } else if (tokenType.equals(CloudSlangTypes.NAMESPACE_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_ACTION_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_INPUTS_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_JAVA_ACTION_CLASS_NAME_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_JAVA_ACTION_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_JAVA_ACTION_METHOD_NAME_KEYWORD)
+                || tokenType.equals(CloudSlangTypes.OPERATION_NAME_KEYWORD)
+                ) {
             return KEY_KEYS;
         } else if (tokenType.equals(CloudSlangTypes.NAMESPACE_VALUE)) {
             return VALUE_KEYS;
