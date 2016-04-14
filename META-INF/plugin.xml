@@ -25,6 +25,7 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
     <!-- Add your extensions here -->
       <completion.contributor language="slang" implementationClass="com.intellij.lang.cloudslang.parsing.SimpleCompletionContributor"/>
   </extensions>
