@@ -1,5 +1,7 @@
 package com.intellij.lang.cloudslang.parsing;
 
+import com.intellij.lang.cloudslang.plugin.*;
+import com.intellij.lang.cloudslang.plugin.CloudSlangSyntaxHighlighter;
 import com.intellij.openapi.fileTypes.*;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;

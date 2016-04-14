@@ -1,8 +1,8 @@
 <idea-plugin version="2">
   <id>com.yourcompany.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <name>CloudSlang plugin</name>
   <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <vendor email="support@somedevs.hpe.com" url="https://www.hpe.com/">HPE</vendor>
 
   <description><![CDATA[
       Enter short description for your plugin here.<br>

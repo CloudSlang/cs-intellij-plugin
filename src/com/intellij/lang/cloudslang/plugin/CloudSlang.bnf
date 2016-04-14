@@ -6,7 +6,7 @@
   psiClassPrefix="CloudSlang"
   psiImplClassSuffix="Impl"
   psiPackage="com.intellij.lang.cloudslang.plugin.psi"
-  psiImplPackage="com.intellij.lang.cloudslang.psi.impl"
+  psiImplPackage="com.intellij.lang.cloudslang.plugin.psi"
 
   elementTypeHolderClass="com.intellij.lang.cloudslang.plugin.psi.CloudSlangTypes"
   elementTypeClass="com.intellij.lang.cloudslang.parsing.CloudSlangElementType"
@@ -16,6 +16,9 @@
 simpleFile ::= item_*
 
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_ ::= (namespace_|COMMENT|CRLF)
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+private namespace_ ::= NAMESPACE_KEYWORD NAMESPACE_SEPARATOR SPACE NAMESPACE_VALUE
+
+//property ::= (KEY? SEPARATOR VALUE?) | KEY
+
