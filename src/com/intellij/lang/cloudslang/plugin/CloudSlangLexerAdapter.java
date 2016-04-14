@@ -4,9 +4,9 @@ import com.intellij.lexer.FlexAdapter;
 
 import java.io.Reader;
 
-public class CloudSlanLexerAdapter extends FlexAdapter {
+public class CloudSlangLexerAdapter extends FlexAdapter {
 
-    public CloudSlanLexerAdapter() {
+    public CloudSlangLexerAdapter() {
         super(new CloudSlangLexer((Reader) null));
     }
 

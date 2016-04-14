@@ -29,7 +29,7 @@
         <lang.parserDefinition language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.plugin.CloudSlangParserDefinition"/>
         <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
         <!-- Add your extensions here -->
-        <completion.contributor language="slang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>
+        <completion.contributor language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>
         
         <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->
         <!--<lang.syntaxHighlighterFactory key="Simple"-->

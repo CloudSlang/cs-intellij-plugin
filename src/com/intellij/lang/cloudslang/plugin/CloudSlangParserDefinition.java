@@ -30,7 +30,7 @@ public class CloudSlangParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public Lexer createLexer(Project project) {
-        return new CloudSlanLexerAdapter();
+        return new CloudSlangLexerAdapter();
     }
 
     @NotNull
