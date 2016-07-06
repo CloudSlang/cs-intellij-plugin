@@ -24,15 +24,18 @@
   <depends>com.intellij.modules.lang</depends>
   -->
 
+    <depends>org.jetbrains.plugins.yaml</depends>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <lang.parserDefinition language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.plugin.CloudSlangParserDefinition"/>
+        <lang.parserDefinition language="yaml" implementationClass="com.intellij.lang.cloudslang.CloudSlangParserDefinition"/>
         <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
         <!-- Add your extensions here -->
-        <completion.contributor language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>
-        <lang.commenter language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCommenter"/>
-        <lang.syntaxHighlighterFactory key="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangSyntaxHighlighterFactory"/>
-        <codeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CloudSlangCodeStyleSettingsProvider"/>
+        <!--<completion.contributor language="CloudSlang" implementationClass="com.intellij.lang.cloudslang.parsing.CloudSlangCompletionContributor"/>-->
+        <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
+        <lang.syntaxHighlighterFactory key="yaml" implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
+        <annotator language="yaml" implementationClass="com.intellij.lang.cloudslang.annotator.OperationAnnotator"/>
+        <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->
         <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->
 
 
