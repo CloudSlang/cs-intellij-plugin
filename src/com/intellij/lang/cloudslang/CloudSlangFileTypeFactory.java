@@ -8,7 +8,7 @@ import org.jetbrains.yaml.YAMLFileTypeLoader;
 public class CloudSlangFileTypeFactory extends YAMLFileTypeLoader {
 
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-        super.createFileTypes(fileTypeConsumer);
+//        super.createFileTypes(fileTypeConsumer);
         fileTypeConsumer.consume(CloudSlangFileType.INSTANCE, "sl");
     }
 }

@@ -38,6 +38,7 @@ public class OperationAnnotator implements Annotator {
 
     @Override
     public void annotate(@NotNull PsiElement psiElement, @NotNull AnnotationHolder annotationHolder) {
+
         if (psiElement instanceof YAMLKeyValue) {
             YAMLKeyValue yamlKeyValue = (YAMLKeyValueImpl) psiElement;
 
@@ -60,15 +61,13 @@ public class OperationAnnotator implements Annotator {
                     //validate that the operation does not contain any child that are not in key: value format
                     List<PsiElement> childrenWithIllegalType = getChildrenWithIllegalType(operationBody);
                     if (childrenWithIllegalType != null) {
-                        childrenWithIllegalType.stream()
-                                .forEach(c -> annotationHolder.createErrorAnnotation(c, INVALID_ELEMENT));
+                        childrenWithIllegalType.forEach(c -> annotationHolder.createErrorAnnotation(c, INVALID_ELEMENT));
                     }
 
                     //validate that the operation does not contain any childes except the ones allowed
                     List<YAMLPsiElement> childrenWithIllegalName = getChildrenWithIllegalName(operationBody);
                     if (childrenWithIllegalName != null) {
-                        childrenWithIllegalName.stream()
-                                .forEach(c -> annotationHolder.createErrorAnnotation(c, UNKNOWN_ELEMENT));
+                        childrenWithIllegalName.forEach(c -> annotationHolder.createErrorAnnotation(c, UNKNOWN_ELEMENT));
                     }
 
                 } else {

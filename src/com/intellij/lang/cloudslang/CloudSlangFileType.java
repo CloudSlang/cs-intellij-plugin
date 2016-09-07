@@ -4,7 +4,6 @@ import com.intellij.openapi.fileTypes.LanguageFileType;
 
 import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.yaml.YAMLFileType;
 import org.jetbrains.yaml.YAMLLanguage;
 
 public class CloudSlangFileType extends LanguageFileType {
