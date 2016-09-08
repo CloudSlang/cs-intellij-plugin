@@ -2,21 +2,21 @@ package com.intellij.lang.cloudslang.annotator;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
-import com.intellij.lang.cloudslang.configuration.SlangCompilerSpringConfigIntelliJ;
 import com.intellij.lang.cloudslang.configuration.SpringConfiguration;
+import com.intellij.openapi.fileChooser.FileSystemTree;
+import com.intellij.openapi.vfs.VirtualFileCopyEvent;
+import com.intellij.openapi.vfs.VirtualFileEvent;
+import com.intellij.openapi.vfs.VirtualFileListener;
+import com.intellij.openapi.vfs.VirtualFileMoveEvent;
+import com.intellij.openapi.vfs.VirtualFilePropertyEvent;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.spring.model.SpringBeanPointer;
-import com.intellij.spring.model.utils.SpringModelSearchers;
-import io.cloudslang.lang.compiler.SlangCompiler;
+import com.intellij.psi.impl.file.impl.FileManagerImpl;
 import io.cloudslang.lang.compiler.SlangSource;
-import io.cloudslang.lang.compiler.configuration.SlangCompilerSpringConfig;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
-import io.cloudslang.lang.compiler.modeller.model.Executable;
-import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -24,13 +24,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.yaml.psi.YAMLDocument;
 import org.jetbrains.yaml.psi.YAMLFile;
+import org.jetbrains.yaml.psi.YAMLKeyValue;
 import org.jetbrains.yaml.psi.YAMLPsiElement;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by Ligia Centea
@@ -70,17 +67,19 @@ public class SimpleExternalAnnotator extends ExternalAnnotator<ModellingResult, 
             YAMLFile yamlFile = (YAMLFile) file;
             if (!yamlFile.getDocuments().isEmpty()) {
                 YAMLDocument yamlDocument = yamlFile.getDocuments().get(0);
-                YAMLPsiElement found = findChildRecursively(yamlDocument, new String[]{"flow", "operation", "decision"});
-                if (found == null) {
+                PsiElement found = findChildRecursively(yamlDocument, new String[]{"flow", "operation", "decision"});
+                if (found instanceof YAMLKeyValue) {
+                    YAMLKeyValue keyValue = (YAMLKeyValue) found;
+                    found = keyValue.getKey();
+                } else {
                     found = yamlDocument;
                 }
                 createErrorAnnotations(found, holder, annotationResult);
             }
-//            holder.createErrorAnnotation(file, "File contains " + annotationResult.size() + " errors");
         }
     }
 
-    private void createErrorAnnotations(YAMLPsiElement element, AnnotationHolder holder, List<RuntimeException> annotationResult) {
+    private void createErrorAnnotations(PsiElement element, AnnotationHolder holder, List<RuntimeException> annotationResult) {
         annotationResult.forEach(r -> holder.createErrorAnnotation(element, r.getMessage()));
     }
 
