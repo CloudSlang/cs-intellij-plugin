@@ -35,8 +35,9 @@
 
         <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
         <lang.syntaxHighlighterFactory key="yaml" implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
-        <!--<annotator language="yaml" implementationClass="com.intellij.lang.cloudslang.annotator.OperationAnnotator"/>-->
-        <externalAnnotator language="yaml" implementationClass="com.intellij.lang.cloudslang.annotator.SimpleExternalAnnotator"/>
+        <externalAnnotator language="yaml" implementationClass="com.intellij.lang.cloudslang.annotator.ExecutableAnnotator"/>
+        <problemHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemHighlightFilter"/>
+        <problemFileHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
 
         <!--added new-->
         <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->

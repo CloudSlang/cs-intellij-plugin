@@ -31,7 +31,7 @@ public class CloudSlangFileType extends LanguageFileType {
     }
 
     public Icon getIcon() {
-        return CloudSlangIcons.FILE;
+        return CloudSlangIcons.STANDARD;
     }
 }
 
