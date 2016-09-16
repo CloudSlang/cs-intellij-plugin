@@ -1,0 +1,10 @@
+- ${1:step_name}:
+    parallel_loop:
+      for: ${2:iteration_statement}
+      do:
+        ${3:executable_name}:
+          - ${4:executable_argument}
+    publish:
+      - ${5:publish_name}: ${6:publish_value}
+    navigate:
+      - ${7:executable_result_name}: ${8:navigate_to}

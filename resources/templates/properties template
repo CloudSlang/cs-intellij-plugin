@@ -1,0 +1,4 @@
+namespace: ${1:current.namespace}
+
+properties:
+  - ${2:property_key}: ${3:property_value}

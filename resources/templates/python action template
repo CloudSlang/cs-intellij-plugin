@@ -1,0 +1,5 @@
+python_action:
+    dependencies:
+        - '${1:group1}:${2:artifact1}:${3:version1}'
+        - '${4:group2}:${5:artifact2}:${6:version2}'
+    script: ${7:python_script}

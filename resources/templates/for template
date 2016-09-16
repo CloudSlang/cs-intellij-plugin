@@ -1,0 +1,12 @@
+- ${1:step_name}:
+    loop:
+      for: ${2:iteration_statement}
+      do:
+        ${3:executable_name}:
+          - ${4:executable_argument}
+      publish:
+        - ${5:publish_name}: ${6:publish_value}
+      break:
+        - ${7:result_name}
+    navigate:
+      - ${8:executable_result_name}: ${9:navigate_to}
