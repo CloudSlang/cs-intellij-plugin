@@ -39,7 +39,7 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
 
                         try {
                             addTemplates(resultSet);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
@@ -69,8 +69,7 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
             Enumeration<URL> en = classLoader.getResources(TEMPLATES);
             if (en.hasMoreElements()) {
                 URL url = en.nextElement();
-                JarURLConnection urlcon = (JarURLConnection) (url.openConnection());
-                try (JarFile jar = urlcon.getJarFile()) {
+                try (JarFile jar = ((JarURLConnection) (url.openConnection())).getJarFile()) {
                     addTemplatesFromJar(resultSet, classLoader, jar);
                 }
             }
