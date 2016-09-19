@@ -40,6 +40,5 @@ The purpose of this section is to visualize and track the progress of all featur
 These are the prerequisite steps that you have to follow to successfully set up your development environment:    
 1. Clone the reposiotry  
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
-> You don't have to clone IntelliJ CE edition Source Code, as mentioned in the documentation above  
-
+*__You don't have to clone IntelliJ CE edition Source Code, as mentioned in the documentation above__*  
 3. In intellij, navigate to __File > New > Project__
