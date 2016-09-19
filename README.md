@@ -8,7 +8,7 @@ This plugin allows you to easily develop and run CloudSlang content, using Intel
 2. Developer's Guide  
   
   
----
+  
 ####Features
 The purpose of this section is to visualize and track the progress of all features planed for developent as part of the IntelliJ Plugin.
 
@@ -35,9 +35,10 @@ The purpose of this section is to visualize and track the progress of all featur
 | 19 | SF: generate dependency graph | | Unplanned |  
   
   
----
+  
 ####Developer's Guide
-These are the prerequisite steps that you have to follow to successfully set up your development environment:    
+These are the prerequisite steps that you have to follow to successfully set up your development environment:  
+  
 1. Clone the reposiotry  
   
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
