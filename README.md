@@ -23,12 +23,12 @@ The purpose of this section is to visualize and track the progress of all featur
 | 8 | Running Configuration | | Planned |
 | 9 | New executable (operation, flow, decision) template file | | Planned |
 | 10 | How to write unit tests? (validate that .yaml files are ignored) | | Planned |
-| 10 | How to publish plugin in intellij reposiotry | | Planned |
-| 11 | Investigate if we can remove spring from the dependencies | Luci | Planned |
-| 12 | Go to class, go to symbol | | Unplanned |
-| 13 | Find References (navigation) | | Unplanned |
-| 12 | Best practices warnings | | Unplanned |
-| 13 | New project structure | | Unplanned |
-| 14 | Python syntax/error highlighting (validator) | | Unplanned |
-| 15 | Create test file | | Unplanned |
-| 15 | SF: generate dependency graph | | Unplanned |
+| 11 | How to publish plugin in intellij reposiotry | | Planned |
+| 12 | Investigate if we can remove spring from the dependencies | Luci | Planned |
+| 13 | Go to class, go to symbol | | Unplanned |
+| 14 | Find References (navigation) | | Unplanned |
+| 15 | Best practices warnings | | Unplanned |
+| 16 | New project structure | | Unplanned |
+| 17 | Python syntax/error highlighting (validator) | | Unplanned |
+| 18 | Create test file | | Unplanned |
+| 19 | SF: generate dependency graph | | Unplanned |
