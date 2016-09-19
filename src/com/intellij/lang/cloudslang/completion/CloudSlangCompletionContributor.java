@@ -9,42 +9,36 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
 import io.cloudslang.lang.compiler.SlangTextualKeys;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.net.JarURLConnection;
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 
-    public static final String TEMPLATES = "templates";
+    private static final String TEMPLATES = "com/intellij/lang/cloudslang/templates";
+    private static final String WINDOWS_LINE_ENDINGS = "\r\n";
+    private static final String UNIX_LINE_ENDINGS = "\n";
+    private static final String SLASH = "/";
 
     public CloudSlangCompletionContributor() {
         extend(CompletionType.BASIC,
                 PlatformPatterns.psiElement().withLanguage(YAMLLanguage.INSTANCE),
                 new CompletionProvider<CompletionParameters>() {
-                    public void addCompletions(@NotNull CompletionParameters parameters,
-                                               ProcessingContext context,
-                                               @NotNull CompletionResultSet resultSet) {
-
+                    public void addCompletions(@NotNull CompletionParameters parameters,  ProcessingContext context, @NotNull CompletionResultSet resultSet) {
                         addSlangKeywords(resultSet);
-
                         try {
                             addTemplates(resultSet);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                         addYamlKeywordsUsedByCloudSlang(resultSet);
-
                     }
                 }
         );
@@ -62,55 +56,22 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
         }
     }
 
-
-    private void addTemplates(CompletionResultSet resultSet) throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        if (classLoader != null) {
-            Enumeration<URL> en = classLoader.getResources(TEMPLATES);
-            if (en.hasMoreElements()) {
-                URL url = en.nextElement();
-                try (JarFile jar = ((JarURLConnection) (url.openConnection())).getJarFile()) {
-                    addTemplatesFromJar(resultSet, classLoader, jar);
-                }
-            }
-        }
-    }
-
-    private void addTemplatesFromJar(CompletionResultSet resultSet, ClassLoader classLoader, JarFile jar) throws IOException {
-        Enumeration<JarEntry> entries = jar.entries();
-        while (entries.hasMoreElements()) {
-            JarEntry entry = entries.nextElement();
-            if (entry.getName().startsWith(TEMPLATES)) {
-                InputStream inputStream = classLoader.getResourceAsStream(entry.getName());
-                if (inputStream != null) {
-                    String template = getTemplateString(inputStream);
-                    addCompletion(resultSet, entry.getName().substring(TEMPLATES.length() + 1), template);
-                }
-            }
+    private void addTemplates(CompletionResultSet resultSet) throws IOException, URISyntaxException {
+        ClassLoader classLoader = CloudSlangCompletionContributor.class.getClassLoader();
+        List<String> allTemplateNames = CloudSlangCompletionTemplates.getAllTemplateNames();
+        for (String templateName : allTemplateNames) {
+            InputStream templateResourceStream = classLoader.getResourceAsStream(TEMPLATES + SLASH + templateName);
+            String templateString = IOUtils.toString(templateResourceStream, StandardCharsets.UTF_8);
+            // This step is mandatory because of the way templates are handled in IntelliJ
+            String replacedTemplateString = templateString.replace(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS);
+            addCompletion(resultSet, templateName, replacedTemplateString);
         }
     }
 
     private void addCompletion(CompletionResultSet resultSet, String name, String template) {
         LookupElementBuilder templateBuilder = LookupElementBuilder.create(template)
-                .withPresentableText(name)
-                /*.withInsertHandler((context, item) -> {
-                                            final Editor topLevelEditor = InjectedLanguageUtil.getTopLevelEditor(context.getEditor());
-                                            int offset = topLevelEditor.getCaretModel().getOffset();
-                                            topLevelEditor.getDocument().replaceString(offset, offset + template.length(), template);
-                                        })*/;
+                .withPresentableText(name);
         resultSet.addElement(templateBuilder);
-    }
-
-    private String getTemplateString(InputStream file) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(file))) {
-            while ((line = br.readLine()) != null) {
-                stringBuilder.append(line)
-                        .append("\n");
-            }
-        }
-        return stringBuilder.toString();
     }
 
     private void addYamlKeywordsUsedByCloudSlang(CompletionResultSet resultSet) {
