@@ -7,8 +7,8 @@ This plugin allows you to easily develop and run CloudSlang content, using Intel
 ####Table of Contents
 1. Features
 2. Developer's Guide
-  
-  
+   
+   
 ####Features
 The purpose of this section is to visualize and track the progress of all features planed for developent as part of the IntelliJ Plugin.
 
@@ -33,8 +33,8 @@ The purpose of this section is to visualize and track the progress of all featur
 | 17 | Python syntax/error highlighting (validator) | | Unplanned |
 | 18 | Create test file | | Unplanned |
 | 19 | SF: generate dependency graph | | Unplanned |
-  
-  
+   
+   
 ####Developer's Guide
 These are the prerequisite steps that you have to follow to successfully set up your development environment:
 1. Clone the reposiotry
