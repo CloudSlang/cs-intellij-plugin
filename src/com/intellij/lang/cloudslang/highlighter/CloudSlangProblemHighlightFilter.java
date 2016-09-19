@@ -1,11 +1,8 @@
 package com.intellij.lang.cloudslang.highlighter;
 
 import com.intellij.codeInsight.daemon.ProblemHighlightFilter;
-import com.intellij.openapi.editor.colors.CodeInsightColors;
-import com.intellij.problems.WolfTheProblemSolver;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Ligia Centea
