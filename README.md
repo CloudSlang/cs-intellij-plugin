@@ -7,9 +7,8 @@ This plugin allows you to easily develop and run CloudSlang content, using Intel
 
 1. Features
 2. Developer's Guide  
-  
-  
-  
+<br />
+<br />
 ####Features
 
 The purpose of this section is to visualize and track the progress of all features planed for developent as part of the IntelliJ Plugin.
