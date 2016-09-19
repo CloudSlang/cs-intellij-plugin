@@ -6,7 +6,7 @@ This plugin allows you to easily develop and run CloudSlang content, using Intel
   
 ####Table of Contents
 1. Features
-2. Developer's Guide
+2. Developer's Guide  
      
      
 ---
@@ -33,7 +33,7 @@ The purpose of this section is to visualize and track the progress of all featur
 | 16 | New project structure | | Unplanned |
 | 17 | Python syntax/error highlighting (validator) | | Unplanned |
 | 18 | Create test file | | Unplanned |
-| 19 | SF: generate dependency graph | | Unplanned |
+| 19 | SF: generate dependency graph | | Unplanned |  
      
      
 ---
