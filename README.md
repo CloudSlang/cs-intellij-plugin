@@ -1,6 +1,5 @@
 # CloudSlang Plugin for IntelliJ  
   
->
 This plugin allows you to easily develop and run CloudSlang content, using Intellij IDE.  
   
   
@@ -42,4 +41,5 @@ These are the prerequisite steps that you have to follow to successfully set up 
 1. Clone the reposiotry  
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
 > You don't have to clone IntelliJ CE edition Source Code, as mentioned in the documentation above  
+
 3. In intellij, navigate to __File > New > Project__
