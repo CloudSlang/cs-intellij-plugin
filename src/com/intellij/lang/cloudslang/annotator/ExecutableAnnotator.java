@@ -16,6 +16,7 @@ import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
+import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.modeller.transformers.SpringConfiguration;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
@@ -32,8 +33,6 @@ import org.jetbrains.yaml.psi.YAMLDocument;
 import org.jetbrains.yaml.psi.YAMLFile;
 import org.jetbrains.yaml.psi.YAMLKeyValue;
 import org.jetbrains.yaml.psi.YAMLPsiElement;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Created by Ligia Centea
@@ -48,9 +47,10 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
-        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-        YamlParser yamlParser = ac.getBean(YamlParser.class);
-        SlangModeller slangModeller = ac.getBean(SlangModeller.class);
+//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        SpringConfiguration springConfiguration = new SpringConfiguration();
+        YamlParser yamlParser = springConfiguration.yamlParser();
+        SlangModeller slangModeller = springConfiguration.slangModeller();
 
         if (file instanceof YAMLFile) {
             YAMLFile yamlFile = (YAMLFile) file;
@@ -58,7 +58,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
-                return slangModeller.createModel(parsedSlang);
+                ParseModellingResult parseModellingResult = yamlParser.validate(parsedSlang);
+                return slangModeller.createModel(parseModellingResult);
             } catch (RuntimeException e) {
                 String message = e.getMessage();
                 String[] errorMessages = message.split(MESSAGE_DELIMITER_STRING);
