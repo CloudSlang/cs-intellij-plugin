@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>io.cloudslang.intellij.plugin</id>
   <name>CloudSlang Plugin</name>
-  <version>1.0</version>
+  <version>0.9-beta</version>
   <vendor email="support@somedevs.hpe.com" url="https://www.hpe.com/">HPE</vendor>
 
   <description><![CDATA[
