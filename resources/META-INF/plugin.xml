@@ -39,8 +39,6 @@
         <problemHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemHighlightFilter"/>
         <problemFileHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
 
-
-        <configurationType implementation="com.intellij.run.configuration.CloudSlangRunConfigurationType"/>
         <!--added new-->
         <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->
         <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->

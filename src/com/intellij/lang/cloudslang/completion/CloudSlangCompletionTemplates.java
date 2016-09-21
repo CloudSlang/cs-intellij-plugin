@@ -19,8 +19,7 @@ public class CloudSlangCompletionTemplates {
     public static final String STEP_TEMPLATE = "step_template";
     public static final String SYSTEM_PROPERTY_TEMPLATE = "system_property_template";
 
-    private static final String[] ALL_TEMPLATES = new String[]{
-            FLOW_TEMPLATE,
+    private static final List<String> ALL_TEMPLATES = Arrays.asList(FLOW_TEMPLATE,
             FOR_TEMPLATE,
             INPUT_PROPERTIES_TEMPLATE,
             JAVA_ACTION_TEMPLATE,
@@ -30,10 +29,9 @@ public class CloudSlangCompletionTemplates {
             PARALLEL_LOOP_TEMPLATE,
             PROPERTIES_TEMPLATE,
             PYTHON_ACTION_TEMPLATE,
-            STEP_TEMPLATE, SYSTEM_PROPERTY_TEMPLATE
-    };
+            STEP_TEMPLATE, SYSTEM_PROPERTY_TEMPLATE);
 
     static List<String> getAllTemplateNames() {
-        return Arrays.asList(ALL_TEMPLATES);
+        return ALL_TEMPLATES;
     }
 }

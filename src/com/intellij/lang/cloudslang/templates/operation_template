@@ -1,32 +1,32 @@
 ####################################################
 #!!
-#! @description: ${14:Operation_description}
+#! @description: Operation_description
 #!
-#! @input ${5:input_name}: ${15:input_description}
-#!                    ${16:input_description}
-#! @input ${7:input_name}: ${17:input_description}
-#! @output ${10:output_name}: ${18:output_description}
-#! @result ${12:result_name}: ${19:result_description}
+#! @input input_name: input_description
+#!                    input_description
+#! @input input_name: input_description
+#! @output output_name: output_description
+#! @result result_name: result_description
 #!!#
 ####################################################
 
-namespace: ${1:current.namespace}
+namespace: current.namespace
 
 operation:
-    name: ${4:operation_name}
+  name: operation_name
 
-    inputs:
-      - ${5:input_name}: ${6:input_value}
-      - ${7:input_name}: ${8:input_value}
+  inputs:
+    - input_name: input_value
+    - input_name: input_value
 
-    python_action:
-      dependencies:
-          - '${9:group1}:${10:artifact1}:${11:version1}'
-          - '${12:group2}:${13:artifact2}:${14:version2}'
-      script: ${15:python_script}
+  python_action:
+    dependencies:
+        - 'group1:artifact1:version1'
+        - 'group2:artifact2:version2'
+    script: python_script
 
-    outputs:
-      - ${16:output_name}: ${17:output_value}
+  outputs:
+    - output_name: output_value
 
-    results:
-      - ${18:result_name}: ${19:result_condition}
+  results:
+    - result_name: result_condition

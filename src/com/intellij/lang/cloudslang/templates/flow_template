@@ -1,40 +1,39 @@
 ####################################################
 #!!
-#! @description: ${19:Flow_description}
+#! @description: Flow_description
 #!
-#! @input ${5:input_name}: ${20:input_description}
-#!                    ${21:input_description}
-#! @input ${7:input_name}: ${22:input_description}
-#! @output ${16:output_name}: ${23:output_description}
-#! @result ${18:result_name}: ${24:result_description}
+#! @input input_name: input_description
+#!                    input_description
+#! @input input_name: input_description
+#! @output output_name: output_description
+#! @result result_name: result_description
 #!!#
 ####################################################
 
-
-namespace: ${1:current.namespace}
+namespace: current.namespace
 
 imports:
-    ${2:import_name}: ${3:import.namespace}
+  import_name: import.namespace
 
 flow:
-    name: ${4:flow_name}
+  name: flow_name
 
-    inputs:
-      - ${5:input_name}: ${6:input_value}
-      - ${7:input_name}: ${8:input_value}
+  inputs:
+    - input_name: input_value
+    - input_name: input_value
 
-    workflow:
-      - ${9:step_name}:
-          do:
-            ${10:executable_name}:
-              - ${11:executable_argument}
-          publish:
-            - ${12:publish_name}: ${13:publish_value}
-          navigate:
-            - ${14:executable_result_name}: ${15:navigate_to}
+  workflow:
+    - step_name:
+        do:
+          executable_name:
+            - executable_argument
+        publish:
+          - publish_name: publish_value
+        navigate:
+          - executable_result_name: navigate_to
 
-    outputs:
-      - ${16:output_name}: ${17:output_value}
+  outputs:
+    - output_name: output_value
 
-    results:
-      - ${18:result_name}
+  results:
+    - result_name
