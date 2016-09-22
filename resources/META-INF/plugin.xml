@@ -40,7 +40,10 @@
         <problemFileHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
 
 
-        <configurationType implementation="com.intellij.run.configuration.CloudSlangRunConfigurationType"/>
+        <defaultLiveTemplatesProvider
+                implementation="com.intellij.lang.cloudslang.completion.CloudSLangLiveTemplatesProvider"/>
+        <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CloudSlangExecutableNameMacro"/>
+        <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CompleteInputMacro"/>
         <!--added new-->
         <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->
         <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->
