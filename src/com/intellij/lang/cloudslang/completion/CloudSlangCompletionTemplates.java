@@ -6,7 +6,6 @@ import java.util.List;
 
 public class CloudSlangCompletionTemplates {
 
-    public static final String FLOW_TEMPLATE = "flow_template";
     public static final String FOR_TEMPLATE = "for_template";
     public static final String INPUT_PROPERTIES_TEMPLATE = "input_with_properties_template";
     public static final String JAVA_ACTION_TEMPLATE = "java_action_template";
@@ -18,7 +17,7 @@ public class CloudSlangCompletionTemplates {
     public static final String STEP_TEMPLATE = "step_template";
     public static final String SYSTEM_PROPERTY_TEMPLATE = "system_property_template";
 
-    private static final List<String> ALL_TEMPLATES = Arrays.asList(FLOW_TEMPLATE,
+    private static final List<String> ALL_TEMPLATES = Arrays.asList(
             FOR_TEMPLATE,
             INPUT_PROPERTIES_TEMPLATE,
             JAVA_ACTION_TEMPLATE,
