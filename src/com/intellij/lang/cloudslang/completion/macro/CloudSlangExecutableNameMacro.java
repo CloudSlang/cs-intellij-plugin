@@ -24,7 +24,7 @@ public class CloudSlangExecutableNameMacro extends Macro {
 
     @Override
     public String getPresentableName() {
-        return "cloudSlangExecutableName";
+        return "cloudSlangExecutableName()";
     }
 
     @Override

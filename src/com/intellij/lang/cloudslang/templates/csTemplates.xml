@@ -10,9 +10,9 @@
     <variable name="output_2" expression="completeInput" defaultValue="" alwaysStopAt="true" />
     <variable name="output_description_2" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
     <variable name="namespace" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="operation_name" expression="cloudSlangExecutableName" defaultValue="" alwaysStopAt="false" />
+    <variable name="operation_name" expression="cloudSlangExecutableName()" defaultValue="" alwaysStopAt="false" />
     <variable name="gav" expression="" defaultValue="&quot;group:artifact:version&quot;" alwaysStopAt="true" />
-    <variable name="class" expression="camelCase(cloudSlangExecutableName)" defaultValue="" alwaysStopAt="false" />
+    <variable name="class" expression="camelCase(cloudSlangExecutableName())" defaultValue="" alwaysStopAt="false" />
     <variable name="method" expression="" defaultValue="&quot;execute&quot;" alwaysStopAt="false" />
     <variable name="result_name_1" expression="completeInput" defaultValue="" alwaysStopAt="true" />
     <context>
