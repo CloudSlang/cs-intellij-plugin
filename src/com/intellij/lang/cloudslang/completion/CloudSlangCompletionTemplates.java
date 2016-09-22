@@ -26,7 +26,7 @@ public class CloudSlangCompletionTemplates {
             OUTPUT_PROPERTIES_TEMPLATE,
             PARALLEL_LOOP_TEMPLATE,
             PROPERTIES_TEMPLATE,
-             PYTHON_ACTION_TEMPLATE,
+            PYTHON_ACTION_TEMPLATE,
             STEP_TEMPLATE, SYSTEM_PROPERTY_TEMPLATE);
 
     static List<String> getAllTemplateNames() {
