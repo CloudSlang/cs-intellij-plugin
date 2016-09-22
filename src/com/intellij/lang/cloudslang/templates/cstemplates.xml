@@ -1,20 +1,20 @@
 <templateSet group="cstemplates">
-  <template name="op" value="####################################################&#10;#!!&#10;#! @description: $operation_description$&#10;#!&#10;#! @input $input_1$: $input_description_1$&#10;#! @input $input_2$: $input_description_2$&#10;#! @output $output_1$: $output_description_1$&#10;#! @result $output_2$: $output_description_2$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $gav$&#10;      class: $class$&#10;      method: $method$&#10;&#10;    outputs:&#10;      - $output_1$&#10;&#10;    results:&#10;      - $result_name_1$" toReformat="false" toShortenFQNames="true">
-    <variable name="operation_description" expression="" defaultValue="Description" alwaysStopAt="false" />
-    <variable name="input_1" expression="complete()" defaultValue="" alwaysStopAt="true" />
-    <variable name="input_description_1" expression="" defaultValue="Description" alwaysStopAt="false" />
-    <variable name="input_2" expression="completeSmart()" defaultValue="" alwaysStopAt="true" />
-    <variable name="input_description_2" expression="" defaultValue="Description" alwaysStopAt="false" />
-    <variable name="output_1" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="output_description_1" expression="" defaultValue="Description" alwaysStopAt="false" />
-    <variable name="output_2" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="output_description_2" expression="" defaultValue="Description" alwaysStopAt="false" />
+  <template name="oper" value="####################################################&#10;#!!&#10;#! @description: $operation_description$&#10;#!&#10;#! @input $input_1$: $input_description_1$&#10;#! @input $input_2$: $input_description_2$&#10;#! @output $output_1$: $output_description_1$&#10;#! @result $output_2$: $output_description_2$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $gav$&#10;      class_name: $class$&#10;      method_name: $method$&#10;&#10;    outputs:&#10;      - $output_1$&#10;&#10;    results:&#10;      - $result_name_1$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="operation_description" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
+    <variable name="input_1" expression="completeInput" defaultValue="" alwaysStopAt="true" />
+    <variable name="input_description_1" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
+    <variable name="input_2" expression="completeInput" defaultValue="" alwaysStopAt="true" />
+    <variable name="input_description_2" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
+    <variable name="output_1" expression="completeInput" defaultValue="" alwaysStopAt="true" />
+    <variable name="output_description_1" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
+    <variable name="output_2" expression="completeInput" defaultValue="" alwaysStopAt="true" />
+    <variable name="output_description_2" expression="" defaultValue="&quot;Description&quot;" alwaysStopAt="false" />
     <variable name="namespace" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="operation_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="gav" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="method" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="result_name_1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="operation_name" expression="cloudSlangExecutableName" defaultValue="" alwaysStopAt="false" />
+    <variable name="gav" expression="" defaultValue="&quot;group:artifact:version&quot;" alwaysStopAt="true" />
+    <variable name="class" expression="camelCase(cloudSlangExecutableName)" defaultValue="" alwaysStopAt="false" />
+    <variable name="method" expression="" defaultValue="&quot;execute&quot;" alwaysStopAt="false" />
+    <variable name="result_name_1" expression="completeInput" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
