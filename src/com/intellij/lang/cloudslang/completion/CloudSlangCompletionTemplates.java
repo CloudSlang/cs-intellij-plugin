@@ -11,7 +11,6 @@ public class CloudSlangCompletionTemplates {
     public static final String INPUT_PROPERTIES_TEMPLATE = "input_with_properties_template";
     public static final String JAVA_ACTION_TEMPLATE = "java_action_template";
     public static final String ON_FAILURE_TEMPLATE = "on_failure_template";
-    public static final String OPERATION_TEMPLATE = "operation_template";
     public static final String OUTPUT_PROPERTIES_TEMPLATE = "output_with_properties_template";
     public static final String PARALLEL_LOOP_TEMPLATE = "parallel_loop_template";
     public static final String PROPERTIES_TEMPLATE = "properties_template";
@@ -24,7 +23,6 @@ public class CloudSlangCompletionTemplates {
             INPUT_PROPERTIES_TEMPLATE,
             JAVA_ACTION_TEMPLATE,
             ON_FAILURE_TEMPLATE,
-            OPERATION_TEMPLATE,
             OUTPUT_PROPERTIES_TEMPLATE,
             PARALLEL_LOOP_TEMPLATE,
             PROPERTIES_TEMPLATE,
