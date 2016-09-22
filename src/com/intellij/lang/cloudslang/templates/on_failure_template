@@ -1,7 +1,0 @@
-- on_failure:
-  - step_name:
-      do:
-        executable_name:
-          - executable_argument
-      publish:
-        - publish_name: publish_value

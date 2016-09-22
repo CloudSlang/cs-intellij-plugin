@@ -1,4 +1,0 @@
-java_action:
-  gav: 'group:artifact:version'
-  class_name: java_class_name
-  method_name: java_method_name

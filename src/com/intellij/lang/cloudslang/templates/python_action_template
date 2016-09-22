@@ -1,5 +1,0 @@
-python_action:
-  dependencies:
-      - 'group1:artifact1:version1'
-      - 'group2:artifact2:version2'
-  script: python_script

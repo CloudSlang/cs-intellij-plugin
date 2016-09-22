@@ -22,22 +22,12 @@ import java.util.List;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 
-    private static final String TEMPLATES = "com/intellij/lang/cloudslang/templates";
-    private static final String WINDOWS_LINE_ENDINGS = "\r\n";
-    private static final String UNIX_LINE_ENDINGS = "\n";
-    private static final String SLASH = "/";
-
     public CloudSlangCompletionContributor() {
         extend(CompletionType.BASIC,
                 PlatformPatterns.psiElement().withLanguage(YAMLLanguage.INSTANCE),
                 new CompletionProvider<CompletionParameters>() {
                     public void addCompletions(@NotNull CompletionParameters parameters,  ProcessingContext context, @NotNull CompletionResultSet resultSet) {
                         addSlangKeywords(resultSet);
-                        try {
-                            addTemplates(resultSet);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
                         addYamlKeywordsUsedByCloudSlang(resultSet);
                     }
                 }
@@ -53,18 +43,6 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
                 resultSet.addElement(builder);
             } catch (IllegalAccessException ignored) {
             }
-        }
-    }
-
-    private void addTemplates(CompletionResultSet resultSet) throws IOException, URISyntaxException {
-        ClassLoader classLoader = CloudSlangCompletionContributor.class.getClassLoader();
-        List<String> allTemplateNames = CloudSlangCompletionTemplates.getAllTemplateNames();
-        for (String templateName : allTemplateNames) {
-            InputStream templateResourceStream = classLoader.getResourceAsStream(TEMPLATES + SLASH + templateName);
-            String templateString = IOUtils.toString(templateResourceStream, StandardCharsets.UTF_8);
-            // This step is mandatory because of the way templates are handled in IntelliJ
-            String replacedTemplateString = templateString.replace(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS);
-            addCompletion(resultSet, templateName, replacedTemplateString);
         }
     }
 

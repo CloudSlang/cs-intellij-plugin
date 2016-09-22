@@ -1,5 +1,0 @@
-- input_name:
-    required: true|false
-    default: default_value
-    private: true|false
-    sensitive: true|false

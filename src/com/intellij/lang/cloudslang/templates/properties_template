@@ -1,4 +1,0 @@
-namespace: current.namespace
-
-properties:
-  - property_key: property_value

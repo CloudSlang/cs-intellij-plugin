@@ -1,5 +1,5 @@
 <templateSet group="cstemplates">
-    <template name="operation_template" value="####################################################&#10;#!!&#10;#! @description: $operation_description_1$&#10;#!&#10;#! @input $input_1$: $input_description_1$&#10;#! @input $input_2$: $input_description_2$&#10;#! @output $output_1$: $output_description_1$&#10;#! @result $output_2$: $output_description_2$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $gav$&#10;      class: $class$&#10;      method: $method$&#10;&#10;    outputs:&#10;      - $output_1$&#10;&#10;    results:&#10;      - $result_name_1$" description="Operation template" toReformat="false" toShortenFQNames="true">
+    <template name="operation_template" value="####################################################&#10;#!!&#10;#! @description: $operation_description_1$&#10;#!&#10;#! @input $input_1$: $input_description_1$&#10;#! @input $input_2$: $input_description_2$&#10;#! @output $output_1$: $output_description_1$&#10;#! @result $output_2$: $output_description_2$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $gav$&#10;      class: $class$&#10;      method: $method$&#10;&#10;    outputs:&#10;      - $output_1$&#10;&#10;    results:&#10;      - $result_name_1$" description="operation template" toReformat="false" toShortenFQNames="true">
         <variable name="operation_description_1" expression="" defaultValue="Description" alwaysStopAt="true" />
         <variable name="input_1" expression="complete()" defaultValue="" alwaysStopAt="true" />
         <variable name="input_description_1" expression="" defaultValue="Description" alwaysStopAt="true" />
@@ -19,7 +19,7 @@
             <option name="OTHER" value="true" />
         </context>
     </template>
-    <template name="flow_template" value="####################################################&#10;#!!&#10;#! @description: $19_flow_description$&#10;#!&#10;#! @input $5_input_name$: $20_input_description$&#10;#!                    $21_input_description$&#10;#! @input $7_input_name$: $22_input_description$&#10;#! @output $16_output_name$: $23_output_description$&#10;#! @result $18_result_name$: $24_result_description$&#10;#!!#&#10;####################################################&#10;&#10;&#10;namespace: $1_current.namespace$&#10;&#10;imports:&#10;    $2_import_name$: $3_import.namespace$&#10;&#10;flow:&#10;    name: $4_flow_name$&#10;&#10;    inputs:&#10;      - $5_input_name$: $6_input_value$&#10;      - $7_input_name$: $8_input_value$&#10;&#10;    workflow:&#10;      - $9_step_name$:&#10;          do:&#10;            $10_executable_name$:&#10;              - $11_executable_argument$&#10;          publish:&#10;            - $12_publish_name$: $13_publish_value$&#10;          navigate:&#10;            - $14_executable_result_name$: $15_navigate_to$&#10;&#10;    outputs:&#10;      - $16_output_name$: $17_output_value$&#10;&#10;    results:&#10;      - $18_result_name$" description="Flow template" toReformat="false" toShortenFQNames="true">
+    <template name="flow_template" value="####################################################&#10;#!!&#10;#! @description: $19_flow_description$&#10;#!&#10;#! @input $5_input_name$: $20_input_description$&#10;#!                    $21_input_description$&#10;#! @input $7_input_name$: $22_input_description$&#10;#! @output $16_output_name$: $23_output_description$&#10;#! @result $18_result_name$: $24_result_description$&#10;#!!#&#10;####################################################&#10;&#10;&#10;namespace: $1_current.namespace$&#10;&#10;imports:&#10;    $2_import_name$: $3_import.namespace$&#10;&#10;flow:&#10;    name: $4_flow_name$&#10;&#10;    inputs:&#10;      - $5_input_name$: $6_input_value$&#10;      - $7_input_name$: $8_input_value$&#10;&#10;    workflow:&#10;      - $9_step_name$:&#10;          do:&#10;            $10_executable_name$:&#10;              - $11_executable_argument$&#10;          publish:&#10;            - $12_publish_name$: $13_publish_value$&#10;          navigate:&#10;            - $14_executable_result_name$: $15_navigate_to$&#10;&#10;    outputs:&#10;      - $16_output_name$: $17_output_value$&#10;&#10;    results:&#10;      - $18_result_name$" description="flow template" toReformat="false" toShortenFQNames="true">
         <variable name="19_flow_description" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="5_input_name" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="20_input_description" expression="" defaultValue="" alwaysStopAt="true" />
@@ -43,7 +43,111 @@
         <variable name="15_navigate_to" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="17_output_value" expression="" defaultValue="" alwaysStopAt="true" />
         <context>
-          <option name="OTHER" value="true" />
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="input_with_properties_template" value="- $1_input_name$:&#10;    required: $2_true_false$&#10;    default: $3_default_value$&#10;    private: $4_true_false$&#10;    sensitive: $5_true_false$" description="input with properties template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_input_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_true_false" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_default_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_true_false" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_true_false" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="for_template" value="- $1_step_name$:&#10;    loop:&#10;      for: $2_iteration_statement$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;      publish:&#10;        - $5_publish_name$: $6_publish_value$&#10;      break:&#10;        - $7_result_name$&#10;    navigate:&#10;      - $8_executable_result_name$: $9_navigate_to$" description="for template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_step_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_iteration_statement" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="6_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="7_result_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="8_executable_result_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="9_navigate_to" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="java_action_template" value="java_action:&#10;    gav: '$1_group$:$2_artifact$:$3_version$'&#10;    class_name: $4_java_class_name$&#10;    method_name: $5_java_method_name$" description="java action template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_group" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_artifact" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_version" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_java_class_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_java_method_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="on_failure_template" value="- on_failure:&#10;    - $1_step_name$:&#10;        do:&#10;          $2_executable_name$:&#10;            - $3_executable_argument$&#10;        publish:&#10;          - $4_publish_name$: $5_publish_value$" description="on failure template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_step_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="output_with_properties_template" value="- $1_output_name$:&#10;    value: $2_output_value$&#10;    sensitive: $3_sensitive_value$" description="output with properties template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_output_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_output_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_sensitive_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="parallel_loop_template" value="- $1_step_name$:&#10;    parallel_loop:&#10;      for: $2_iteration_statement$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;    publish:&#10;      - $5_publish_name$: $6_publish_value$&#10;    navigate:&#10;      - $7_executable_result_name$: $8_navigate_to$" description="parallel loop template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_step_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_iteration_statement" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="6_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="7_executable_result_name" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="8_navigate_to" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="properties_template" value="namespace: $1_current.namespace$&#10;&#10;properties:&#10;  - $2_property_key$: $3_property_value$" description="properties template" toReformat="false" toShortenFQNames="true">
+        <variable name="2_property_key" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_property_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="python_action_template" value="python_action:&#10;    dependencies:&#10;        - '$1_group1$:$2_artifact1$:$3_version1$'&#10;        - '$4_group2$:$5_artifact2$:$6_version2$'&#10;    script: $7_python_script$" description="python action template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_group1" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_artifact1" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_version1" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4_group2" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5_artifact2" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="6_version2" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="7_python_script" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="step_template" value="- $1$step_name$:&#10;    do:&#10;      $2$executable_name$:&#10;        - $3$executable_argument$&#10;    publish:&#10;      - $4$publish_name$: $5$publish_value$&#10;    navigate:&#10;      - $6$executable_result_name$: $7$navigate_to$" description="step template" toReformat="false" toShortenFQNames="true">
+        <variable name="1" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="4" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="5" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="6" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="7" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
+        </context>
+    </template>
+    <template name="system_property_template" value="- $1_property_key$:&#10;  value: $2_property_value$&#10;  sensitive: $3_sensitive_value$" description="system property template" toReformat="false" toShortenFQNames="true">
+        <variable name="1_property_key" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="2_property_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="3_sensitive_value" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="OTHER" value="true" />
         </context>
     </template>
 </templateSet>

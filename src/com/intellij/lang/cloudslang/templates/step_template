@@ -1,8 +1,0 @@
-- step_name:
-    do:
-      executable_name:
-        - executable_argument
-    publish:
-      - publish_name: publish_value
-    navigate:
-      - executable_result_name: navigate_to
