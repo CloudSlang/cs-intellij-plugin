@@ -5,6 +5,7 @@ import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
 import com.intellij.codeInsight.problems.ProblemImpl;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
+import com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider;
 import com.intellij.lang.cloudslang.exceptions.LocatedRuntimeException;
 import com.intellij.openapi.editor.Document;
 import com.intellij.problems.Problem;
@@ -17,7 +18,6 @@ import io.cloudslang.lang.compiler.modeller.SlangModeller;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
-import io.cloudslang.lang.compiler.modeller.transformers.SpringConfiguration;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
 import java.util.ArrayList;
@@ -47,10 +47,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-        SpringConfiguration springConfiguration = new SpringConfiguration();
-        YamlParser yamlParser = springConfiguration.yamlParser();
-        SlangModeller slangModeller = springConfiguration.slangModeller();
+        YamlParser yamlParser = CloudSlangDependenciesProvider.getYamlParser();
+        SlangModeller slangModeller = CloudSlangDependenciesProvider.getSlangModeller();
 
         if (file instanceof YAMLFile) {
             YAMLFile yamlFile = (YAMLFile) file;
