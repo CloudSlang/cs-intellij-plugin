@@ -7,11 +7,11 @@ import org.jetbrains.annotations.Nullable;
  * Created by Ligia Centea
  * Date: 9/21/2016.
  */
-public class CloudSLangLiveTemplatesProvider implements DefaultLiveTemplatesProvider {
+public class CloudSlangLiveTemplatesProvider implements DefaultLiveTemplatesProvider {
     @Override
     public String[] getDefaultLiveTemplateFiles() {
         return new String[]{
-                "com/intellij/lang/cloudslang/templates/cstemplates",
+                "com/intellij/lang/cloudslang/templates/csTemplates",
         };
     }
 
