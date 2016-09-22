@@ -26,7 +26,6 @@ import io.cloudslang.lang.compiler.validator.PreCompileValidatorImpl;
 import io.cloudslang.lang.compiler.validator.SystemPropertyValidatorImpl;
 import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
@@ -35,8 +34,13 @@ import org.yaml.snakeyaml.introspector.BeanAccess;
  * Date: 9/22/2016.
  */
 public class CloudSlangDependenciesProvider {
-    private static YamlParser yamlParser = yamlParser();
-    private static SlangModeller slangModeller = slangModeller();
+    private static final YamlParser yamlParser;
+    private static final SlangModeller slangModeller;
+
+    static {
+        yamlParser = yamlParser();
+        slangModeller = slangModeller();
+    }
 
     public static YamlParser getYamlParser() {
         return yamlParser;
