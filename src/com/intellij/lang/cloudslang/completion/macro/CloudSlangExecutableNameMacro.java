@@ -10,12 +10,8 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-/**
- * Created by Ligia Centea
- * Date: 9/22/2016.
- */
+
 public class CloudSlangExecutableNameMacro extends Macro {
     @Override
     public String getName() {

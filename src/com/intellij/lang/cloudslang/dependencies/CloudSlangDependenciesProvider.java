@@ -24,15 +24,13 @@ import io.cloudslang.lang.compiler.parser.utils.ParserExceptionHandler;
 import io.cloudslang.lang.compiler.validator.ExecutableValidatorImpl;
 import io.cloudslang.lang.compiler.validator.PreCompileValidatorImpl;
 import io.cloudslang.lang.compiler.validator.SystemPropertyValidatorImpl;
-import java.util.ArrayList;
-import java.util.List;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
-/**
- * Created by Ligia Centea
- * Date: 9/22/2016.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CloudSlangDependenciesProvider {
     private static final YamlParser yamlParser;
     private static final SlangModeller slangModeller;

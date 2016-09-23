@@ -20,13 +20,6 @@ import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.yaml.psi.YAMLDocument;
@@ -34,10 +27,14 @@ import org.jetbrains.yaml.psi.YAMLFile;
 import org.jetbrains.yaml.psi.YAMLKeyValue;
 import org.jetbrains.yaml.psi.YAMLPsiElement;
 
-/**
- * Created by Ligia Centea
- * Date: 9/7/2016.
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
 
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 

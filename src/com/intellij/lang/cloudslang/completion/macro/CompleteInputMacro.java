@@ -25,14 +25,12 @@ import com.intellij.psi.util.PsiUtil;
 import com.intellij.util.containers.ContainerUtil;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Ligia Centea
- * Date: 9/22/2016.
- */
+
 public class CompleteInputMacro extends Macro {
 
     @Override
@@ -56,7 +54,7 @@ public class CompleteInputMacro extends Macro {
         PsiElement place = file.findElementAt(offset);
         PsiVariable[] vars = MacroUtil.getVariablesVisibleAt(place, "");
         ChooseLetterLoop:
-        for(char letter = 'i'; letter <= 'z'; letter++){
+        for (char letter = 'i'; letter <= 'z'; letter++) {
             for (PsiVariable var : vars) {
                 PsiIdentifier identifier = var.getNameIdentifier();
                 if (identifier == null || place.equals(identifier)) continue;
@@ -85,7 +83,8 @@ public class CompleteInputMacro extends Macro {
         return true;
     }
 
-    @NotNull public static PsiVariable[] getVariablesVisibleAt(@Nullable final PsiElement place, String prefix) {
+    @NotNull
+    public static PsiVariable[] getVariablesVisibleAt(@Nullable final PsiElement place, String prefix) {
         if (place == null) {
             return new PsiVariable[0];
         }
@@ -96,14 +95,14 @@ public class CompleteInputMacro extends Macro {
             @Override
             public boolean execute(@NotNull PsiElement pe, @NotNull ResolveState state) {
                 if (pe instanceof PsiVariable) {
-                    if (!usedNames.add(((PsiVariable)pe).getName())) {
+                    if (!usedNames.add(((PsiVariable) pe).getName())) {
                         return false;
                     }
                     //exclude variables that are initialized in 'place'
-                    final PsiExpression initializer = ((PsiVariable)pe).getInitializer();
+                    final PsiExpression initializer = ((PsiVariable) pe).getInitializer();
                     if (initializer != null && PsiTreeUtil.isAncestor(initializer, place, false)) return true;
                 }
-                return pe instanceof PsiField && !PsiUtil.isAccessible((PsiField)pe, place, null) || super.execute(pe, state);
+                return pe instanceof PsiField && !PsiUtil.isAccessible((PsiField) pe, place, null) || super.execute(pe, state);
             }
         };
         PsiScopesUtil.treeWalkUp(varproc, place, null);

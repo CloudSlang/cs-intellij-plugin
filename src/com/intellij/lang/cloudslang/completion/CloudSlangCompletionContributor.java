@@ -9,16 +9,10 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
 import io.cloudslang.lang.compiler.SlangTextualKeys;
-import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 
@@ -26,7 +20,7 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
         extend(CompletionType.BASIC,
                 PlatformPatterns.psiElement().withLanguage(YAMLLanguage.INSTANCE),
                 new CompletionProvider<CompletionParameters>() {
-                    public void addCompletions(@NotNull CompletionParameters parameters,  ProcessingContext context, @NotNull CompletionResultSet resultSet) {
+                    public void addCompletions(@NotNull CompletionParameters parameters, ProcessingContext context, @NotNull CompletionResultSet resultSet) {
                         addSlangKeywords(resultSet);
                         addYamlKeywordsUsedByCloudSlang(resultSet);
                     }
