@@ -83,7 +83,6 @@ public class CurrentNamespaceMacro extends Macro {
             }
         }
         return strBuilder.toString();
-
     }
 
     private String fixPathPart(String pathPart) {
