@@ -43,7 +43,7 @@
         <defaultLiveTemplatesProvider
                 implementation="com.intellij.lang.cloudslang.completion.CloudSlangLiveTemplatesProvider"/>
         <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CloudSlangExecutableNameMacro"/>
-        <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CompleteInputMacro"/>
+        <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CurrentNamespaceMacro"/>
         <!--added new-->
         <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->
         <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->
