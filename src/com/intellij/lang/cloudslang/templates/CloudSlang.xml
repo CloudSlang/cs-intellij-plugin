@@ -21,31 +21,26 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
-  <template name="flow" value="####################################################&#10;#!!&#10;#! @description: $19_flow_description$&#10;#!&#10;#! @input $5_input_name$: $20_input_description$&#10;#!                    $21_input_description$&#10;#! @input $7_input_name$: $22_input_description$&#10;#! @output $16_output_name$: $23_output_description$&#10;#! @result $18_result_name$: $24_result_description$&#10;#!!#&#10;####################################################&#10;&#10;&#10;namespace: $1_currentnamespace$&#10;&#10;imports:&#10;    $2_import_name$: $3_importnamespace$&#10;&#10;flow:&#10;    name: $4_flow_name$&#10;&#10;    inputs:&#10;      - $5_input_name$: $6_input_value$&#10;      - $7_input_name$: $8_input_value$&#10;&#10;    workflow:&#10;      - $9_step_name$:&#10;          do:&#10;            $10_executable_name$:&#10;              - $11_executable_argument$&#10;          publish:&#10;            - $12_publish_name$: $13_publish_value$&#10;          navigate:&#10;            - $14_executable_result_name$: $15_navigate_to$&#10;&#10;    outputs:&#10;      - $16_output_name$: $17_output_value$&#10;&#10;    results:&#10;      - $18_result_name$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="19_flow_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="5_input_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="20_input_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="21_input_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="7_input_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="22_input_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="16_output_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="23_output_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="18_result_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="24_result_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="1_current_namespace" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2_import_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_import_namespace" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="4_flow_name" expression="cloudSlangExecutableName()" defaultValue="" alwaysStopAt="true" />
-    <variable name="6_input_value" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="8_input_value" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="9_step_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="10_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="11_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="12_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="13_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="14_executable_result_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="15_navigate_to" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="17_output_value" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="flow" value="####################################################&#10;#!!&#10;#! @description: $flow_description$&#10;#!&#10;#! @input $input_1$: $input_1$ $standard_description$&#10;#! @input $input_2$: $input_2$ $standard_description$&#10;#! @output $output_1$: $output_1$ $standard_description$&#10;#! @result $result_1$: $result_1_description$&#10;#! @result $result_2$: $result_2_description$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;flow:&#10;    name: $flow_name$&#10;&#10;    inputs:&#10;      - $input_1$: &quot;$input_1_value$&quot;&#10;      - $input_2$: &quot;$input_2_value$&quot;&#10;&#10;    workflow:&#10;      - $step_1$:&#10;          do:&#10;            $executable_name$:&#10;              - $input_1$$standar_argument_suffix$: ${$input_1$}&#10;              - $input_2$$standar_argument_suffix$: ${$input_2$}&#10;          publish:&#10;            - $step_output$&#10;          navigate:&#10;            - $step_result_1$: $result_1$&#10;            - $step_result_2$: $result_2$&#10;&#10;    outputs:&#10;      - $output_1$: ${$step_output$}&#10;&#10;    results:&#10;      - $result_1$&#10;      - $result_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="flow_description" expression="" defaultValue="&quot;Flow description&quot;" alwaysStopAt="false" />
+    <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_2" expression="" defaultValue="&quot;input_2&quot;" alwaysStopAt="true" />
+    <variable name="output_1" expression="" defaultValue="&quot;output_1&quot;" alwaysStopAt="true" />
+    <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
+    <variable name="result_1_description" expression="" defaultValue="&quot;Flow completed successfully.&quot;" alwaysStopAt="false" />
+    <variable name="result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
+    <variable name="result_2_description" expression="" defaultValue="&quot;Failure occured during execution.&quot;" alwaysStopAt="false" />
+    <variable name="namespace" expression="" defaultValue="&quot;io.cloudslang.content&quot;" alwaysStopAt="false" />
+    <variable name="flow_name" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="false" />
+    <variable name="input_1_value" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="input_2_value" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="step_1" expression="" defaultValue="&quot;step_1&quot;" alwaysStopAt="true" />
+    <variable name="executable_name" expression="" defaultValue="&quot;operation_name&quot;" alwaysStopAt="true" />
+    <variable name="step_output" expression="" defaultValue="&quot;step_output_1&quot;" alwaysStopAt="true" />
+    <variable name="step_result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
+    <variable name="step_result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
+    <variable name="standar_argument_suffix" expression="" defaultValue="_arg" alwaysStopAt="false" />
+    <variable name="standard_description" expression="" defaultValue="&quot;description&quot;" alwaysStopAt="false" />
     <context>
       <option name="OTHER" value="true" />
     </context>
