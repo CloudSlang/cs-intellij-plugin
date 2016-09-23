@@ -10,6 +10,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -68,7 +69,7 @@ public class CurrentNamespaceMacro extends Macro {
         // Exclude file name from namespace value
         Path relativePath = get(projectPath).relativize(get(new File(filePath).getParent()));
         int nameCount = relativePath.getNameCount();
-        if (nameCount <= 0) {
+        if ((nameCount <= 0) || StringUtils.isEmpty(relativePath.toString())) {
             return DEFAULT_NAMESPACE_TO_USE;
         }
         StringBuilder strBuilder = new StringBuilder(relativePath.toString().length());
