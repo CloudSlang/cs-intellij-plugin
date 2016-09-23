@@ -8,7 +8,7 @@
     <variable name="result_1_description" expression="" defaultValue="&quot;Operation completed successfully.&quot;" alwaysStopAt="false" />
     <variable name="result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
     <variable name="result_2_description" expression="" defaultValue="&quot;Failure occured during execution.&quot;" alwaysStopAt="false" />
-    <variable name="namespace" expression="" defaultValue="&quot;io.cloudslang.content&quot;" alwaysStopAt="true" />
+    <variable name="namespace" expression="relativePathToProject" defaultValue="&quot;io.cloudslang.content&quot;" alwaysStopAt="true" />
     <variable name="operation_name" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="false" />
     <variable name="group" expression="" defaultValue="&quot;group&quot;" alwaysStopAt="true" />
     <variable name="artifact" expression="" defaultValue="&quot;artifact&quot;" alwaysStopAt="true" />
