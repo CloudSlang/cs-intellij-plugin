@@ -75,21 +75,21 @@
     </context>
   </template>
   <template name="java_action" value="java_action:&#10;    gav: '$1_group$:$2_artifact$:$3_version$'&#10;    class_name: $4_java_class_name$&#10;    method_name: $5_java_method_name$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="1_group" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2_artifact" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_version" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="4_java_class_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="5_java_method_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1_group" expression="" defaultValue="&quot;group&quot;" alwaysStopAt="true" />
+    <variable name="2_artifact" expression="" defaultValue="&quot;artifact&quot;" alwaysStopAt="true" />
+    <variable name="3_version" expression="" defaultValue="&quot;version&quot;" alwaysStopAt="true" />
+    <variable name="4_java_class_name" expression="" defaultValue="&quot;java_class_name&quot;" alwaysStopAt="true" />
+    <variable name="5_java_method_name" expression="" defaultValue="&quot;java_method_name&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
   </template>
   <template name="on_failure" value="- on_failure:&#10;    - $1_step_name$:&#10;        do:&#10;          $2_executable_name$:&#10;            - $3_executable_argument$&#10;        publish:&#10;          - $4_publish_name$: $5_publish_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="1_step_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="4_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="5_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1_step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
+    <variable name="2_executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
+    <variable name="3_executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="4_publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
+    <variable name="5_publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
