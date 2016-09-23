@@ -11,10 +11,7 @@ import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by Ligia Centea
- * Date: 9/22/2016.
- */
+
 public class CloudSlangExecutableNameMacro extends Macro {
     @Override
     public String getName() {
