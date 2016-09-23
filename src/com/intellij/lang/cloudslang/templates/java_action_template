@@ -1,4 +1,0 @@
-java_action:
-    gav: '${1:group}:${2:artifact}:${3:version}'
-    class_name: ${4:java_class_name}
-    method_name: ${5:java_method_name}

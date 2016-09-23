@@ -1,7 +1,0 @@
-- on_failure:
-    - ${1:step_name}:
-        do:
-          ${2:executable_name}:
-            - ${3:executable_argument}
-        publish:
-          - ${4:publish_name}: ${5:publish_value}

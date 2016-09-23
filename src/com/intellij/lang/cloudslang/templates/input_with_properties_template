@@ -1,5 +1,0 @@
-- ${1:input_name}:
-    required: ${2:true|false}
-    default: ${3:default_value}
-    private: ${4:true|false}
-    sensitive: ${5:true|false}

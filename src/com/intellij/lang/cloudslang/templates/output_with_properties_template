@@ -1,3 +1,0 @@
-- ${1:output_name}:
-    value: ${2:output_value}
-    sensitive: ${3:sensitive_value}
