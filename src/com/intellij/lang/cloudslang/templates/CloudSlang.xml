@@ -52,10 +52,10 @@
   </template>
   <template name="input" value="- $1_input_name$:&#10;    required: $2_true_false$&#10;    default: $3_default_value$&#10;    private: $4_true_false$&#10;    sensitive: $5_true_false$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1_input_name" expression="" defaultValue="&quot;input_name&quot;" alwaysStopAt="true" />
-    <variable name="2_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
+    <variable name="2_true_false" expression="" defaultValue="&quot;true&quot;" alwaysStopAt="true" />
     <variable name="3_default_value" expression="" defaultValue="&quot;default_value&quot;" alwaysStopAt="true" />
-    <variable name="4_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
-    <variable name="5_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
+    <variable name="4_true_false" expression="" defaultValue="&quot;false&quot;" alwaysStopAt="true" />
+    <variable name="5_true_false" expression="" defaultValue="&quot;false&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
