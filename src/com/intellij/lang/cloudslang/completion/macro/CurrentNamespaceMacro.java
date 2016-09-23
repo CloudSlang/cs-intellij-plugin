@@ -85,7 +85,7 @@ public class CurrentNamespaceMacro extends Macro {
         return strBuilder.toString();
     }
 
-    private String fixPathPart(String pathPart) {
+    private String fixPathPart(final String pathPart) {
         // We don't support dashes and spaces in files only letters, digits and underscores
         return pathPart.replaceAll("\\s+", "_").replaceAll("[-]+", "_").replaceAll("[_]+", "_").replaceAll("\\W", "");
     }
