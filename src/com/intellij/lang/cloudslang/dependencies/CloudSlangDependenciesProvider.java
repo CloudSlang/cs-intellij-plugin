@@ -24,21 +24,15 @@ import io.cloudslang.lang.compiler.parser.utils.ParserExceptionHandler;
 import io.cloudslang.lang.compiler.validator.ExecutableValidatorImpl;
 import io.cloudslang.lang.compiler.validator.PreCompileValidatorImpl;
 import io.cloudslang.lang.compiler.validator.SystemPropertyValidatorImpl;
+import java.util.ArrayList;
+import java.util.List;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class CloudSlangDependenciesProvider {
-    private static final YamlParser yamlParser;
-    private static final SlangModeller slangModeller;
-
-    static {
-        yamlParser = yamlParser();
-        slangModeller = slangModeller();
-    }
+    private static final YamlParser yamlParser = yamlParser();
+    private static final SlangModeller slangModeller = slangModeller();
 
     public static YamlParser getYamlParser() {
         return yamlParser;
@@ -69,6 +63,7 @@ public class CloudSlangDependenciesProvider {
         executableBuilder.setPreCompileValidator(preCompileValidator());
         executableBuilder.setResultsTransformer(resultsTransformer());
         executableBuilder.setTransformers(transformers());
+        executableBuilder.setExecutableValidator(executableValidator());
         executableBuilder.initScopedTransformersAndKeys();
         return executableBuilder;
     }
@@ -142,7 +137,9 @@ public class CloudSlangDependenciesProvider {
     }
 
     private static DoTransformer doTransformer() {
-        return new DoTransformer();
+        DoTransformer doTransformer = new DoTransformer();
+        doTransformer.setPreCompileValidator(preCompileValidator());
+        return doTransformer;
     }
 
     private static JavaActionTransformer javaActionTransformer() {
