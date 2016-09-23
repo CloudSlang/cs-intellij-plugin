@@ -8,7 +8,7 @@ public class CloudSlangLiveTemplatesProvider implements DefaultLiveTemplatesProv
     @Override
     public String[] getDefaultLiveTemplateFiles() {
         return new String[]{
-                "com/intellij/lang/cloudslang/templates/csTemplates",
+                "com/intellij/lang/cloudslang/templates/CloudSlang",
         };
     }
 
