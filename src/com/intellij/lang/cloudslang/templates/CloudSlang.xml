@@ -32,9 +32,9 @@
     <variable name="23_output_description" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="18_result_name" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="24_result_description" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="1_currentnamespace" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1_current_namespace" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="2_import_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_importnamespace" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="3_import_namespace" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="4_flow_name" expression="cloudSlangExecutableName()" defaultValue="" alwaysStopAt="true" />
     <variable name="6_input_value" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="8_input_value" expression="" defaultValue="" alwaysStopAt="true" />
