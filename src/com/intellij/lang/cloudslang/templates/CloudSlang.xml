@@ -51,25 +51,25 @@
     </context>
   </template>
   <template name="input" value="- $1_input_name$:&#10;    required: $2_true_false$&#10;    default: $3_default_value$&#10;    private: $4_true_false$&#10;    sensitive: $5_true_false$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="1_input_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2_true_false" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_default_value" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="4_true_false" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="5_true_false" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1_input_name" expression="" defaultValue="&quot;input_name&quot;" alwaysStopAt="true" />
+    <variable name="2_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
+    <variable name="3_default_value" expression="" defaultValue="&quot;default_value&quot;" alwaysStopAt="true" />
+    <variable name="4_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
+    <variable name="5_true_false" expression="" defaultValue="&quot;true|false&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
   </template>
   <template name="for" value="- $1_step_name$:&#10;    loop:&#10;      for: $2_iteration_statement$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;      publish:&#10;        - $5_publish_name$: $6_publish_value$&#10;      break:&#10;        - $7_result_name$&#10;    navigate:&#10;      - $8_executable_result_name$: $9_navigate_to$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="1_step_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2_iteration_statement" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3_executable_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="4_executable_argument" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="5_publish_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="6_publish_value" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="7_result_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="8_executable_result_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="9_navigate_to" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1_step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
+    <variable name="2_iteration_statement" expression="" defaultValue="&quot;iteration_statement&quot;" alwaysStopAt="true" />
+    <variable name="3_executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
+    <variable name="4_executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="5_publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
+    <variable name="6_publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
+    <variable name="7_result_name" expression="" defaultValue="&quot;result_name&quot;" alwaysStopAt="true" />
+    <variable name="8_executable_result_name" expression="" defaultValue="&quot;executable_result_name&quot;" alwaysStopAt="true" />
+    <variable name="9_navigate_to" expression="" defaultValue="&quot;navigate_to&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
     </context>
