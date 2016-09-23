@@ -20,7 +20,7 @@
     <variable name="method" expression="" defaultValue="&quot;execute&quot;" alwaysStopAt="true" />
     <variable name="success_condition" expression="" defaultValue="&quot;returnCode == '0'&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="flow" value="####################################################&#10;#!!&#10;#! @description: $flow_description$&#10;#!&#10;#! @input $input_1$: $input_1$ $standard_description$&#10;#! @input $input_2$: $input_2$ $standard_description$&#10;#! @output $output_1$: $output_1$ $standard_description$&#10;#! @result $result_1$: $result_1_description$&#10;#! @result $result_2$: $result_2_description$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;flow:&#10;    name: $flow_name$&#10;&#10;    inputs:&#10;      - $input_1$: &quot;$input_1_value$&quot;&#10;      - $input_2$: &quot;$input_2_value$&quot;&#10;&#10;    workflow:&#10;      - $step_1$:&#10;          do:&#10;            $executable_name$:&#10;              - $input_1$$standar_argument_suffix$: ${$input_1$}&#10;              - $input_2$$standar_argument_suffix$: ${$input_2$}&#10;          publish:&#10;            - $step_output$&#10;          navigate:&#10;            - $step_result_1$: $result_1$&#10;            - $step_result_2$: $result_2$&#10;&#10;    outputs:&#10;      - $output_1$: ${$step_output$}&#10;&#10;    results:&#10;      - $result_1$&#10;      - $result_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -44,7 +44,7 @@
     <variable name="standar_argument_suffix" expression="" defaultValue="_arg" alwaysStopAt="false" />
     <variable name="standard_description" expression="" defaultValue="&quot;description&quot;" alwaysStopAt="false" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="input" value="- $1_input_name$:&#10;    required: $2_true_false$&#10;    default: $3_default_value$&#10;    private: $4_true_false$&#10;    sensitive: $5_true_false$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -68,7 +68,7 @@
     <variable name="8_executable_result_name" expression="" defaultValue="&quot;executable_result_name&quot;" alwaysStopAt="true" />
     <variable name="9_navigate_to" expression="" defaultValue="&quot;navigate_to&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="java_action" value="java_action:&#10;    gav: '$1_group$:$2_artifact$:$3_version$'&#10;    class_name: $4_java_class_name$&#10;    method_name: $5_java_method_name$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -78,7 +78,7 @@
     <variable name="4_java_class_name" expression="" defaultValue="&quot;java_class_name&quot;" alwaysStopAt="true" />
     <variable name="5_java_method_name" expression="" defaultValue="&quot;java_method_name&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="on_failure" value="- on_failure:&#10;    - $1_step_name$:&#10;        do:&#10;          $2_executable_name$:&#10;            - $3_executable_argument$&#10;        publish:&#10;          - $4_publish_name$: $5_publish_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -88,7 +88,7 @@
     <variable name="4_publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
     <variable name="5_publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="output" value="- $1_output_name$:&#10;    value: $2_output_value$&#10;    sensitive: $3_sensitive_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -96,7 +96,7 @@
     <variable name="2_output_value" expression="" defaultValue="&quot;output_value&quot;" alwaysStopAt="true" />
     <variable name="3_sensitive_value" expression="" defaultValue="&quot;sensitive_value&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="parallel_loop" value="- $1_step_name$:&#10;    parallel_loop:&#10;      for: $2_iteration_statement$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;    publish:&#10;      - $5_publish_name$: $6_publish_value$&#10;    navigate:&#10;      - $7_executable_result_name$: $8_navigate_to$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -109,7 +109,7 @@
     <variable name="7_executable_result_name" expression="" defaultValue="&quot;executable_result_name&quot;" alwaysStopAt="true" />
     <variable name="8_navigate_to" expression="" defaultValue="&quot;navigate_to&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="properties" value="namespace: $1_current_namespace$&#10;&#10;properties:&#10;  - $2_property_key$: $3_property_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -117,7 +117,7 @@
     <variable name="2_property_key" expression="" defaultValue="&quot;property_key&quot;" alwaysStopAt="true" />
     <variable name="3_property_value" expression="" defaultValue="&quot;property_value&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="python_action" value="python_action:&#10;    dependencies:&#10;        - '$1_group1$:$2_artifact1$:$3_version1$'&#10;        - '$4_group2$:$5_artifact2$:$6_version2$'&#10;    script: $7_python_script$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -129,7 +129,7 @@
     <variable name="6_version2" expression="" defaultValue="&quot;version2&quot;" alwaysStopAt="true" />
     <variable name="7_python_script" expression="" defaultValue="&quot;python_script&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="step" value="- $1step_name$:&#10;    do:&#10;      $2executable_name$:&#10;        - $3executable_argument$&#10;    publish:&#10;      - $4publish_name$: $5publish_value$&#10;    navigate:&#10;      - $6executable_result_name$: $7navigate_to$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -141,7 +141,7 @@
     <variable name="6executable_result_name" expression="" defaultValue="&quot;executable_result_name&quot;" alwaysStopAt="true" />
     <variable name="7navigate_to" expression="" defaultValue="&quot;navigate_to&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
   <template name="system_property" value="- $1_property_key$:&#10;  value: $2_property_value$&#10;  sensitive: $3_sensitive_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
@@ -149,7 +149,7 @@
     <variable name="2_property_value" expression="" defaultValue="&quot;property_value&quot;" alwaysStopAt="true" />
     <variable name="3_sensitive_value" expression="" defaultValue="&quot;sensitive_value&quot;" alwaysStopAt="true" />
     <context>
-      <option name="OTHER" value="true" />
+      <option name="CloudSlang" value="true" />
     </context>
   </template>
 </templateSet>

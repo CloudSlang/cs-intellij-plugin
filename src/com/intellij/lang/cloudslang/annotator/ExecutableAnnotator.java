@@ -20,6 +20,14 @@ import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.yaml.psi.YAMLDocument;
@@ -27,13 +35,7 @@ import org.jetbrains.yaml.psi.YAMLFile;
 import org.jetbrains.yaml.psi.YAMLKeyValue;
 import org.jetbrains.yaml.psi.YAMLPsiElement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangFile;
 
 
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
@@ -44,10 +46,9 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
-        YamlParser yamlParser = CloudSlangDependenciesProvider.getYamlParser();
-        SlangModeller slangModeller = CloudSlangDependenciesProvider.getSlangModeller();
-
-        if (file instanceof YAMLFile) {
+        if (isCloudSlangFile(file)) {
+            YamlParser yamlParser = CloudSlangDependenciesProvider.getYamlParser();
+            SlangModeller slangModeller = CloudSlangDependenciesProvider.getSlangModeller();
             YAMLFile yamlFile = (YAMLFile) file;
 
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
@@ -70,8 +71,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                 if (runtimeExceptions.isEmpty()) {
                     runtimeExceptions.add(e);
                 }
-                ModellingResult modellingResult = new ExecutableModellingResult(null, runtimeExceptions);
-                return modellingResult;
+                return new ExecutableModellingResult(null, runtimeExceptions);
             }
         }
         return null;
@@ -104,7 +104,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                         .descriptionAndTooltip("Found " + annotationResult.size() + " errors")
                         .range(file).create();
                 Problem problem = new ProblemImpl(file.getVirtualFile(), highlightInfo, true);
-                theProblemSolver.reportProblems(file.getVirtualFile(), Arrays.asList(problem));
+                theProblemSolver.reportProblems(file.getVirtualFile(), Collections.singletonList(problem));
             }
         }
     }

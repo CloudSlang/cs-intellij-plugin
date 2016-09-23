@@ -9,10 +9,11 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
 import io.cloudslang.lang.compiler.SlangTextualKeys;
+import java.lang.reflect.Field;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
 
-import java.lang.reflect.Field;
+import static com.intellij.lang.cloudslang.CloudSlangIcons.STANDARD;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 
@@ -32,9 +33,7 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
         for (Field field : SlangTextualKeys.class.getFields()) {
             try {
                 String value = field.get(null).toString();
-                LookupElementBuilder builder = LookupElementBuilder.create(value + ":")
-                        .withPresentableText(value);
-                resultSet.addElement(builder);
+                addCompletion(resultSet, value, value + ":");
             } catch (IllegalAccessException ignored) {
             }
         }
@@ -42,7 +41,8 @@ public class CloudSlangCompletionContributor extends CompletionContributor {
 
     private void addCompletion(CompletionResultSet resultSet, String name, String template) {
         LookupElementBuilder templateBuilder = LookupElementBuilder.create(template)
-                .withPresentableText(name);
+                .withPresentableText(name)
+                .withIcon(STANDARD);
         resultSet.addElement(templateBuilder);
     }
 
