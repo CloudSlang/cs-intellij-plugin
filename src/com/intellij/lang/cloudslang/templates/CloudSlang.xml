@@ -1,9 +1,12 @@
 <templateSet group="CloudSlang">
-  <template name="operation" value="####################################################&#10;#!!&#10;#! @description: $operation_description$&#10;#!&#10;#! @input $input_1$: $input_1$ $standard_description$&#10;#! @input $input_2$: $input_2$ $standard_description$&#10;#! @output $output$: $output$ $standard_description$&#10;#! @result $result_1$: $result_1_description$&#10;#! @result $result_2$: $result_2_description$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $group$:$artifact$:$version$&#10;      class_name: $class$&#10;      method_name: $method$&#10;&#10;    outputs:&#10;      - $output$&#10;&#10;    results:&#10;      - $result_1$: ${$success_condition$}&#10;      - $result_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
-    <variable name="operation_description" expression="" defaultValue="&quot;Operation Description&quot;" alwaysStopAt="false" />
+  <template name="operation" value="####################################################&#10;#!!&#10;#! @description: $operation_description$&#10;#!&#10;#! @input $input_1$: $input_1_standard_description$&#10;#! @input $input_2$: $input_2_standard_description$&#10;#! @output $output$: $output_standard_description$&#10;#! @result $result_1$: $result_1_description$&#10;#! @result $result_2$: $result_2_description$&#10;#!!#&#10;####################################################&#10;&#10;namespace: $namespace$&#10;&#10;operation:&#10;    name: $operation_name$&#10;&#10;    inputs:&#10;      - $input_1$&#10;      - $input_2$&#10;&#10;    java_action:&#10;      gav: $group$:$artifact$:$version$&#10;      class_name: $class$&#10;      method_name: $method$&#10;&#10;    outputs:&#10;      - $output$&#10;&#10;    results:&#10;      - $result_1$: ${$success_condition$}&#10;      - $result_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="operation_description" expression="" defaultValue="&quot;Operation_description&quot;" alwaysStopAt="false" />
     <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_1_standard_description" expression="" defaultValue="&quot;input_description&quot;" alwaysStopAt="true" />
     <variable name="input_2" expression="" defaultValue="&quot;input_2&quot;" alwaysStopAt="true" />
+    <variable name="input_2_standard_description" expression="" defaultValue="&quot;input_description&quot;" alwaysStopAt="true" />
     <variable name="output" expression="" defaultValue="&quot;output_1&quot;" alwaysStopAt="true" />
+    <variable name="output_standard_description" expression="" defaultValue="&quot;output_description&quot;" alwaysStopAt="true" />
     <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
     <variable name="result_1_description" expression="" defaultValue="&quot;Operation completed successfully.&quot;" alwaysStopAt="false" />
     <variable name="result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
@@ -15,7 +18,6 @@
     <variable name="version" expression="" defaultValue="&quot;version&quot;" alwaysStopAt="true" />
     <variable name="class" expression="capitalize(camelCase(fileNameWithoutExtension()))" defaultValue="" alwaysStopAt="true" />
     <variable name="method" expression="" defaultValue="&quot;execute&quot;" alwaysStopAt="true" />
-    <variable name="standard_description" expression="" defaultValue="&quot;description&quot;" alwaysStopAt="false" />
     <variable name="success_condition" expression="" defaultValue="&quot;returnCode == '0'&quot;" alwaysStopAt="true" />
     <context>
       <option name="OTHER" value="true" />
