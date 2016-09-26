@@ -1,86 +1,67 @@
 <idea-plugin version="2">
-  <id>io.cloudslang.intellij.plugin</id>
-  <name>CloudSlang Plugin</name>
-  <version>0.9-beta</version>
-  <vendor email="support@somedevs.hpe.com" url="https://www.hpe.com/">HPE</vendor>
+    <id>io.cloudslang.intellij.plugin</id>
+    <name>CloudSlang Plugin</name>
+    <version>0.9-beta</version>
+    <!--<vendor email="support@somedevs.hpe.com" url="https://www.hpe.com/">HPE</vendor>-->
 
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+    <description><![CDATA[
+    This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
+    CloudSlang is a flow-based orchestration tool for managing deployed applications. It allows you to rapidly automate your DevOps and everyday IT operations use cases using ready-made workflows or create custom workflows using a YAML-based DSL.
     ]]></description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+    <change-notes><![CDATA[
+      1. Live templates e.g: flow, operation, input, output, step, for, java_action etc.
+      2. Supports CloudSlang file validation and Error highlighting
+      3. Completion support for CloudSlang keywords
+      4. CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
+    <!-- Starting with IntelliJ IDEA 14-->
+    <!-- See version at https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges -->
+    <idea-version since-build="139"/>
 
-  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-   <!--uncomment to enable plugin in all products-->
-  <!--<depends>com.intellij.modules.lang</depends>-->
-
+    <!-- See https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
     <depends>org.jetbrains.plugins.yaml</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <lang.parserDefinition language="yaml" implementationClass="com.intellij.lang.cloudslang.CloudSlangParserDefinition"/>
+        <lang.parserDefinition language="yaml"
+                               implementationClass="com.intellij.lang.cloudslang.CloudSlangParserDefinition"/>
         <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
-        <!-- Add your extensions here -->
-        <completion.contributor language="yaml" implementationClass="com.intellij.lang.cloudslang.completion.CloudSlangCompletionContributor"/>
-        <!--added new-->
+        <completion.contributor language="yaml"
+                                implementationClass="com.intellij.lang.cloudslang.completion.CloudSlangCompletionContributor"/>
 
         <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
-        <lang.syntaxHighlighterFactory key="yaml" implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
-        <externalAnnotator language="yaml" implementationClass="com.intellij.lang.cloudslang.annotator.ExecutableAnnotator"/>
-        <problemHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemHighlightFilter"/>
-        <problemFileHighlightFilter implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
+        <lang.syntaxHighlighterFactory key="yaml"
+                                       implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
+        <externalAnnotator language="yaml"
+                           implementationClass="com.intellij.lang.cloudslang.annotator.ExecutableAnnotator"/>
+        <problemHighlightFilter
+                implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemHighlightFilter"/>
+        <problemFileHighlightFilter
+                implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
 
 
         <defaultLiveTemplatesProvider
                 implementation="com.intellij.lang.cloudslang.completion.CloudSlangLiveTemplatesProvider"/>
         <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CurrentNamespaceMacro"/>
+        <liveTemplateMacro
+                implementation="com.intellij.lang.cloudslang.completion.macro.CloudSlangExecutableNameMacro"/>
         <liveTemplateContext implementation="com.intellij.lang.cloudslang.completion.CloudSlangTemplateContextType"/>
-
-        <!--added new-->
-        <!--<codeStyleSettingsProvider implementation="org.jetbrains.yaml.YAMLCodeStyleSettingsProvider"/>-->
-        <!--<langCodeStyleSettingsProvider implementation="com.intellij.lang.cloudslang.plugin.CouldSlangLanguageCodeStyleSettingsProvider"/>-->
-
-
-        <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->
-        <!--<lang.syntaxHighlighterFactory key="Simple"-->
-                                       <!--language="Simple"-->
-                                       <!--implementationClass="com.simpleplugin.SimpleSyntaxHighlighterFactory"/>-->
-        <!--<colorSettingsPage implementation="com.simpleplugin.SimpleColorSettingsPage"/>-->
-        <!--<annotator language="JAVA" implementationClass="com.simpleplugin.SimpleAnnotator"/>-->
-        <!--<codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.simpleplugin.SimpleLineMarkerProvider"/>-->
-        <!--<completion.contributor language="Simple" implementationClass="com.simpleplugin.SimpleCompletionContributor"/>-->
-        <!--<psi.referenceContributor implementation="com.simpleplugin.SimpleReferenceContributor"/>-->
-        <!--<lang.findUsagesProvider language="Simple" implementationClass="com.simpleplugin.SimpleFindUsagesProvider"/>-->
-        <!--<lang.refactoringSupport language="Simple" implementationClass="com.simpleplugin.SimpleRefactoringSupportProvider"/>-->
-        <!--<lang.foldingBuilder language="JAVA" implementationClass="com.simpleplugin.SimpleFoldingBuilder"/>-->
-        <!--<gotoSymbolContributor implementation="com.simpleplugin.SimpleChooseByNameContributor"/>-->
-        <!--<lang.psiStructureViewFactory language="Simple" implementationClass="com.simpleplugin.SimpleStructureViewFactory"/>-->
-        <!--<lang.formatter language="Simple" implementationClass="com.simpleplugin.SimpleFormattingModelBuilder"/>-->
-        <!--<codeStyleSettingsProvider implementation="com.simpleplugin.SimpleCodeStyleSettingsProvider"/>-->
-        <!--<langCodeStyleSettingsProvider implementation="com.simpleplugin.SimpleLanguageCodeStyleSettingsProvider"/>-->
-        <!--<lang.commenter language="Simple" implementationClass="com.simpleplugin.SimpleCommenter"/>-->
-        <!--<todoIndexer filetype="Simple file" implementationClass="com.simpleplugin.SimpleTodoIndexer"/>-->
     </extensions>
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
 
 </idea-plugin>
