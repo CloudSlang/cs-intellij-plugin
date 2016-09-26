@@ -113,19 +113,21 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
 
     private void createErrorAnnotations(PsiElement element, PsiFile file, AnnotationHolder holder, List<RuntimeException> annotationResult) {
         Document document = PsiDocumentManager.getInstance(file.getProject()).getDocument(file);
+        if (document == null) {
+            return;
+        }
+        PsiElement psiElementWithError = element;
         for (RuntimeException exception : annotationResult) {
             if (exception instanceof LocatedRuntimeException) {
                 LocatedRuntimeException locatedException = (LocatedRuntimeException) exception;
-                //TODO -> Handle null pointer here
                 PsiElement childAtLine = file.findElementAt(document.getLineStartOffset(locatedException.getLineNumber() - 1));
                 if (childAtLine != null) {
-                    element = childAtLine;
+                    psiElementWithError = childAtLine;
                 }
             }
-            holder.createErrorAnnotation(element, exception.getMessage());
+            holder.createErrorAnnotation(psiElementWithError, exception.getMessage());
         }
     }
-
 
     private YAMLPsiElement findChildRecursively(YAMLPsiElement element, String[] possibleName) {
         List<YAMLPsiElement> yamlElements = element.getYAMLElements();
