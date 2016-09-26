@@ -5,15 +5,18 @@
 CloudSlang Plugin for IntelliJ  
 ================================
   
-This plugin allows you to easily develop and run CloudSlang content, using Intellij IDE.  
+This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/).  
 <br />
 
-###Table of Contents
+##Table of Contents
 
-1. Features
-2. Environment Setup 
-3. Run and Debug the Code
-4. Package and Deploy the Plugin
+1. [Features](#features)  
+2. Installation  
+3. Usage
+4. Contribution Guidelines
+..1. Environment Setup 
+..2. Run and Debug the Code
+..3. Package and Deploy the Plugin
 <br />
 
 
