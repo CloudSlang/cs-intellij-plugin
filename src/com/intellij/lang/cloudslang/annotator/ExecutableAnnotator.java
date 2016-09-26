@@ -67,8 +67,6 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                 return new ExecutableModellingResult(null, runtimeExceptions);
             }
 
-            return null;
-
         } else if (isCloudSlangFile(file)) {
             YamlParser yamlParser = getYamlParser();
             SlangModeller slangModeller = getSlangModeller();
