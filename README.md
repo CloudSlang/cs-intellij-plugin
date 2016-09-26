@@ -1,4 +1,9 @@
-# CloudSlang Plugin for IntelliJ  
+<a href="https://aimeos.org/">
+    <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="CloudSlang logo" title="CloudSlang" align="right" height="60" />
+</a>
+
+CloudSlang Plugin for IntelliJ  
+================================
   
 This plugin allows you to easily develop and run CloudSlang content, using Intellij IDE.  
 <br />
