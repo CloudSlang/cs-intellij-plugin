@@ -6,7 +6,8 @@ CloudSlang Plugin for IntelliJ
 ================================
   
 This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/).  
-<br />
+  
+[![CloudSlang Plugin demo](/resources/images/plugin-overview.png)](http://typo3.demo.aimeos.org/)
 
 ##Table of Contents
 
