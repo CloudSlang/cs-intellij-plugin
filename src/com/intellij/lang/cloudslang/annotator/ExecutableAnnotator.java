@@ -99,12 +99,14 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                 createErrorAnnotations(found, yamlFile, holder, annotationResult);
             }
             if (!annotationResult.isEmpty()) {
-                WolfTheProblemSolver theProblemSolver = WolfTheProblemSolver.getInstance(file.getProject());
                 HighlightInfo highlightInfo = HighlightInfo.newHighlightInfo(HighlightInfoType.ERROR)
                         .descriptionAndTooltip("Found " + annotationResult.size() + " errors")
                         .range(file).create();
-                Problem problem = new ProblemImpl(file.getVirtualFile(), highlightInfo, true);
-                theProblemSolver.reportProblems(file.getVirtualFile(), Collections.singletonList(problem));
+                if (highlightInfo != null) {
+                    Problem problem = new ProblemImpl(file.getVirtualFile(), highlightInfo, true);
+                    WolfTheProblemSolver theProblemSolver = WolfTheProblemSolver.getInstance(file.getProject());
+                    theProblemSolver.reportProblems(file.getVirtualFile(), Collections.singletonList(problem));
+                }
             }
         }
     }
