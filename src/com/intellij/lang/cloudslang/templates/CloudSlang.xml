@@ -157,7 +157,7 @@
       <option name="CloudSlang" value="true" />
     </context>
   </template>
-  <template name="system_property" value="- $1_property_key$:&#10;  value: $2_property_value$&#10;  sensitive: $3_sensitive_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+  <template name="system_property" value="- $1_property_key$:&#10;    value: $2_property_value$&#10;    sensitive: $3_sensitive_value$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1_property_key" expression="" defaultValue="&quot;property_key&quot;" alwaysStopAt="true" />
     <variable name="2_property_value" expression="" defaultValue="&quot;property_value&quot;" alwaysStopAt="true" />
     <variable name="3_sensitive_value" expression="" defaultValue="&quot;false&quot;" alwaysStopAt="true" />
