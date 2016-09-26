@@ -64,7 +64,10 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                     Matcher matcher = linePattern.matcher(errorMsg);
                     //try to extract the line number from stack trace
                     while (matcher.find()) {
-                        runtimeExceptions.add(new LocatedRuntimeException(errorMsg, Integer.parseInt(matcher.group(1))));
+                        try {
+                            runtimeExceptions.add(new LocatedRuntimeException(errorMsg, Integer.parseInt(matcher.group(1))));
+                        } catch (Exception ignore) { // We don't want to fail if we parse a weird number or group is not an integer because regex changed
+                        }
                     }
                 }
                 //if no line number could be found, simply add the exception
