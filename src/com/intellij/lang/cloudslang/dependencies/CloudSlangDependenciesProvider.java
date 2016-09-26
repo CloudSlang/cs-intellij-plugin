@@ -165,19 +165,31 @@ public class CloudSlangDependenciesProvider {
     }
 
     private static BreakTransformer breakTransformer() {
-        return new BreakTransformer();
+        final BreakTransformer breakTransformer = new BreakTransformer();
+        breakTransformer.setExecutableValidator(executableValidator());
+
+        return breakTransformer;
     }
 
     private static ParallelLoopForTransformer parallelLoopForTransformer() {
-        return new ParallelLoopForTransformer();
+        ParallelLoopForTransformer parallelLoopForTransformer = new ParallelLoopForTransformer();
+        parallelLoopForTransformer.setExecutableValidator(executableValidator());
+
+        return parallelLoopForTransformer;
     }
 
-    private static PythonActionTransformer pythonActionTransformer() {
-        return new PythonActionTransformer();
+    public static PythonActionTransformer pythonActionTransformer() {
+        PythonActionTransformer pythonActionTransformer = new PythonActionTransformer();
+        pythonActionTransformer.setDependencyFormatValidator(dependencyFormatValidator());
+
+        return pythonActionTransformer;
     }
 
     private static ForTransformer forTransformer() {
-        return new ForTransformer();
+        final ForTransformer forTransformer = new ForTransformer();
+        forTransformer.setExecutableValidator(executableValidator());
+
+        return forTransformer;
     }
 
     private static DoTransformer doTransformer() {
