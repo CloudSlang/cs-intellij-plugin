@@ -1,5 +1,7 @@
 package com.intellij.lang.cloudslang.dependencies;
 
+import io.cloudslang.lang.compiler.SlangCompiler;
+import io.cloudslang.lang.compiler.SlangCompilerImpl;
 import io.cloudslang.lang.compiler.modeller.DependenciesHelper;
 import io.cloudslang.lang.compiler.modeller.ExecutableBuilder;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
@@ -21,13 +23,20 @@ import io.cloudslang.lang.compiler.modeller.transformers.Transformer;
 import io.cloudslang.lang.compiler.modeller.transformers.WorkFlowTransformer;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.utils.ParserExceptionHandler;
+import io.cloudslang.lang.compiler.scorecompiler.ExecutionPlanBuilder;
+import io.cloudslang.lang.compiler.scorecompiler.ExecutionStepFactory;
+import io.cloudslang.lang.compiler.scorecompiler.ScoreCompiler;
+import io.cloudslang.lang.compiler.scorecompiler.ScoreCompilerImpl;
+import io.cloudslang.lang.compiler.validator.CompileValidatorImpl;
 import io.cloudslang.lang.compiler.validator.ExecutableValidatorImpl;
 import io.cloudslang.lang.compiler.validator.PreCompileValidatorImpl;
+import io.cloudslang.lang.compiler.validator.SystemPropertyValidator;
 import io.cloudslang.lang.compiler.validator.SystemPropertyValidatorImpl;
-import java.util.ArrayList;
-import java.util.List;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CloudSlangDependenciesProvider {
@@ -40,6 +49,41 @@ public class CloudSlangDependenciesProvider {
 
     public static SlangModeller getSlangModeller() {
         return slangModeller;
+    }
+
+    public static SlangCompiler slangCompiler() {
+        SlangCompilerImpl slangCompiler = new SlangCompilerImpl();
+        slangCompiler.setYamlParser(yamlParser);
+        slangCompiler.setSlangModeller(slangModeller);
+        slangCompiler.setScoreCompiler(scoreCompiler());
+        slangCompiler.setCompileValidator(compileValidator());
+        slangCompiler.setSystemPropertyValidator(systemPropertyValidator());
+
+        return slangCompiler;
+    }
+
+    private static SystemPropertyValidator systemPropertyValidator() {
+        return new SystemPropertyValidatorImpl();
+    }
+
+    private static ScoreCompiler scoreCompiler() {
+        ScoreCompilerImpl scoreCompiler = new ScoreCompilerImpl();
+        scoreCompiler.setExecutionPlanBuilder(executionPlanBuilder());
+        scoreCompiler.setDependenciesHelper(dependenciesHelper());
+        scoreCompiler.setCompileValidator(compileValidator());
+
+        return scoreCompiler;
+    }
+
+    private static ExecutionPlanBuilder executionPlanBuilder() {
+        ExecutionPlanBuilder executionPlanBuilder = new ExecutionPlanBuilder();
+        executionPlanBuilder.setStepFactory(new ExecutionStepFactory());
+
+        return executionPlanBuilder;
+    }
+
+    private static CompileValidatorImpl compileValidator() {
+        return new CompileValidatorImpl();
     }
 
     private static YamlParser yamlParser() {

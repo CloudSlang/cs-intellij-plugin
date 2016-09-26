@@ -28,6 +28,10 @@ public class CloudSlangFileUtils {
         return false;
     }
 
+    public static boolean isCloudSlangSystemPropertiesFile(String fileName) {
+        return endsWithIgnoreCase(fileName, CLOUD_SLANG_EXTENSIONS[3]);
+    }
+
     public static String getNameWithoutExtension(final String fileName) {
         // This code is to prevent order of array to affect this algorithm
         if (endsWithIgnoreCase(fileName, CLOUD_SLANG_EXTENSIONS[3])) {
@@ -42,4 +46,5 @@ public class CloudSlangFileUtils {
             return removeExtension(fileName);
         }
     }
+
 }
