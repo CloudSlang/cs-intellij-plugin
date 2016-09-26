@@ -1,14 +1,23 @@
-# CloudSlang Plugin for IntelliJ  
+<a href="http://cloudslang.io/">
+    <img src="https://camo.githubusercontent.com/ece898cfb3a9cc55353e7ab5d9014cc314af0234/687474703a2f2f692e696d6775722e636f6d2f696849353630562e706e67" alt="CloudSlang logo" title="CloudSlang" align="right" height="60"/>
+</a>
+
+CloudSlang Plugin for IntelliJ  
+================================
   
-This plugin allows you to easily develop and run CloudSlang content, using Intellij IDE.  
-<br />
+This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/).  
+  
+[![CloudSlang Plugin demo](/resources/images/plugin-overview.png)](http://typo3.demo.aimeos.org/)
 
-###Table of Contents
+##Table of Contents
 
-1. Features
-2. Environment Setup 
-3. Run and Debug the Code
-4. Package and Deploy the Plugin
+1. [Features](#features)  
+2. Installation  
+3. Usage
+4. Contribution Guidelines
+..1. Environment Setup 
+..2. Run and Debug the Code
+..3. Package and Deploy the Plugin
 <br />
 
 
