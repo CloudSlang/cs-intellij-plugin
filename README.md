@@ -6,7 +6,7 @@ CloudSlang Plugin for IntelliJ
 ================================
   
   
-This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/) in intellij IDE.  
+This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/) in *IntelliJ IDEA* IDE.  
   
 ![CloudSlang Plugin demo](/resources/images/plugin-overview.png)
 
@@ -16,14 +16,13 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 2. [Installation](#installation)  
 3. [Getting Started](#getting Started)
 4. Contribution Guidelines
-..1. Environment Setup 
-..2. Run and Debug the Code
-..3. Package and Deploy the Plugin
+  1. Environment Setup
+  2. Run and Debug the Code
+  3. Package and Deploy the Plugin
 <br />
 
 
 ##Features
-==========
 
 * CloudSlang file type support
 * Live templates e.g: flow, operation, input, output, step, for, java_action etc.
@@ -32,10 +31,15 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 * CloudSlang file validation and error highlighting
 
 ##Installation
-==============
+
+Install the CloudSlang IntelliJ Plugin using the __Plugin Installation Wizard__ from __File > Settings > Plugins > Install JetBrains Plugin...__.  
+In the __Browse JetBrains Plugins__ window, browse __CloudSlang__ to find the plugin.  
+Install the plugin by pressing the __Install__ button from the right panel.
+
+> You will have to restart IntelliJ for changes to take effect.
+
 
 ##Getting Started
-=================
 
 ######CloudSlang file type support
 
