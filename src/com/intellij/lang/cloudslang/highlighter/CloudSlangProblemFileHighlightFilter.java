@@ -1,6 +1,7 @@
 package com.intellij.lang.cloudslang.highlighter;
 
 import com.intellij.lang.cloudslang.CloudSlangFileType;
+import com.intellij.lang.cloudslang.CloudSlangFileUtils;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -8,6 +9,9 @@ import com.intellij.openapi.vfs.VirtualFile;
 public class CloudSlangProblemFileHighlightFilter implements Condition<VirtualFile> {
     @Override
     public boolean value(VirtualFile virtualFile) {
-        return virtualFile.getFileType() == CloudSlangFileType.INSTANCE;
+        if (virtualFile.getFileType() == CloudSlangFileType.INSTANCE) {
+            return true;
+        }
+        return CloudSlangFileUtils.isCloudSlangFile(virtualFile.getName());
     }
 }

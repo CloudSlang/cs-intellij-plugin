@@ -15,7 +15,10 @@ public class CloudSlangFileUtils {
         if (psiFile.getFileType() != YAMLFileType.YML) {
             return false;
         }
-        String fileName = psiFile.getName();
+        return isCloudSlangFile(psiFile.getName());
+    }
+
+    public static boolean isCloudSlangFile(String fileName) {
         for (String extension : CLOUD_SLANG_EXTENSIONS) {
             if (fileName.endsWith(extension)) {
                 return true;
