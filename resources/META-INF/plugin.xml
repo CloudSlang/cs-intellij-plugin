@@ -13,7 +13,8 @@
       1. Live templates e.g: flow, operation, input, output, step, for, java_action etc.
       2. Supports CloudSlang file validation and Error highlighting
       3. Completion support for CloudSlang keywords
-      4. CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
+      4. Syntax highlighting
+      5. CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
     ]]>
     </change-notes>
 
