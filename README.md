@@ -5,15 +5,16 @@
 CloudSlang Plugin for IntelliJ  
 ================================
   
-This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/).  
   
-[![CloudSlang Plugin demo](/resources/images/plugin-overview.png)](http://typo3.demo.aimeos.org/)
+This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/) in intellij IDE.  
+  
+[![CloudSlang Plugin demo](/resources/images/plugin-overview.png)
 
 ##Table of Contents
 
 1. [Features](#features)  
-2. Installation  
-3. Usage
+2. [Installation](#installation)  
+3. [Getting Started](#getting Started)
 4. Contribution Guidelines
 ..1. Environment Setup 
 ..2. Run and Debug the Code
@@ -21,33 +22,53 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 <br />
 
 
-###Features
+##Features
+==========
 
-The purpose of this section is to visualize and track the progress of all features planed for developent as part of the IntelliJ Plugin.
+* CloudSlang file type support
+* Live templates e.g: flow, operation, input, output, step, for, java_action etc.
+* Completion support for CloudSlang keywords
+* Syntax highlighting
+* CloudSlang file validation and error highlighting
 
-| Position | Feature | Developer | Status |
-| -------- | ------- | --------- | ------ |
-| 1 | Register file type | | Done
-| 2 | Syntax/Error highlighting | | Done |
-| 3 | Code Completion - flow | Dorinel | In Progress |
-| 4 | Code Completion - java/python operation | Dorinel | In Progress |
-| 5 | Code Completion - decision | Dorinel | In Progress |
-| 6 | Code Completion - description | Dorinel | In Progress |
-| 7 | Code Completion - python expression (${}) | Dorinel | In Progress |
-| 8 | Running Configuration | | Planned |
-| 9 | New executable (operation, flow, decision) template file | | Planned |
-| 10 | How to write unit tests? (validate that .yaml files are ignored) | | Planned |
-| 11 | How to publish plugin in intellij reposiotry | | Planned |
-| 12 | Investigate if we can remove spring from the dependencies | Luci | Planned |
-| 13 | Go to class, go to symbol | | Unplanned |
-| 14 | Find References (navigation) | | Unplanned |
-| 15 | Best practices warnings | | Unplanned |
-| 16 | New project structure | | Unplanned |
-| 17 | Python syntax/error highlighting (validator) | | Unplanned |
-| 18 | Create test file | | Unplanned |
-| 19 | SF: generate dependency graph | | Unplanned |  
-<br />
+##Installation
+==============
 
+##Getting Started
+=================
+
+######CloudSlang file type support
+
+All files with the supported CloudSlang extensions **(.sl, .sl.yaml, .sl.yml, .prop.sl)** will be assigned a CloudSlang icon.
+
+[![CloudSlang File Type](/resources/images/file-type.png)
+
+######Live templates e.g: flow, operation, input, output, step, for, java_action etc.
+
+Live templates let you insert frequently-used or custom code constructs into your source code file quickly, efficiently, and accurately.  
+They can contain plain text and variables that enable user input.  
+After a template is expanded, variables appear in the editor as __input fields__ whose values can be either filled in by the user or calculated by IntelliJ IDEA automatically.
+  
+**How to**: To create a flow or operation based on a template, open a CloudSlang file and press **Ctrl + J**. This will display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.
+
+[![CloudSlang File Type](/resources/images/all-live-templates.png)
+
+Also, when you start typing a word that matches the name of a template, that template will appear in the suggestions list.
+For example, when typing the word **operation**, the following suggestion will apperr:
+
+[![CloudSlang File Type](/resources/images/live-template-example.png)
+
+After the template is expended in IntellJ, you may be required to provide values for some input fields. You can navigate between input fields by pressing __Tab__. 
+
+[![CloudSlang File Type](/resources/images/template-input-fields.png)
+
+######Completion support for CloudSlang keywords
+
+[![CloudSlang File Type](/resources/images/live-template-example.png)
+
+> In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
+
+######Syntax highlighting
 
 ###Environment Setup
 
