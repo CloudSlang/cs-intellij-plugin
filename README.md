@@ -5,7 +5,7 @@
 CloudSlang Plugin for IntelliJ  
 ================================
   
-  
+  <br/>
 This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/) in *IntelliJ IDEA* IDE.  
   
 ![CloudSlang Plugin demo](/screenshots/plugin-overview.png)
@@ -64,7 +64,6 @@ You can notice the following directory structure under your project:
 <br/>    
 #####3. Create a new CloudSlang file 
 
-
 Under the **base** directory, create a new file with one of the following extenssions: **.sl, .sl.yaml, .sl.yml, .prop.sl**  
 When a file with one of these extensions is created, a CloudSlang icon is associated to it:
 
@@ -72,32 +71,36 @@ When a file with one of these extensions is created, a CloudSlang icon is associ
 
 > By default, the file appears to be invalid because it is empty. 
 
-######Live templates e.g: flow, operation, input, output, step, for, java_action etc.
+<br/>    
+#####4. Create a new CloudSlang flow from a live template
 
-Live templates let you insert frequently-used or custom code constructs into your source code file quickly, efficiently, and accurately.  
-They can contain plain text and variables that enable user input.  
-After a template is expanded, variables appear in the editor as __input fields__ whose values can be either filled in by the user or calculated by IntelliJ IDEA automatically.
-  
-**How to**: To create a flow or operation based on a template, open a CloudSlang file and press **Ctrl + J**. This will display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.
+Open the __first_flow.sl__ file and place the cursor inside the editor.  
+You can insert a **flow** template in two ways:
+*Press __Ctrl + J__ to display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.
 
-[![CloudSlang File Type](/screenshots/all-live-templates.png)
+![CloudSlang File Type](/screenshots/all-live-templates.png)
 
-Also, when you start typing a word that matches the name of a template, that template will appear in the suggestions list.
-For example, when typing the word **operation**, the following suggestion will apperr:
+*Start typing the *flow* word and the template will appear in the suggestions list
 
-[![CloudSlang File Type](/screenshots/live-template-example.png)
+![CloudSlang File Type](/screenshots/live-template-example.png)
+
+> You can always identify CloudSlang templates in the suggestions list by the **CloudSlang Template** description at right.
 
 After the template is expended in IntellJ, you may be required to provide values for some input fields. You can navigate between input fields by pressing __Tab__. 
 
-[![CloudSlang File Type](/screenshots/template-input-fields.png)
+![CloudSlang File Type](/screenshots/template-input-fields.png)
 
-######Completion support for CloudSlang keywords
+<br />
+#####5. Use completion support for CloudSlang keywords
 
-[![CloudSlang File Type](/screenshots/live-template-example.png)
+You can easily modify the flow using CloudSlang keywords support. Whenever you start typing word, a suggestion list with CloudSlang keywords will appear:
+
+![CloudSlang File Type](/screenshots/completion-example.png)
+
+To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
 
-######Syntax highlighting
 
 ###Environment Setup
 
