@@ -22,6 +22,7 @@ import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +31,6 @@ import org.jetbrains.yaml.psi.YAMLDocument;
 import org.jetbrains.yaml.psi.YAMLFile;
 import org.jetbrains.yaml.psi.YAMLKeyValue;
 import org.jetbrains.yaml.psi.YAMLPsiElement;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,15 +51,17 @@ import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangSyste
 import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.getSlangModeller;
 import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
 import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
+import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
 
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 
-    private static Pattern linePattern = Pattern.compile("line (\\d+), column \\d+");
     private static final String MESSAGE_DELIMITER_STRING = "(?=in \'.*\', line (\\d+), column \\d+)";
-    public static final Pattern PATTERN = Pattern.compile("\\s*-\\s*([\\w]+):?.*");
-    public static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
+    private static Pattern linePattern = Pattern.compile("line (\\d+), column \\d+");
+    private static final Pattern keyInListPattern = Pattern.compile("\\s*-\\s*([\\w]+):?.*");
+    private static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
+    private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing documentation for '%s'";
 
     @Nullable
     @Override
@@ -202,8 +204,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     }
 
     private void createWarningForDocumentation(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
-        List<PsiElement> psiElements = new ArrayList<>();
-        Arrays.asList(yamlFile.getChildren()).stream().filter(e -> e instanceof PsiComment).forEach(psiElements::add);
+        List<PsiElement> psiElements = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
 
         for (String keyName: keysForDocumentation) {
             Pair<PsiElement, Set<String>> pair = getNames(yamlDocument, keyName);
@@ -216,19 +217,18 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             for (String name : pair.getRight()) {
                 Optional optional = psiElements.stream().filter(e -> containsName(e.getText(), name)).findAny();
                 if (!optional.isPresent()) {
-                    holder.createWeakWarningAnnotation(pair.getLeft(), "Missing documentation for: " + name);
+                    holder.createWeakWarningAnnotation(pair.getLeft(), format(MISSING_DOCUMENTATION_FOR_NAME_PATTERN, name));
                 }
             }
         }
     }
 
     private boolean containsName(String comment, String name) {
-        for (String word : comment.split(" ")) { //TODO Comment pattern ???
-            if (name.equals(word) || (name + ":").equals(word)) {
-                return true;
-            }
+        if (StringUtils.isEmpty(comment)) {
+            return false;
         }
-        return false;
+        Pattern pattern = Pattern.compile("\\s*#!\\s*@input\\s*" +  name + "\\s*:.+");
+        return pattern.matcher(comment.trim()).matches();
     }
 
     private Pair<PsiElement, Set<String>> getNames(YAMLDocument yamlDocument, String elementName) {
@@ -240,7 +240,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         Set<String> names = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new StringReader(psiElement.getText()))) {
             for (String line; (line = reader.readLine()) != null; ) {
-                final Matcher matcher = PATTERN.matcher(line);
+                final Matcher matcher = keyInListPattern.matcher(line);
                 if (matcher.find()) {
                     String group = matcher.group(1);
                     names.add(group);
