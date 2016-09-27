@@ -69,18 +69,18 @@ When a file with one of these extensions is created, a CloudSlang icon is associ
 
 ![CloudSlang File Type](/screenshots/file-type.png)
 
-> By default, the file appears to be invalid because it is empty. 
+> By default, empty files are marked as invalid. 
 
 <br/>    
 #####4. Create a new CloudSlang flow from a live template
 
 Open the __first_flow.sl__ file and place the cursor inside the editor.  
-You can insert a **flow** template in two ways:
-*Press __Ctrl + J__ to display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.
+You can insert a **flow** template in two ways:  
+* Press __Ctrl + J__ to display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.  
 
 ![CloudSlang File Type](/screenshots/all-live-templates.png)
 
-*Start typing the *flow* word and the template will appear in the suggestions list
+* Start typing the _flow_ word and the template will appear in the suggestions list
 
 ![CloudSlang File Type](/screenshots/live-template-example.png)
 
