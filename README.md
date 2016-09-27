@@ -44,27 +44,33 @@ Install the plugin by pressing the __Install__ button from the right panel.
 
 This is a short tutorial showing how to start developing CloudSlang content.
 
-1. **Create a new Project**
-    From the **New Project** dialog, select the type of project you desire, for example, **Java Project**
+#####1. Create a new Project 
+  
+From the **New Project** dialog, select the type of project you desire, for example, **Java Project**
 
-    ![CloudSlang File Type](/screenshots/new-project.png)
+![CloudSlang File Type](/screenshots/new-project.png)
+  
+<br/>
+#####2. Create a namespace
+  
+Under the new project, create a structure of directories for items grouping:
 
-2. **Create a namespace**
-    Under the new project, create a structure of directories for items grouping:
+![CloudSlang File Type](/screenshots/new-namespace.png)
 
-    ![CloudSlang File Type](/screenshots/new-namespace.png)
-
-    You can notice the following directory structure under your project:
+You can notice the following directory structure under your project:
     
-    ![CloudSlang File Type](/screenshots/new-namespace_Structure.png)
-    
-3. 
+![CloudSlang File Type](/screenshots/new-namespace-structure.png)
 
-######CloudSlang file type support
+<br/>    
+#####3. Create a new CloudSlang file 
 
-All files with the supported CloudSlang extensions **(.sl, .sl.yaml, .sl.yml, .prop.sl)** will be assigned a CloudSlang icon.
 
-[![CloudSlang File Type](/screenshots/file-type.png)
+Under the **base** directory, create a new file with one of the following extenssions: **.sl, .sl.yaml, .sl.yml, .prop.sl**  
+When a file with one of these extensions is created, a CloudSlang icon is associated to it:
+
+![CloudSlang File Type](/screenshots/file-type.png)
+
+> By default, the file appears to be invalid because it is empty. 
 
 ######Live templates e.g: flow, operation, input, output, step, for, java_action etc.
 
