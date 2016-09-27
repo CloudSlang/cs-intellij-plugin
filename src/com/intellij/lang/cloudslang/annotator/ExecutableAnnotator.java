@@ -38,10 +38,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -52,14 +50,15 @@ import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesPr
 import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
 import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
 import static java.lang.String.format;
+import static java.util.regex.Pattern.compile;
 import static java.util.stream.Collectors.toList;
 
 
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 
     private static final String MESSAGE_DELIMITER_STRING = "(?=in \'.*\', line (\\d+), column \\d+)";
-    private static Pattern linePattern = Pattern.compile("line (\\d+), column \\d+");
-    private static final Pattern keyInListPattern = Pattern.compile("\\s*-\\s*([\\w]+):?.*");
+    private static Pattern linePattern = compile("line (\\d+), column \\d+");
+    private static final Pattern keyInListPattern = compile("\\s*-\\s*([\\w]+):?.*");
     private static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
     private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing documentation for '%s'";
 
@@ -204,21 +203,19 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     }
 
     private void createWarningForDocumentation(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
-        List<PsiElement> psiElements = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
+        List<PsiElement> commentsList = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
 
         for (String keyName: keysForDocumentation) {
-            Pair<PsiElement, Set<String>> pair = getNames(yamlDocument, keyName);
-            createWarning(psiElements, holder, pair);
+            List<Pair<PsiElement, String>> elementNamePairs = getNames(yamlDocument, keyName);
+            createWarnings(commentsList, holder, elementNamePairs);
         }
     }
 
-    private void createWarning(List<PsiElement> psiElements, AnnotationHolder holder, Pair<PsiElement, Set<String>> pair) {
-        if (pair != null) {
-            for (String name : pair.getRight()) {
-                Optional optional = psiElements.stream().filter(e -> containsName(e.getText(), name)).findAny();
-                if (!optional.isPresent()) {
-                    holder.createWeakWarningAnnotation(pair.getLeft(), format(MISSING_DOCUMENTATION_FOR_NAME_PATTERN, name));
-                }
+    private void createWarnings(final List<PsiElement> commentList, AnnotationHolder holder, final List<Pair<PsiElement, String>> pairElementNameList) {
+        for (Pair<PsiElement, String> pairElementName : pairElementNameList) {
+            final Optional isPresentInDescription = commentList.stream().filter(e -> containsName(e.getText(), pairElementName.getRight())).findAny();
+            if (!isPresentInDescription.isPresent()) {
+                holder.createWeakWarningAnnotation(pairElementName.getLeft(), format(MISSING_DOCUMENTATION_FOR_NAME_PATTERN, pairElementName.getRight()));
             }
         }
     }
@@ -227,28 +224,30 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         if (StringUtils.isEmpty(comment)) {
             return false;
         }
-        Pattern pattern = Pattern.compile("\\s*#!\\s*@input\\s*" +  name + "\\s*:.+");
+        Pattern pattern = compile("\\s*#!\\s*@input\\s*" +  name + "\\s*:.+");
         return pattern.matcher(comment.trim()).matches();
     }
 
-    private Pair<PsiElement, Set<String>> getNames(YAMLDocument yamlDocument, String elementName) {
+    private List<Pair<PsiElement, String>> getNames(YAMLDocument yamlDocument, String elementName) {
         PsiElement psiElement = findChildRecursively(yamlDocument, new String[]{elementName});
         if (psiElement == null) {
-            return null;
+            return Collections.emptyList();
         }
 
-        Set<String> names = new HashSet<>();
+        List<Pair<PsiElement, String>> elementStringPairs = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new StringReader(psiElement.getText()))) {
             for (String line; (line = reader.readLine()) != null; ) {
                 final Matcher matcher = keyInListPattern.matcher(line);
                 if (matcher.find()) {
-                    String group = matcher.group(1);
-                    names.add(group);
+                    String elementNameGroup = matcher.group(1);
+                    YAMLPsiElement childElement = findChildRecursively((YAMLPsiElement) psiElement, new String[]{elementNameGroup});
+                    PsiElement elementToHighlight = (childElement != null) ? childElement : psiElement;
+                    elementStringPairs.add(new ImmutablePair<>(elementToHighlight, elementNameGroup));
                 }
             }
         } catch (IOException ignore) {
         }
-        return new ImmutablePair<>(psiElement, names);
+        return elementStringPairs;
     }
 
 }
