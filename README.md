@@ -103,6 +103,13 @@ To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
 
 <br />
+#####5. Use error highlighting to ensure that your flow is correct
+
+Errors are marked with a red underline inside files. Hover over the underlined item to see the error messages:
+
+![CloudSlang File Type](/screenshots/completion-example.png)
+
+<br />
 
 ##Contribution Guidelines
 
@@ -138,7 +145,7 @@ These are the prerequisite steps that you have to follow to successfully set up 
   
 13. __cloudslang-intellij-plugin__ depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
-14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.
+14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.  
 **You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside**
   
 Now, you should be able to successfully compile and run the code.
