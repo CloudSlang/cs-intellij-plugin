@@ -101,7 +101,7 @@ You can easily modify the flow using CloudSlang keywords support. Whenever you s
 To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
-
+<br/>
 
 ##Contribution Guidelines
 
