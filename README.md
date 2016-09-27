@@ -107,7 +107,7 @@ To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 
 Errors are marked with a red underline inside files. Hover over the underlined item to see the error messages:
 
-![CloudSlang File Type](/screenshots/completion-example.png)
+![CloudSlang File Type](/screenshots/error-highlighting.png)
 
 <br />
 
