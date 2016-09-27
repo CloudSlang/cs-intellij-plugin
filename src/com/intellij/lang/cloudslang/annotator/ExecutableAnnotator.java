@@ -149,7 +149,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                     found = yamlDocument;
                 }
                 createErrorAnnotations(found, yamlFile, holder, annotationResult);
-                createWarningForDocumentation(yamlDocument, yamlFile, holder);
+                createWarningsForDescription(yamlDocument, yamlFile, holder);
             }
             if (!annotationResult.isEmpty()) {
                 HighlightInfo highlightInfo = HighlightInfo.newHighlightInfo(HighlightInfoType.ERROR)
@@ -203,17 +203,17 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         return Stream.of(possibleName).anyMatch(n -> n.equals(e.getName()));
     }
 
-    private void createWarningForDocumentation(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
+    private void createWarningsForDescription(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
         List<PsiElement> commentsList = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
 
-        for (int i = 0; i < keysForDocumentation.length; i++) {
-            final String keyName = keysForDocumentation[i];
-            final String keyForLookup = keysForDescription[i];
-            createWarnings(keyForLookup, commentsList, holder, getNames(yamlDocument, keyName));
+        for (int index = 0; index < keysForDocumentation.length; index++) {
+            final String keyName = keysForDocumentation[index];
+            final String keyForLookup = keysForDescription[index];
+            createWarningsIfNecessary(keyForLookup, commentsList, holder, getNames(yamlDocument, keyName));
         }
     }
 
-    private void createWarnings(final String keyForLookup, final List<PsiElement> commentList, AnnotationHolder holder, final List<Pair<PsiElement, String>> pairElementNameList) {
+    private void createWarningsIfNecessary(final String keyForLookup, final List<PsiElement> commentList, AnnotationHolder holder, final List<Pair<PsiElement, String>> pairElementNameList) {
         for (Pair<PsiElement, String> pairElementName : pairElementNameList) {
             final Optional isPresentInDescription = commentList.stream().filter(e -> containsName(keyForLookup, e.getText(), pairElementName.getRight())).findAny();
             if (!isPresentInDescription.isPresent()) {
@@ -247,7 +247,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                     elementStringPairs.add(new ImmutablePair<>(elementToHighlight, elementNameGroup));
                 }
             }
-        } catch (IOException ignore) {
+        } catch (IOException ignore) {  // this code is never reached because the reader reads from memory
         }
         return elementStringPairs;
     }
