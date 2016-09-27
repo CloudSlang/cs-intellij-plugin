@@ -15,7 +15,7 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 
 1. [Features](#features)  
 2. [Installation](#installation)  
-3. [Getting Started](#getting Started)
+3. [Getting Started](#getting&nbspstarted)
 4. Contribution Guidelines
   1. Environment Setup
   2. Run and Debug the Code
@@ -75,6 +75,7 @@ When a file with one of these extensions is created, a CloudSlang icon is associ
 #####4. Create a new CloudSlang flow from a live template
 
 Open the __first_flow.sl__ file and place the cursor inside the editor.  
+  
 You can insert a **flow** template in two ways:  
 * Press __Ctrl + J__ to display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.  
 
