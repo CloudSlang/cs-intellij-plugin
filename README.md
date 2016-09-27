@@ -101,7 +101,8 @@ You can easily modify the flow using CloudSlang keywords support. Whenever you s
 To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
-<br/>
+
+<br />
 
 ##Contribution Guidelines
 
@@ -112,12 +113,12 @@ These are the prerequisite steps that you have to follow to successfully set up 
 1. Clone this reposiotry using a Git client.  
   
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
-*__You don't have to clone IntelliJ CE edition Source Code, as mentioned in the documentation above__*  
+*__Cloning IntelliJ CE edition Source Code is optional.__*  
   
 3. In intellij, navigate to __File > New > Project__  
   
 4. From the __New Project__ dialog, select __IntelliJ Platform Plugin__ as the type of the project and set the __Project SDK__ to the one configured in __step 2__.  
-![alt text](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/img/new_project_wizard.png, "Create New Project Wizard")
+![plugin](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/img/new_project_wizard.png)
   
 5. Click __Next__  
   
