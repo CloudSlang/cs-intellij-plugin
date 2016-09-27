@@ -8,8 +8,9 @@ CloudSlang Plugin for IntelliJ
   
 This repository contains an IntelliJ plugin that provides support for [CloudSlang](http://cloudslang.io/) in *IntelliJ IDEA* IDE.  
   
-![CloudSlang Plugin demo](/resources/images/plugin-overview.png)
+![CloudSlang Plugin demo](/screenshots/plugin-overview.png)
 
+  
 ##Table of Contents
 
 1. [Features](#features)  
@@ -19,17 +20,17 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
   1. Environment Setup
   2. Run and Debug the Code
   3. Package and Deploy the Plugin
-<br />
-
-
+  
+  
 ##Features
 
-* CloudSlang file type support
+* CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
 * Live templates e.g: flow, operation, input, output, step, for, java_action etc.
 * Completion support for CloudSlang keywords
 * Syntax highlighting
 * CloudSlang file validation and error highlighting
 
+  
 ##Installation
 
 Install the CloudSlang IntelliJ Plugin using the __Plugin Installation Wizard__ from __File > Settings > Plugins > Install JetBrains Plugin...__.  
@@ -41,11 +42,29 @@ Install the plugin by pressing the __Install__ button from the right panel.
 
 ##Getting Started
 
+This is a short tutorial showing how to start developing CloudSlang content.
+
+1. **Create a new Project**
+    From the **New Project** dialog, select the type of project you desire, for example, **Java Project**
+
+    ![CloudSlang File Type](/screenshots/new-project.png)
+
+2. **Create a namespace**
+    Under the new project, create a structure of directories for items grouping:
+
+    ![CloudSlang File Type](/screenshots/new-namespace.png)
+
+    You can notice the following directory structure under your project:
+    
+    ![CloudSlang File Type](/screenshots/new-namespace_Structure.png)
+    
+3. 
+
 ######CloudSlang file type support
 
 All files with the supported CloudSlang extensions **(.sl, .sl.yaml, .sl.yml, .prop.sl)** will be assigned a CloudSlang icon.
 
-[![CloudSlang File Type](/resources/images/file-type.png)
+[![CloudSlang File Type](/screenshots/file-type.png)
 
 ######Live templates e.g: flow, operation, input, output, step, for, java_action etc.
 
@@ -55,20 +74,20 @@ After a template is expanded, variables appear in the editor as __input fields__
   
 **How to**: To create a flow or operation based on a template, open a CloudSlang file and press **Ctrl + J**. This will display a list of all available live templates. You can navigate up and down inside this list and select the desired template, that will be extended in the editor.
 
-[![CloudSlang File Type](/resources/images/all-live-templates.png)
+[![CloudSlang File Type](/screenshots/all-live-templates.png)
 
 Also, when you start typing a word that matches the name of a template, that template will appear in the suggestions list.
 For example, when typing the word **operation**, the following suggestion will apperr:
 
-[![CloudSlang File Type](/resources/images/live-template-example.png)
+[![CloudSlang File Type](/screenshots/live-template-example.png)
 
 After the template is expended in IntellJ, you may be required to provide values for some input fields. You can navigate between input fields by pressing __Tab__. 
 
-[![CloudSlang File Type](/resources/images/template-input-fields.png)
+[![CloudSlang File Type](/screenshots/template-input-fields.png)
 
 ######Completion support for CloudSlang keywords
 
-[![CloudSlang File Type](/resources/images/live-template-example.png)
+[![CloudSlang File Type](/screenshots/live-template-example.png)
 
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
 
