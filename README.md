@@ -25,7 +25,7 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 ##Features
 
 * CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
-* Live templates e.g: flow, operation, input, output, step, for, java_action etc.
+* Live templates (e.g: flow, operation, input, output, step, for, java_action etc.)
 * Completion support for CloudSlang keywords
 * Syntax highlighting
 * CloudSlang file validation and error highlighting
