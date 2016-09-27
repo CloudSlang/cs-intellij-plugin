@@ -207,10 +207,9 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         List<PsiElement> commentsList = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
 
         for (int i = 0; i < keysForDocumentation.length; i++) {
-            String keyName = keysForDocumentation[i];
-            String keyForLookup = keysForDescription[i];
-            List<Pair<PsiElement, String>> elementNamePairs = getNames(yamlDocument, keyName);
-            createWarnings(keyForLookup, commentsList, holder, elementNamePairs);
+            final String keyName = keysForDocumentation[i];
+            final String keyForLookup = keysForDescription[i];
+            createWarnings(keyForLookup, commentsList, holder, getNames(yamlDocument, keyName));
         }
     }
 
