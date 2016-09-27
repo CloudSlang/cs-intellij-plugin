@@ -69,7 +69,7 @@ When a file with one of these extensions is created, a CloudSlang icon is associ
 
 ![CloudSlang File Type](/screenshots/file-type.png)
 
-> By default, empty files are marked as invalid. 
+> By default, empty CloudSlang files are marked as invalid. 
 
 <br/>    
 #####4. Create a new CloudSlang flow from a live template
@@ -94,7 +94,7 @@ After the template is expended in IntellJ, you may be required to provide values
 <br />
 #####5. Use completion support for CloudSlang keywords
 
-You can easily modify the flow using CloudSlang keywords support. Whenever you start typing word, a suggestion list with CloudSlang keywords will appear:
+You can easily modify the flow using CloudSlang keywords support. Whenever you start typing, a suggestion list with CloudSlang keywords will appear:
 
 ![CloudSlang File Type](/screenshots/completion-example.png)
 
@@ -117,7 +117,7 @@ Errors are marked with a red underline inside files. Hover over the underlined i
 
 These are the prerequisite steps that you have to follow to successfully set up your development environment:  
   
-1. Clone this reposiotry using a [Git client](https://desktop.github.com/).  
+1. Clone this reposiotry using a Git client.  
   
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
 *__Cloning IntelliJ CE edition Source Code is optional.__*  
