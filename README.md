@@ -134,7 +134,7 @@ These are the prerequisite steps that you have to follow to successfully set up 
   
 7. Click __Finish__. The __cloudslang-intellij-plugin__ sources will be imported into your IDE.  
   
-8. __cloudslang-intellij-plugin__ depends on YAML plugin, delivered with IntelliJ. In order to be able to compile the code, you have to import the YAML plugin to your SDK classpath. Navigate to __File > Project Structure > SDKs__.  
+8. CloudSlang IntelliJ Plugin depends on YAML plugin, delivered with IntelliJ. In order to be able to compile the code, you have to import the YAML plugin to your SDK classpath. Navigate to __File > Project Structure > SDKs__.  
   
 9. Select your IntelliJ SDK from the list of available SDKs.  
   
@@ -143,7 +143,7 @@ These are the prerequisite steps that you have to follow to successfully set up 
 
 12. Select the following jar and add it to classpath: __*IntelliJ_Installation_Dir*/plugins/yaml/lib/yaml.jar__  
   
-13. __cloudslang-intellij-plugin__ depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
+13. CloudSlang IntelliJ Plugin depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
 14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.  
 **You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside.**
