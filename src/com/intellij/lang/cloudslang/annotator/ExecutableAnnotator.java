@@ -149,7 +149,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                     found = yamlDocument;
                 }
                 createErrorAnnotations(found, yamlFile, holder, annotationResult);
-                createWarningsForDescription(yamlDocument, yamlFile, holder);
+                createWarningsForMissingElementsInDescription(yamlDocument, yamlFile, holder);
             }
             if (!annotationResult.isEmpty()) {
                 HighlightInfo highlightInfo = HighlightInfo.newHighlightInfo(HighlightInfoType.ERROR)
@@ -203,26 +203,23 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         return Stream.of(possibleName).anyMatch(n -> n.equals(e.getName()));
     }
 
-    private void createWarningsForDescription(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
+    private void createWarningsForMissingElementsInDescription(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
         List<PsiElement> commentsList = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
-
         for (int index = 0; index < keysForDocumentation.length; index++) {
-            final String keyName = keysForDocumentation[index];
-            final String keyForLookup = keysForDescription[index];
-            createWarningsIfNecessary(keyForLookup, commentsList, holder, getNames(yamlDocument, keyName));
+            createWarningsIfNecessary(keysForDescription[index], commentsList, holder, getElementNamePairs(yamlDocument, keysForDocumentation[index]));
         }
     }
 
     private void createWarningsIfNecessary(final String keyForLookup, final List<PsiElement> commentList, AnnotationHolder holder, final List<Pair<PsiElement, String>> pairElementNameList) {
         for (Pair<PsiElement, String> pairElementName : pairElementNameList) {
-            final Optional isPresentInDescription = commentList.stream().filter(e -> containsName(keyForLookup, e.getText(), pairElementName.getRight())).findAny();
+            final Optional isPresentInDescription = commentList.stream().filter(e -> containsDescriptionForElement(keyForLookup, e.getText(), pairElementName.getRight())).findAny();
             if (!isPresentInDescription.isPresent()) {
                 holder.createWeakWarningAnnotation(pairElementName.getLeft(), format(MISSING_DOCUMENTATION_FOR_NAME_PATTERN, pairElementName.getRight()));
             }
         }
     }
 
-    private boolean containsName(final String keyForLookup, final String comment, final String name) {
+    private boolean containsDescriptionForElement(final String keyForLookup, final String comment, final String name) {
         if (StringUtils.isEmpty(comment)) {
             return false;
         }
@@ -230,8 +227,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         return pattern.matcher(comment.trim()).matches();
     }
 
-    private List<Pair<PsiElement, String>> getNames(YAMLDocument yamlDocument, String elementName) {
-        PsiElement psiElement = findChildRecursively(yamlDocument, new String[]{elementName});
+    private List<Pair<PsiElement, String>> getElementNamePairs(YAMLDocument yamlDocument, String elementName) {
+        final PsiElement psiElement = findChildRecursively(yamlDocument, new String[]{elementName});
         if (psiElement == null) {
             return Collections.emptyList();
         }
