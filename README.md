@@ -117,7 +117,7 @@ Errors are marked with a red underline inside files. Hover over the underlined i
 
 These are the prerequisite steps that you have to follow to successfully set up your development environment:  
   
-1. Clone this reposiotry using a Git client.  
+1. Clone this reposiotry using a [Git client](https://desktop.github.com/).  
   
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
 *__Cloning IntelliJ CE edition Source Code is optional.__*  
@@ -145,7 +145,7 @@ These are the prerequisite steps that you have to follow to successfully set up 
   
 13. CloudSlang IntelliJ Plugin depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
-14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.  
+14. Locate the __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.  
 **You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside.**
   
 Now, you should be able to successfully compile and run the code.
@@ -160,7 +160,7 @@ The [Running and Debugging Plugins](http://www.jetbrains.org/intellij/sdk/docs/b
 
 ###Package and Deploy the Plugin
 
-Read [Deploy a  Plugin](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/deploying_plugin.html) section from __IntelliJ SDK DevGuide__.  
+Read the [Deploy a  Plugin](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/deploying_plugin.html) section from __IntelliJ SDK DevGuide__.  
 > You can also install the plugin using the __Plugin installation wizard__ from IntelliJ. Navigate to __File > Settings > Plugins > Install Plugin from disk...__
 
 
