@@ -115,14 +115,15 @@ These are the prerequisite steps that you have to follow to successfully set up 
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
 *__Cloning IntelliJ CE edition Source Code is optional.__*  
   
-3. In intellij, navigate to __File > New > Project__  
+3. In IntelliJ, navigate to __File > New > Project__  
   
 4. From the __New Project__ dialog, select __IntelliJ Platform Plugin__ as the type of the project and set the __Project SDK__ to the one configured in __step 2__.  
-![plugin](http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/img/new_project_wizard.png)
+![plugin](/screenshots/dev/new-plugin.png)
   
 5. Click __Next__  
   
-6. In the __Project location__ textbox, copy the absolute path of the repository cloned at __step 1__. (The absolute path of the __cloudslang-idea-plugin__ directory)  
+6. In the __Project location__ textbox, copy the absolute path of the repository cloned at __step 1__. 
+![plugin](/screenshots/dev/open-plugin.png)
   
 7. Click __Finish__. The __cloudslang-intellij-plugin__ sources will be imported into your IDE.  
   
@@ -130,9 +131,10 @@ These are the prerequisite steps that you have to follow to successfully set up 
   
 9. Select your IntelliJ SDK from the list of available SDKs.  
   
-10. Make sure the __Classpath__ tab is selected. Click on the green *+* button to add a new jar to sdk classpath.  
-  
-12. Select the following jar and add it to classpath: __<IntelliJ_Installation_Dir>/plugins/yaml/lib/yaml.jar__  
+10. Make sure the __Classpath__ tab is selected. Add a new jar to sdk classpath.  
+![plugin](/screenshots/dev/add-to-sdk.png)  
+
+12. Select the following jar and add it to classpath: __IntelliJ_Installation_Dir/plugins/yaml/lib/yaml.jar__  
   
 13. __cloudslang-intellij-plugin__ depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
