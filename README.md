@@ -138,9 +138,8 @@ These are the prerequisite steps that you have to follow to successfully set up 
   
 13. __cloudslang-intellij-plugin__ depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
-14. Click the green *+* sign to add a new project library.  
-  
-15. Locate and select the __lib__ directory inside __cloudslang-idea-plugin__.  
+14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.
+**You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside**
   
 Now, you should be able to successfully compile and run the code.
 <br />
