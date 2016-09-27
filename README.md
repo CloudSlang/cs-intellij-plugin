@@ -15,11 +15,11 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 
 1. [Features](#features)  
 2. [Installation](#installation)  
-3. [Getting Started](#getting&nbspstarted)
-4. Contribution Guidelines
-  1. Environment Setup
-  2. Run and Debug the Code
-  3. Package and Deploy the Plugin
+3. [Getting Started](#getting-started)
+4. [Contribution Guidelines](#contribution-guidelines)
+  1. [Environment Setup](#environment-setup)
+  2. [Run and Debug the Code](#run-and-debug-the-code)
+  3. [Package and Deploy the Plugin](#package-and-deploy-the-plugin)
   
   
 ##Features
@@ -103,11 +103,13 @@ To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 > In order to differentiate between keywords and live templates in the suggestions list, note that keywords have a small CloudSlang icon at left, while live templates have the **CloudSlang Template** description at right 
 
 
+##Contribution Guidelines
+
 ###Environment Setup
 
 These are the prerequisite steps that you have to follow to successfully set up your development environment:  
   
-1. Clone the reposiotry  
+1. Clone this reposiotry using a Git client.  
   
 2. Open IntelliJ and configure IntelliJ Platform SDK as described in the [Intellij SDK DevGuide] (http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/setting_up_environment.html).  
 *__You don't have to clone IntelliJ CE edition Source Code, as mentioned in the documentation above__*  
