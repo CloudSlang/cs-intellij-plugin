@@ -46,7 +46,7 @@ This is a short tutorial showing how to start developing CloudSlang content.
 
 #####1. Create a new Project 
   
-From the **New Project** dialog, select the type of project you desire, for example, **Java Project**
+From the **New Project** dialog, select the type of project you desire, for example, **Java Project**.
 
 ![CloudSlang File Type](/screenshots/new-project.png)
   
@@ -141,12 +141,12 @@ These are the prerequisite steps that you have to follow to successfully set up 
 10. Make sure the __Classpath__ tab is selected. Add a new jar to sdk classpath.  
 ![plugin](/screenshots/dev/add-to-sdk.png)  
 
-12. Select the following jar and add it to classpath: __IntelliJ_Installation_Dir/plugins/yaml/lib/yaml.jar__  
+12. Select the following jar and add it to classpath: __*IntelliJ_Installation_Dir*/plugins/yaml/lib/yaml.jar__  
   
 13. __cloudslang-intellij-plugin__ depends on CloudSlang compiler. To be able to compile the code you have to add cloudslang-compiler to classpath. Navigate to __File > Project Structure > Libraries__.  
   
 14. Locate __lib__ directory inside __cloudslang-idea-plugin__ and add it to the classpath.  
-**You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside**
+**You can add the entire lib folder to the classpath, you don't have to manually add each jar from inside.**
   
 Now, you should be able to successfully compile and run the code.
 <br />
