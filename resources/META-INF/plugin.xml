@@ -51,6 +51,8 @@
         <liveTemplateMacro
                 implementation="com.intellij.lang.cloudslang.completion.macro.CloudSlangExecutableNameMacro"/>
         <liveTemplateContext implementation="com.intellij.lang.cloudslang.completion.CloudSlangTemplateContextType"/>
+
+        <moduleType id="CLOUDSLANG_MODULE" implementationClass="com.intellij.project.module.CloudSlangModuleType"/>
     </extensions>
 
     <application-components>
