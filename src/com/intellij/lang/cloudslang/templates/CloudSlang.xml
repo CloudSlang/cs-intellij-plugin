@@ -66,12 +66,13 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
-  <template name="for" value="- $1_step_name$:&#10;    loop:&#10;      for: $iterator$ in $collection$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;      publish:&#10;        - $5_publish_name$: $6_publish_value$&#10;      break:&#10;        - $7_result_name$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+  <template name="for" value="- $1_step_name$:&#10;    loop:&#10;      for: $iterator$ in $collection$&#10;      do:&#10;        $3_executable_name$:&#10;          - $step_input_1$: ${$input_1$}&#10;      publish:&#10;        - $5_publish_name$: $6_publish_value$&#10;      break:&#10;        - $7_result_name$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1_step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
     <variable name="iterator" expression="" defaultValue="&quot;i&quot;" alwaysStopAt="true" />
     <variable name="collection" expression="" defaultValue="&quot;collection&quot;" alwaysStopAt="true" />
     <variable name="3_executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
-    <variable name="4_executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="step_input_1" expression="" defaultValue="&quot;step_input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
     <variable name="5_publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
     <variable name="6_publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
     <variable name="7_result_name" expression="" defaultValue="&quot;result_name&quot;" alwaysStopAt="true" />
@@ -93,10 +94,11 @@
       <option name="CloudSlang" value="true" />
     </context>
   </template>
-  <template name="on_failure" value="- on_failure:&#10;    - $1_step_name$:&#10;        do:&#10;          $2_executable_name$:&#10;            - $3_executable_argument$&#10;        publish:&#10;          - $result_1$: $destination_1$&#10;          - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+  <template name="on_failure" value="- on_failure:&#10;    - $1_step_name$:&#10;        do:&#10;          $2_executable_name$:&#10;            - $step_input_1$: ${$input_1$}&#10;        publish:&#10;          - $result_1$: $destination_1$&#10;          - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1_step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
     <variable name="2_executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
-    <variable name="3_executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="step_input_1" expression="" defaultValue="&quot;step_input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
     <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
     <variable name="destination_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
     <variable name="result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
@@ -113,12 +115,13 @@
       <option name="CloudSlang" value="true" />
     </context>
   </template>
-  <template name="parallel_loop" value="- $1_step_name$:&#10;    parallel_loop:&#10;      for: $iterator$ in $collection$&#10;      do:&#10;        $3_executable_name$:&#10;          - $4_executable_argument$&#10;    publish:&#10;      - $5_publish_name$: $6_publish_value$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+  <template name="parallel_loop" value="- $1_step_name$:&#10;    parallel_loop:&#10;      for: $iterator$ in $collection$&#10;      do:&#10;        $3_executable_name$:&#10;          - $step_input_1$: ${$input_1$}&#10;    publish:&#10;      - $5_publish_name$: $6_publish_value$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1_step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
     <variable name="iterator" expression="" defaultValue="&quot;i&quot;" alwaysStopAt="true" />
     <variable name="collection" expression="" defaultValue="&quot;collection&quot;" alwaysStopAt="true" />
     <variable name="3_executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
-    <variable name="4_executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="step_input_1" expression="" defaultValue="&quot;step_input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
     <variable name="5_publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
     <variable name="6_publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
     <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
@@ -143,10 +146,11 @@
       <option name="CloudSlang" value="true" />
     </context>
   </template>
-  <template name="step" value="- $1step_name$:&#10;    do:&#10;      $2executable_name$:&#10;        - $3executable_argument$&#10;    publish:&#10;      - $4publish_name$: $5publish_value$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+  <template name="step" value="- $1step_name$:&#10;    do:&#10;      $2executable_name$:&#10;        - $step_input_1$: ${$input_1$}&#10;    publish:&#10;      - $4publish_name$: $5publish_value$&#10;    navigate:&#10;      - $result_1$: $destination_1$&#10;      - $result_2$: $destination_2$" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
     <variable name="1step_name" expression="" defaultValue="&quot;step_name&quot;" alwaysStopAt="true" />
     <variable name="2executable_name" expression="" defaultValue="&quot;executable_name&quot;" alwaysStopAt="true" />
-    <variable name="3executable_argument" expression="" defaultValue="&quot;executable_argument&quot;" alwaysStopAt="true" />
+    <variable name="step_input_1" expression="" defaultValue="&quot;step_input_1&quot;" alwaysStopAt="true" />
+    <variable name="input_1" expression="" defaultValue="&quot;input_1&quot;" alwaysStopAt="true" />
     <variable name="4publish_name" expression="" defaultValue="&quot;publish_name&quot;" alwaysStopAt="true" />
     <variable name="5publish_value" expression="" defaultValue="&quot;publish_value&quot;" alwaysStopAt="true" />
     <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
