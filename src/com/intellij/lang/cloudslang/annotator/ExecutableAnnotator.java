@@ -61,7 +61,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     private static final Pattern keyInListPattern = compile("\\s*-\\s*([\\w]+):?.*");
     private static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
     private static final String[] keysForDescription = new String[] {"@input", "@output", "@result"};
-    private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing documentation for '%s'";
+    private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing description for '%s'";
 
     @Nullable
     @Override
