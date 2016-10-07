@@ -33,11 +33,12 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
   
 ##Installation
 
-Install the CloudSlang IntelliJ Plugin using the __Plugin Installation Wizard__ from __File > Settings > Plugins > Install JetBrains Plugin...__.  
-In the __Browse JetBrains Plugins__ window, browse __CloudSlang__ to find the plugin.  
-Install the plugin by pressing the __Install__ button from the right panel.
+1. Download the plugin from this link: ftp://mydwbld0006g.hpeswlab.net/CDP/cloudslang-idea-plugin.zip.  
+2. Install the CloudSlang IntelliJ Plugin in IntelliJ using the __Plugin Installation Wizard__ from __File > Settings > Plugins > Install Plugin From Disk...__.  
+3. In the __Choose Plugin File__ dialog, located the __coudslan-idea-plugin.zip__ file, downloaded at step 1, select it, and press __OK__.  
+4. Click __Apply__ button of the __Settings__ dialog.
 
-> You will have to restart IntelliJ for changes to take effect.
+> Following the system prompt that appears, restart IntelliJ IDEA to activate the installed plugin, or postpone it, at your choice.
 
 
 ##Getting Started
