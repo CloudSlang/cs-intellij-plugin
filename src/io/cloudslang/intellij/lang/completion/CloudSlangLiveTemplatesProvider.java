@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.completion;
+package io.cloudslang.intellij.lang.completion;
 
 import com.intellij.codeInsight.template.impl.DefaultLiveTemplatesProvider;
 import org.jetbrains.annotations.Nullable;
@@ -8,7 +8,7 @@ public class CloudSlangLiveTemplatesProvider implements DefaultLiveTemplatesProv
     @Override
     public String[] getDefaultLiveTemplateFiles() {
         return new String[]{
-                "com/intellij/lang/cloudslang/templates/CloudSlang",
+                "io/cloudslang/intellij/lang/templates/CloudSlang",
         };
     }
 

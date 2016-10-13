@@ -1,11 +1,11 @@
-package com.intellij.lang.cloudslang.completion;
+package io.cloudslang.intellij.lang.completion;
 
 import com.intellij.codeInsight.template.FileTypeBasedContextType;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLFileType;
 
-import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangFile;
+import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 
 
 public class CloudSlangTemplateContextType extends FileTypeBasedContextType {

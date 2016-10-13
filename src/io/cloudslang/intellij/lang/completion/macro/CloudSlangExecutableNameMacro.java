@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.completion.macro;
+package io.cloudslang.intellij.lang.completion.macro;
 
 import com.intellij.codeInsight.template.Expression;
 import com.intellij.codeInsight.template.ExpressionContext;
@@ -6,7 +6,7 @@ import com.intellij.codeInsight.template.Macro;
 import com.intellij.codeInsight.template.Result;
 import com.intellij.codeInsight.template.TemplateContextType;
 import com.intellij.codeInsight.template.TextResult;
-import com.intellij.lang.cloudslang.CloudSlangFileUtils;
+import io.cloudslang.intellij.lang.CloudSlangFileUtils;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;

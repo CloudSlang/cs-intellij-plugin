@@ -2,7 +2,7 @@
     <id>io.cloudslang.intellij.plugin</id>
     <name>CloudSlang Plugin</name>
     <version>0.9-beta</version>
-    <!--<vendor email="support@somedevs.hpe.com" url="https://www.hpe.com/">HPE</vendor>-->
+    <!--<vendor email="support@somedevs.hpe.com">CloudSlang</vendor>-->
 
     <description><![CDATA[
     This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
@@ -29,30 +29,30 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <lang.parserDefinition language="yaml"
-                               implementationClass="com.intellij.lang.cloudslang.CloudSlangParserDefinition"/>
-        <fileTypeFactory implementation="com.intellij.lang.cloudslang.CloudSlangFileTypeFactory"/>
+                               implementationClass="io.cloudslang.intellij.lang.CloudSlangParserDefinition"/>
+        <fileTypeFactory implementation="io.cloudslang.intellij.lang.CloudSlangFileTypeFactory"/>
         <completion.contributor language="yaml"
-                                implementationClass="com.intellij.lang.cloudslang.completion.CloudSlangCompletionContributor"/>
+                                implementationClass="io.cloudslang.intellij.lang.completion.CloudSlangCompletionContributor"/>
 
         <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
         <lang.syntaxHighlighterFactory key="yaml"
                                        implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
         <externalAnnotator language="yaml"
-                           implementationClass="com.intellij.lang.cloudslang.annotator.ExecutableAnnotator"/>
+                           implementationClass="io.cloudslang.intellij.lang.annotator.ExecutableAnnotator"/>
         <problemHighlightFilter
-                implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemHighlightFilter"/>
+                implementation="io.cloudslang.intellij.lang.highlighter.CloudSlangProblemHighlightFilter"/>
         <problemFileHighlightFilter
-                implementation="com.intellij.lang.cloudslang.highlighter.CloudSlangProblemFileHighlightFilter"/>
+                implementation="io.cloudslang.intellij.lang.highlighter.CloudSlangProblemFileHighlightFilter"/>
 
 
         <defaultLiveTemplatesProvider
-                implementation="com.intellij.lang.cloudslang.completion.CloudSlangLiveTemplatesProvider"/>
-        <liveTemplateMacro implementation="com.intellij.lang.cloudslang.completion.macro.CurrentNamespaceMacro"/>
+                implementation="io.cloudslang.intellij.lang.completion.CloudSlangLiveTemplatesProvider"/>
+        <liveTemplateMacro implementation="io.cloudslang.intellij.lang.completion.macro.CurrentNamespaceMacro"/>
         <liveTemplateMacro
-                implementation="com.intellij.lang.cloudslang.completion.macro.CloudSlangExecutableNameMacro"/>
-        <liveTemplateContext implementation="com.intellij.lang.cloudslang.completion.CloudSlangTemplateContextType"/>
+                implementation="io.cloudslang.intellij.lang.completion.macro.CloudSlangExecutableNameMacro"/>
+        <liveTemplateContext implementation="io.cloudslang.intellij.lang.completion.CloudSlangTemplateContextType"/>
 
-        <moduleType id="CLOUDSLANG_MODULE" implementationClass="com.intellij.project.module.CloudSlangModuleType"/>
+        <moduleType id="CLOUDSLANG_MODULE" implementationClass="io.cloudslang.intellij.project.module.CloudSlangModuleType"/>
     </extensions>
 
     <application-components>

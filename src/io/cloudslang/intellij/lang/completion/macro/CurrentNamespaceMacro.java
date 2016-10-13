@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.completion.macro;
+package io.cloudslang.intellij.lang.completion.macro;
 
 import com.intellij.codeInsight.template.Expression;
 import com.intellij.codeInsight.template.ExpressionContext;

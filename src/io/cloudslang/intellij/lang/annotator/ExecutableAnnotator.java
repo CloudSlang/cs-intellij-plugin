@@ -1,11 +1,11 @@
-package com.intellij.lang.cloudslang.annotator;
+package io.cloudslang.intellij.lang.annotator;
 
 import com.intellij.codeInsight.daemon.impl.HighlightInfo;
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
 import com.intellij.codeInsight.problems.ProblemImpl;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
-import com.intellij.lang.cloudslang.exceptions.LocatedRuntimeException;
+import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
 import com.intellij.openapi.editor.Document;
 import com.intellij.problems.Problem;
 import com.intellij.problems.WolfTheProblemSolver;
@@ -44,11 +44,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangFile;
-import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
-import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.getSlangModeller;
-import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
-import static com.intellij.lang.cloudslang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
+import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
+import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
+import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getSlangModeller;
+import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
+import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
 import static java.lang.String.format;
 import static java.util.regex.Pattern.compile;
 import static java.util.stream.Collectors.toList;

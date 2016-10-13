@@ -1,7 +1,7 @@
-package com.intellij.lang.cloudslang.highlighter;
+package io.cloudslang.intellij.lang.highlighter;
 
-import com.intellij.lang.cloudslang.CloudSlangFileType;
-import com.intellij.lang.cloudslang.CloudSlangFileUtils;
+import io.cloudslang.intellij.lang.CloudSlangFileType;
+import io.cloudslang.intellij.lang.CloudSlangFileUtils;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.vfs.VirtualFile;
 

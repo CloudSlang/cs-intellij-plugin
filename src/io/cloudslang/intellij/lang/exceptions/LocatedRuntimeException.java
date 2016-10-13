@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.exceptions;
+package io.cloudslang.intellij.lang.exceptions;
 
 
 public class LocatedRuntimeException extends RuntimeException {

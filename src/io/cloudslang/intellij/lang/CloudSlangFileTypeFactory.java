@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang;
+package io.cloudslang.intellij.lang;
 
 import com.intellij.openapi.fileTypes.FileNameMatcher;
 import com.intellij.openapi.fileTypes.FileTypeConsumer;
@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLFileTypeLoader;
 
-import static com.intellij.lang.cloudslang.CloudSlangFileUtils.isCloudSlangFile;
+import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 
 
 public class CloudSlangFileTypeFactory extends YAMLFileTypeLoader {
@@ -16,7 +16,7 @@ public class CloudSlangFileTypeFactory extends YAMLFileTypeLoader {
         fileTypeConsumer.consume(CloudSlangFileType.INSTANCE, new FileNameMatcher() {
             @Override
             public boolean accept(@NonNls @NotNull String s) {
-                return isCloudSlangFile(s);
+                return CloudSlangFileUtils.isCloudSlangFile(s);
             }
 
             @NotNull

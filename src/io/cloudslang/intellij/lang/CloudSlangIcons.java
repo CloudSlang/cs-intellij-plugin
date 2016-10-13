@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang;
+package io.cloudslang.intellij.lang;
 
 import com.intellij.openapi.util.IconLoader;
 

@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.dependencies;
+package io.cloudslang.intellij.lang.dependencies;
 
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangCompilerImpl;

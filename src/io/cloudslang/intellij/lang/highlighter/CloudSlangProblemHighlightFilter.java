@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.highlighter;
+package io.cloudslang.intellij.lang.highlighter;
 
 import com.intellij.codeInsight.daemon.ProblemHighlightFilter;
 import com.intellij.psi.PsiFile;

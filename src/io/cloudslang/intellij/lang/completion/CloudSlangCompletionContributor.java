@@ -1,4 +1,4 @@
-package com.intellij.lang.cloudslang.completion;
+package io.cloudslang.intellij.lang.completion;
 
 import com.intellij.codeInsight.completion.CompletionContributor;
 import com.intellij.codeInsight.completion.CompletionParameters;
@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
 
-import static com.intellij.lang.cloudslang.CloudSlangIcons.STANDARD;
+import static io.cloudslang.intellij.lang.CloudSlangIcons.STANDARD;
 
 public class CloudSlangCompletionContributor extends CompletionContributor {
 

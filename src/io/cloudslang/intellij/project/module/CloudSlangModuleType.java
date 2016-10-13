@@ -1,9 +1,9 @@
-package com.intellij.project.module;
+package io.cloudslang.intellij.project.module;
 
-import com.intellij.lang.cloudslang.CloudSlangIcons;
+import io.cloudslang.intellij.lang.CloudSlangIcons;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
-import com.intellij.project.wizard.CloudSlangModuleBuilder;
+import io.cloudslang.intellij.project.wizard.CloudSlangModuleBuilder;
 import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
 
