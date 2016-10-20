@@ -5,7 +5,6 @@ import com.intellij.codeInsight.daemon.impl.HighlightInfoType;
 import com.intellij.codeInsight.problems.ProblemImpl;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
-import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
 import com.intellij.openapi.editor.Document;
 import com.intellij.problems.Problem;
 import com.intellij.problems.WolfTheProblemSolver;
@@ -13,6 +12,7 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
@@ -22,16 +22,6 @@ import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.yaml.psi.YAMLDocument;
-import org.jetbrains.yaml.psi.YAMLFile;
-import org.jetbrains.yaml.psi.YAMLKeyValue;
-import org.jetbrains.yaml.psi.YAMLPsiElement;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -43,12 +33,25 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.yaml.psi.YAMLDocument;
+import org.jetbrains.yaml.psi.YAMLFile;
+import org.jetbrains.yaml.psi.YAMLKeyValue;
+import org.jetbrains.yaml.psi.YAMLPsiElement;
+import org.jetbrains.yaml.psi.YAMLValue;
+import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
+
 
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
 import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getSlangModeller;
 import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
 import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
+import static java.lang.Boolean.TRUE;
 import static java.lang.String.format;
 import static java.util.regex.Pattern.compile;
 import static java.util.stream.Collectors.toList;
@@ -57,6 +60,8 @@ import static java.util.stream.Collectors.toList;
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 
     private static final String MESSAGE_DELIMITER_STRING = "(?=in \'.*\', line (\\d+), column \\d+)";
+    public static final String INPUT_KEY = "@input";
+    public static final String PRIVATE = "private";
     private static Pattern linePattern = compile("line (\\d+), column \\d+");
     private static final Pattern keyInListPattern = compile("\\s*-\\s*([\\w]+):?.*");
     private static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
@@ -213,17 +218,41 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     private void createWarningsIfNecessary(final String keyForLookup, final List<PsiElement> commentList, AnnotationHolder holder, final List<Pair<PsiElement, String>> pairElementNameList) {
         for (Pair<PsiElement, String> pairElementName : pairElementNameList) {
             final Optional isPresentInDescription = commentList.stream().filter(e -> containsDescriptionForElement(keyForLookup, e.getText(), pairElementName.getRight())).findAny();
-            if (!isPresentInDescription.isPresent()) {
+            boolean isPrivate = isPrivateInput(pairElementName.getLeft(), keyForLookup);
+            if (!isPresentInDescription.isPresent() && !isPrivate) {
                 holder.createWeakWarningAnnotation(pairElementName.getLeft(), format(MISSING_DOCUMENTATION_FOR_NAME_PATTERN, pairElementName.getRight()));
             }
         }
+    }
+
+    private boolean isPrivateInput(PsiElement element, String keyForLookup) {
+        if (element instanceof YAMLKeyValue && keyForLookup.equals(INPUT_KEY)) {
+            YAMLValue value = ((YAMLKeyValue) element).getValue();
+            if (value instanceof YAMLBlockMappingImpl) {
+                return isPrivatePropertyTrue(value);
+            }
+        }
+        return false;
+    }
+
+    private boolean isPrivatePropertyTrue(YAMLValue value) {
+        List<YAMLPsiElement> yamlElements = value.getYAMLElements();
+        for (YAMLPsiElement e : yamlElements) {
+            if (e instanceof YAMLKeyValue) {
+                YAMLKeyValue property = (YAMLKeyValue) e;
+                if (property.getKeyText().equals(PRIVATE) && property.getValueText().equals(TRUE.toString())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean containsDescriptionForElement(final String keyForLookup, final String comment, final String name) {
         if (StringUtils.isEmpty(comment)) {
             return false;
         }
-        Pattern pattern = compile("\\s*#!\\s*" + keyForLookup + "\\s*" +  name + "\\s*:.+");
+        Pattern pattern = compile("\\s*#!\\s*" + keyForLookup + "\\s*" + name + "\\s*:.+");
         return pattern.matcher(comment.trim()).matches();
     }
 
@@ -240,7 +269,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                 if (matcher.find()) {
                     String elementNameGroup = matcher.group(1);
                     YAMLPsiElement childElement = findChildRecursively((YAMLPsiElement) psiElement, new String[]{elementNameGroup});
-                    PsiElement elementToHighlight = (childElement != null) ? childElement : ((psiElement instanceof YAMLKeyValue) ? ((YAMLKeyValue)  psiElement).getKey() : psiElement);
+                    PsiElement elementToHighlight = (childElement != null) ? childElement : ((psiElement instanceof YAMLKeyValue) ? ((YAMLKeyValue) psiElement).getKey() : psiElement);
                     elementStringPairs.add(new ImmutablePair<>(elementToHighlight, elementNameGroup));
                 }
             }
