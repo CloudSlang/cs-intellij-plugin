@@ -12,6 +12,7 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider;
 import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
@@ -48,9 +49,6 @@ import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
-import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getSlangModeller;
-import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.getYamlParser;
-import static io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider.slangCompiler;
 import static java.lang.Boolean.TRUE;
 import static java.lang.String.format;
 import static java.util.regex.Pattern.compile;
@@ -64,15 +62,17 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     public static final String PRIVATE = "private";
     private static Pattern linePattern = compile("line (\\d+), column \\d+");
     private static final Pattern keyInListPattern = compile("\\s*-\\s*([\\w]+):?.*");
-    private static final String[] keysForDocumentation = new String[] {"inputs", "outputs", "results"};
-    private static final String[] keysForDescription = new String[] {"@input", "@output", "@result"};
+    private static final String[] keysForDocumentation = new String[]{"inputs", "outputs", "results"};
+    private static final String[] keysForDescription = new String[]{"@input", "@output", "@result"};
     private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing description for '%s'";
+
+    private CloudSlangDependenciesProvider provider = new CloudSlangDependenciesProvider();
 
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
         if (isCloudSlangSystemPropertiesFile(file.getName())) {
-            SlangCompiler slangCompiler = slangCompiler();
+            SlangCompiler slangCompiler = provider.slangCompiler();
 
             YAMLFile yamlFile = (YAMLFile) file;
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
@@ -87,8 +87,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             }
 
         } else if (isCloudSlangFile(file)) {
-            YamlParser yamlParser = getYamlParser();
-            SlangModeller slangModeller = getSlangModeller();
+            YamlParser yamlParser = provider.yamlParser();
+            SlangModeller slangModeller = provider.slangModeller();
             YAMLFile yamlFile = (YAMLFile) file;
 
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
