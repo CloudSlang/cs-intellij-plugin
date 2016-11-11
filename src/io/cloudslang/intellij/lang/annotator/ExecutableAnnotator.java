@@ -61,7 +61,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     public static final String INPUT_KEY = "@input";
     public static final String PRIVATE = "private";
     private static Pattern linePattern = compile("line (\\d+), column \\d+");
-    private static final Pattern keyInListPattern = compile("\\s*-\\s*([\\w]+):?.*");
+    private static final Pattern keyInListPattern = compile("\\s*-\\s+([\\w]+):?.*");
     private static final String[] keysForDocumentation = new String[]{"inputs", "outputs", "results"};
     private static final String[] keysForDescription = new String[]{"@input", "@output", "@result"};
     private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing description for '%s'";
