@@ -1,8 +1,9 @@
 <idea-plugin version="2">
     <id>io.cloudslang.intellij.plugin</id>
     <name>CloudSlang Plugin</name>
-    <version>0.9-beta</version>
-    <!--<vendor email="support@somedevs.hpe.com">CloudSlang</vendor>-->
+    <version>1.0.0</version>
+    <vendor url="http://cloudslang.io" email="support@cloudslang.io">CloudSlang</vendor>
+    <category>Languages</category>
 
     <description><![CDATA[
     This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
@@ -10,11 +11,14 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      1. Live templates e.g: flow, operation, input, output, step, for, java_action etc.
-      2. Supports CloudSlang file validation and Error highlighting
-      3. Completion support for CloudSlang keywords
-      4. Syntax highlighting
-      5. CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)
+    <ol type="1">
+      <li>New CloudSlang project creation</li>
+      <li>Live templates e.g: flow, operation, input, output, step, for, java_action etc.</li>
+      <li>Supports CloudSlang file validation and Error highlighting</li>
+      <li>Completion support for CloudSlang keywords</li>
+      <li>Syntax highlighting</li>
+      <li>CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)</li>
+    </ol>
     ]]>
     </change-notes>
 

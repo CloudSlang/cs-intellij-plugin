@@ -1,10 +1,11 @@
 package io.cloudslang.intellij.lang.dependencies;
 
-import io.cloudslang.lang.compiler.CachedPrecompileService;
 import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.MetadataExtractorImpl;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangCompilerImpl;
+import io.cloudslang.lang.compiler.caching.CachedPrecompileService;
+import io.cloudslang.lang.compiler.caching.CachedPrecompileServiceImpl;
 import io.cloudslang.lang.compiler.modeller.DependenciesHelper;
 import io.cloudslang.lang.compiler.modeller.ExecutableBuilder;
 import io.cloudslang.lang.compiler.modeller.MetadataModeller;
@@ -79,7 +80,7 @@ public class CloudSlangDependenciesProvider {
 
 
     public CachedPrecompileService cachedPrecompileService() {
-        return new CachedPrecompileService();
+        return new CachedPrecompileServiceImpl();
     }
 
 
