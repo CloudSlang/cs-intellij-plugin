@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Apache License v2.0 which accompany this distribution.
+ *
+ * The Apache License is available at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *******************************************************************************/
 package io.cloudslang.intellij.lang.annotator;
 
 import com.intellij.codeInsight.daemon.impl.HighlightInfo;
@@ -58,8 +67,8 @@ import static java.util.stream.Collectors.toList;
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 
     private static final String MESSAGE_DELIMITER_STRING = "(?=in \'.*\', line (\\d+), column \\d+)";
-    public static final String INPUT_KEY = "@input";
-    public static final String PRIVATE = "private";
+    private static final String INPUT_KEY = "@input";
+    private static final String PRIVATE = "private";
     private static Pattern linePattern = compile("line (\\d+), column \\d+");
     private static final Pattern keyInListPattern = compile("\\s*-\\s+([\\w]+):?.*");
     private static final String[] keysForDocumentation = new String[]{"inputs", "outputs", "results"};

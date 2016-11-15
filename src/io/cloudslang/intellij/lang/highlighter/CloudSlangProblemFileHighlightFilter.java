@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Apache License v2.0 which accompany this distribution.
+ *
+ * The Apache License is available at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *******************************************************************************/
 package io.cloudslang.intellij.lang.highlighter;
 
 import io.cloudslang.intellij.lang.CloudSlangFileType;
@@ -9,9 +18,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 public class CloudSlangProblemFileHighlightFilter implements Condition<VirtualFile> {
     @Override
     public boolean value(VirtualFile virtualFile) {
-        if (virtualFile.getFileType() == CloudSlangFileType.INSTANCE) {
-            return true;
-        }
-        return CloudSlangFileUtils.isCloudSlangFile(virtualFile.getName());
+        return (virtualFile.getFileType() == CloudSlangFileType.INSTANCE)
+                || (CloudSlangFileUtils.isCloudSlangFile(virtualFile.getName()));
     }
 }
