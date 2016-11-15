@@ -1,0 +1,74 @@
+<idea-plugin version="2">
+    <id>io.cloudslang.intellij.plugin</id>
+    <name>CloudSlang Plugin</name>
+    <version>1.0.0</version>
+    <vendor url="http://cloudslang.io" email="support@cloudslang.io">CloudSlang</vendor>
+    <category>Languages</category>
+
+    <description><![CDATA[
+    This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
+    CloudSlang is a flow-based orchestration tool for managing deployed applications. It allows you to rapidly automate your DevOps and everyday IT operations use cases using ready-made workflows or create custom workflows using a YAML-based DSL.
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <ol type="1">
+      <li>New CloudSlang project creation</li>
+      <li>Live templates e.g: flow, operation, input, output, step, for, java_action etc.</li>
+      <li>Supports CloudSlang file validation and Error highlighting</li>
+      <li>Completion support for CloudSlang keywords</li>
+      <li>Syntax highlighting</li>
+      <li>CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)</li>
+    </ol>
+    ]]>
+    </change-notes>
+
+    <!-- Starting with IntelliJ IDEA 14-->
+    <!-- See version at https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges -->
+    <idea-version since-build="139"/>
+
+    <!-- See https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <lang.parserDefinition language="yaml"
+                               implementationClass="io.cloudslang.intellij.lang.CloudSlangParserDefinition"/>
+        <fileTypeFactory implementation="io.cloudslang.intellij.lang.CloudSlangFileTypeFactory"/>
+        <completion.contributor language="yaml"
+                                implementationClass="io.cloudslang.intellij.lang.completion.CloudSlangCompletionContributor"/>
+
+        <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
+        <lang.syntaxHighlighterFactory key="yaml"
+                                       implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
+        <externalAnnotator language="yaml"
+                           implementationClass="io.cloudslang.intellij.lang.annotator.ExecutableAnnotator"/>
+        <problemHighlightFilter
+                implementation="io.cloudslang.intellij.lang.highlighter.CloudSlangProblemHighlightFilter"/>
+        <problemFileHighlightFilter
+                implementation="io.cloudslang.intellij.lang.highlighter.CloudSlangProblemFileHighlightFilter"/>
+
+
+        <defaultLiveTemplatesProvider
+                implementation="io.cloudslang.intellij.lang.completion.CloudSlangLiveTemplatesProvider"/>
+        <liveTemplateMacro implementation="io.cloudslang.intellij.lang.completion.macro.CurrentNamespaceMacro"/>
+        <liveTemplateMacro
+                implementation="io.cloudslang.intellij.lang.completion.macro.CloudSlangExecutableNameMacro"/>
+        <liveTemplateContext implementation="io.cloudslang.intellij.lang.completion.CloudSlangTemplateContextType"/>
+
+        <moduleType id="CLOUDSLANG_MODULE" implementationClass="io.cloudslang.intellij.project.module.CloudSlangModuleType"/>
+    </extensions>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>
