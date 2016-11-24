@@ -47,7 +47,7 @@ This is a short tutorial showing how to start developing CloudSlang content.
 
 #####1. Create a new Project 
   
-From the **New Project** dialog, select the type of project you desire, for example, **Java Project**.
+From the **New Project** dialog, select the **CloudSlang** project type.
 
 ![CloudSlang File Type](/screenshots/new-project.png)
   
