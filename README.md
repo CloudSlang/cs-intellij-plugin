@@ -33,6 +33,7 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
   
 ##Installation
 
+1. Download the plugin from [here](https://github.com/CloudSlang/cs-intellij-plugin/releases/download/1.0.0/cs-intellij-plugin.zip). 
 1. Download the plugin from this link: https://github.com/CloudSlang/cs-intellij-plugin/releases/download/1.0.0/cs-intellij-plugin.zip.  
 2. Install the CloudSlang IntelliJ Plugin in IntelliJ using the __Plugin Installation Wizard__ from __File > Settings > Plugins > Install Plugin From Disk...__.  
 3. In the __Choose Plugin File__ dialog, located the __coudslan-idea-plugin.zip__ file, downloaded at step 1, select it, and press __OK__.  
@@ -47,6 +48,7 @@ This is a short tutorial showing how to start developing CloudSlang content.
 
 #####1. Create a new Project 
   
+From the **New Project** dialog, select the **CloudSlang** project type.
 From the **New Project** dialog, select the type of project you desire, for example, **Java Project**.
 
 ![CloudSlang File Type](/screenshots/new-project.png)
