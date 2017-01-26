@@ -21,12 +21,15 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.spring.model.xml.beans.Meta;
 import io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider;
 import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
+import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
+import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
@@ -80,21 +83,16 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
+        MetadataExtractor metadataExtractor = provider.metadataExtractor();
         if (isCloudSlangSystemPropertiesFile(file.getName())) {
             SlangCompiler slangCompiler = provider.slangCompiler();
 
             YAMLFile yamlFile = (YAMLFile) file;
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
+            MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
             SystemPropertyModellingResult modellingResult = slangCompiler.loadSystemPropertiesFromSource(slangSource);
-            if (!modellingResult.getErrors().isEmpty()) {
-                List<RuntimeException> runtimeExceptions = modellingResult.getErrors()
-                        .stream()
-                        .map(this::transformMessageToExceptionList)
-                        .flatMap(List::stream)
-                        .collect(toList());
-                return new ExecutableModellingResult(null, runtimeExceptions);
-            }
-
+            List<RuntimeException> runtimeExceptions = mergeModellingResults(metadataModellingResult, modellingResult);
+            return new ExecutableModellingResult(null, runtimeExceptions);
         } else if (isCloudSlangFile(file)) {
             YamlParser yamlParser = provider.yamlParser();
             SlangModeller slangModeller = provider.slangModeller();
@@ -102,14 +100,36 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
 
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
+                MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
                 ParseModellingResult parseModellingResult = yamlParser.validate(parsedSlang);
-                return slangModeller.createModel(parseModellingResult);
+                ExecutableModellingResult modellingResult = slangModeller.createModel(parseModellingResult);
+                List<RuntimeException> runtimeExceptions = mergeModellingResults(metadataModellingResult, modellingResult);
+                return new ExecutableModellingResult(null, runtimeExceptions);
             } catch (RuntimeException e) {
                 return processExceptionToModellingResult(e);
             }
         }
         return null;
+    }
+
+    private List<RuntimeException> mergeModellingResults(ModellingResult result1, ModellingResult result2) {
+        List<RuntimeException> runtimeExceptions = new ArrayList<>();
+        if (!result2.getErrors().isEmpty()) {
+            runtimeExceptions = result2.getErrors()
+                    .stream()
+                    .map(this::transformMessageToExceptionList)
+                    .flatMap(List::stream)
+                    .collect(toList());
+        }
+        if (!result1.getErrors().isEmpty()) {
+            runtimeExceptions.addAll(result1.getErrors()
+                    .stream()
+                    .map(this::transformMessageToExceptionList)
+                    .flatMap(List::stream)
+                    .collect(toList()));
+        }
+        return runtimeExceptions;
     }
 
     @NotNull
