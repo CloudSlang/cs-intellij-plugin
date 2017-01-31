@@ -41,6 +41,8 @@ import io.cloudslang.lang.compiler.modeller.transformers.Transformer;
 import io.cloudslang.lang.compiler.modeller.transformers.WorkFlowTransformer;
 import io.cloudslang.lang.compiler.parser.MetadataParser;
 import io.cloudslang.lang.compiler.parser.YamlParser;
+import io.cloudslang.lang.compiler.parser.utils.MetadataValidator;
+import io.cloudslang.lang.compiler.parser.utils.MetadataValidatorImpl;
 import io.cloudslang.lang.compiler.parser.utils.ParserExceptionHandler;
 import io.cloudslang.lang.compiler.scorecompiler.ExecutionPlanBuilder;
 import io.cloudslang.lang.compiler.scorecompiler.ExecutionStepFactory;
@@ -147,9 +149,14 @@ public class CloudSlangDependenciesProvider {
 
     public MetadataExtractor metadataExtractor() {
         MetadataExtractorImpl metadataExtractor = new MetadataExtractorImpl();
+        metadataExtractor.setMetadataValidator(metadataValidator());
         metadataExtractor.setMetadataModeller(metadataModeller());
         metadataExtractor.setMetadataParser(metadataParser());
         return metadataExtractor;
+    }
+
+    public MetadataValidator metadataValidator() {
+        return new MetadataValidatorImpl();
     }
 
 
