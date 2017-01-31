@@ -23,26 +23,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import io.cloudslang.intellij.lang.dependencies.CloudSlangDependenciesProvider;
 import io.cloudslang.intellij.lang.exceptions.LocatedRuntimeException;
+import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
+import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -55,6 +46,17 @@ import org.jetbrains.yaml.psi.YAMLPsiElement;
 import org.jetbrains.yaml.psi.YAMLValue;
 import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
@@ -80,21 +82,16 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
     @Nullable
     @Override
     public ModellingResult collectInformation(@NotNull PsiFile file) {
+        MetadataExtractor metadataExtractor = provider.metadataExtractor();
         if (isCloudSlangSystemPropertiesFile(file.getName())) {
             SlangCompiler slangCompiler = provider.slangCompiler();
 
             YAMLFile yamlFile = (YAMLFile) file;
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
+            MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
             SystemPropertyModellingResult modellingResult = slangCompiler.loadSystemPropertiesFromSource(slangSource);
-            if (!modellingResult.getErrors().isEmpty()) {
-                List<RuntimeException> runtimeExceptions = modellingResult.getErrors()
-                        .stream()
-                        .map(this::transformMessageToExceptionList)
-                        .flatMap(List::stream)
-                        .collect(toList());
-                return new ExecutableModellingResult(null, runtimeExceptions);
-            }
-
+            List<RuntimeException> runtimeExceptions = mergeModellingResults(metadataModellingResult, modellingResult);
+            return new ExecutableModellingResult(null, runtimeExceptions);
         } else if (isCloudSlangFile(file)) {
             YamlParser yamlParser = provider.yamlParser();
             SlangModeller slangModeller = provider.slangModeller();
@@ -102,14 +99,34 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
 
             SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
+                MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
                 ParseModellingResult parseModellingResult = yamlParser.validate(parsedSlang);
-                return slangModeller.createModel(parseModellingResult);
+                ExecutableModellingResult modellingResult = slangModeller.createModel(parseModellingResult);
+                List<RuntimeException> runtimeExceptions = mergeModellingResults(metadataModellingResult, modellingResult);
+                return new ExecutableModellingResult(null, runtimeExceptions);
             } catch (RuntimeException e) {
                 return processExceptionToModellingResult(e);
             }
         }
         return null;
+    }
+
+    private List<RuntimeException> mergeModellingResults(ModellingResult result1, ModellingResult result2) {
+        List<RuntimeException> runtimeExceptions = new ArrayList<>();
+
+        runtimeExceptions.addAll(getExceptionsFromResult(result2));
+        runtimeExceptions.addAll(getExceptionsFromResult(result1));
+
+        return runtimeExceptions;
+    }
+
+    private List<RuntimeException> getExceptionsFromResult(ModellingResult result1) {
+        return result1.getErrors()
+                .stream()
+                .map(this::transformMessageToExceptionList)
+                .flatMap(List::stream)
+                .collect(toList());
     }
 
     @NotNull
