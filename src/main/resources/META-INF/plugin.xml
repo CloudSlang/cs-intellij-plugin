@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>io.cloudslang.intellij.plugin</id>
     <name>CloudSlang Plugin</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor url="http://cloudslang.io" email="support@cloudslang.io">CloudSlang</vendor>
     <category>Languages</category>
 

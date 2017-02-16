@@ -15,8 +15,6 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLFileTypeLoader;
 
-import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
-
 
 public class CloudSlangFileTypeFactory extends YAMLFileTypeLoader {
 

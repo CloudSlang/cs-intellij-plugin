@@ -18,9 +18,10 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.util.ProcessingContext;
 import io.cloudslang.lang.compiler.SlangTextualKeys;
-import java.lang.reflect.Field;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
+
+import java.lang.reflect.Field;
 
 import static io.cloudslang.intellij.lang.CloudSlangIcons.STANDARD;
 
