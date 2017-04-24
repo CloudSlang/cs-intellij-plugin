@@ -2,6 +2,7 @@
 plugins {
     id 'net.researchgate.release' version '2.4.0'
     id 'org.jetbrains.intellij' version "0.2.8"
+    id 'checkstyle'
     id 'findbugs'
     id 'java'
     id 'idea'
@@ -60,11 +61,23 @@ release {
     failOnUnversionedFiles = false
 }
 
+//FindBugs support that uses a template which generates a report.
 tasks.withType(FindBugs) {
     reports {
-        xml.enabled false
-        html.enabled true
+        xml.enabled = false
+        html.enabled = true
         ignoreFailures = true
         html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
+    }
+}
+
+//CheckStyle support that uses a checkstyle xml file and generates a report based on a template.
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        ignoreFailures = true
+        showViolations = false
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
     }
 }

@@ -41,7 +41,8 @@ public class CloudSlangExecutableNameMacro extends Macro {
             return new TextResult("");
         }
         final PsiFile file = PsiDocumentManager.getInstance(project).getPsiFile(context.getEditor().getDocument());
-        return (file == null) ? new TextResult("") :
+        return (file == null) ? new TextResult("")
+                :
                 new TextResult(CloudSlangFileUtils.getNameWithoutExtension(file.getName()));
     }
 
