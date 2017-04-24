@@ -21,6 +21,11 @@ intellij {
     plugins 'yaml'
 }
 
+patchPluginXml {
+    sinceBuild '163.0'
+    untilBuild '*.*'
+}
+
 //Declare project dependencies
 dependencies {
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])

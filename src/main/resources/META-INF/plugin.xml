@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>io.cloudslang.intellij.plugin</id>
     <name>CloudSlang Plugin</name>
     <version>1.0.1</version>
@@ -22,10 +22,6 @@
     ]]>
     </change-notes>
 
-    <!-- Starting with IntelliJ IDEA 14-->
-    <!-- See version at https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges -->
-    <idea-version since-build="139"/>
-
     <!-- See https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
     <depends>org.jetbrains.plugins.yaml</depends>
@@ -39,8 +35,7 @@
                                 implementationClass="io.cloudslang.intellij.lang.completion.CloudSlangCompletionContributor"/>
 
         <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter"/>
-        <lang.syntaxHighlighterFactory key="yaml"
-                                       implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
+        <lang.syntaxHighlighterFactory language="yaml" implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory"/>
         <externalAnnotator language="yaml"
                            implementationClass="io.cloudslang.intellij.lang.annotator.ExecutableAnnotator"/>
         <problemHighlightFilter
