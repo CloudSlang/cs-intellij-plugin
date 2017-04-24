@@ -1,56 +1,60 @@
+//Import plugins needed to build and test the project.
+plugins {
+    id 'net.researchgate.release' version '2.4.0'
+    id "org.jetbrains.intellij" version "0.2.8"
+    id 'java'
+    id 'idea'
+}
+
+//Declare project name and version.
 group 'cs-intellij-plugin'
-version '1.0.1'
+version '1.0.1-SNAPSHOT'
 
-apply plugin: 'java'
-
+//Get dependencies from Maven central repository.
 repositories {
     mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
 }
 
+//Download Intellij sources to test the plugin.
+intellij {
+    version '2016.3.4'
+    plugins 'yaml'
+}
+
+patchPluginXml {
+    sinceBuild '163.0'
+    untilBuild '*.*'
+}
+
+//Declare project dependencies
 dependencies {
-    compile (name:'yaml', ext:'jar')
-    compile group: 'io.cloudslang.lang', name: 'cloudslang-entities', version: '1.0.3'
-    compile group: 'io.cloudslang.lang', name: 'cloudslang-compiler', version: '1.0.3'
-    compile group: 'io.cloudslang.lang', name: 'cloudslang-spi', version: '1.0.3'
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    compile('io.cloudslang.lang:cloudslang-entities:1.0.3') {
+        transitive = false
+    }
+    compile('io.cloudslang.lang:cloudslang-compiler:1.0.3') {
+        transitive = false
+    }
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile ('com.googlecode.lambdaj:lambdaj:2.3.3') {
+        transitive = false
+    }
+    compile 'io.cloudslang.lang:cloudslang-spi:1.0.3'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'commons-logging:commons-logging:1.2'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    compile 'org.hamcrest:hamcrest-all:1.1'
+    compile 'org.objenesis:objenesis:1.2'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.yaml:snakeyaml:1.16'
 }
 
-buildscript {
+//Set the sources and target compatibility with Java 8 (or other versions that have to
+// match the Java version used in Gradle as well)
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-
-    dependencies {
-        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:0.2.4"
-    }
-}
-
-
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
-        }
-        resources {
-            srcDirs = ['src/main/resources']
-        }
-    }
-}
-apply plugin: "org.jetbrains.intellij"
-
-subprojects {
-    apply plugin: 'java'
-
-    sourceCompatibility = 1.8
-
-    intellij {
-        version '2016.3.4'
-    }
+//Perform the release while ignoring any unversioned files (as they are not needed).
+release {
+    failOnUnversionedFiles = false
 }
