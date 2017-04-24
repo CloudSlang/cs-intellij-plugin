@@ -64,6 +64,7 @@ tasks.withType(FindBugs) {
     reports {
         xml.enabled false
         html.enabled true
+        ignoreFailures = true
         html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
     }
 }
