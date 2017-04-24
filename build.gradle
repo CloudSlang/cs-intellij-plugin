@@ -1,7 +1,8 @@
 //Import plugins needed to build and test the project.
 plugins {
     id 'net.researchgate.release' version '2.4.0'
-    id "org.jetbrains.intellij" version "0.2.8"
+    id 'org.jetbrains.intellij' version "0.2.8"
+    id 'findbugs'
     id 'java'
     id 'idea'
 }
@@ -57,4 +58,12 @@ targetCompatibility = 1.8
 //Perform the release while ignoring any unversioned files (as they are not needed).
 release {
     failOnUnversionedFiles = false
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
+    }
 }
