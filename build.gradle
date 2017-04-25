@@ -21,7 +21,7 @@ repositories {
 intellij {
     version ideaVersion
     plugins 'yaml'
-    downloadSources sources
+    downloadSources Boolean.valueOf(sources)
     patchPluginXml {
         sinceBuild = ideaBranch
         untilBuild = '*.*'
