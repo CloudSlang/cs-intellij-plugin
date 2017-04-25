@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+before_install:
+ - chmod +x gradlew
+
+install: echo "skip './gradlew assemble' step"
+
+script: ./gradlew build --continue
