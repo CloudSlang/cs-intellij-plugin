@@ -36,13 +36,14 @@ public class CloudSlangExecutableNameMacro extends Macro {
 
     @Override
     public Result calculateResult(@NotNull Expression[] params, ExpressionContext context) {
-        Project project = context.getProject();
+        final Project project = context.getProject();
         if (context.getEditor() == null) {
             return new TextResult("");
         }
         final PsiFile file = PsiDocumentManager.getInstance(project).getPsiFile(context.getEditor().getDocument());
-        return (file == null) ? new TextResult("") :
-                new TextResult(CloudSlangFileUtils.getNameWithoutExtension(file.getName()));
+        if (file == null)
+            return new TextResult("");
+        return new TextResult(CloudSlangFileUtils.getNameWithoutExtension(file.getName()));
     }
 
     @Override
