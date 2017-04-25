@@ -292,7 +292,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
 
         List<Pair<PsiElement, String>> elementStringPairs = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new StringReader(psiElement.getText()))) {
-            for (String line; (line = reader.readLine()) != null; ) {
+            for (String line; (line = reader.readLine()) != null;) {
                 final Matcher matcher = keyInListPattern.matcher(line);
                 if (matcher.find()) {
                     String elementNameGroup = matcher.group(1);
