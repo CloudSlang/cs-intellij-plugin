@@ -8,7 +8,7 @@ plugins {
     id 'idea'
 }
 
-//Declare project name and version.
+//Declare project version.
 version = '1.0.1-SNAPSHOT'
 
 //Get dependencies from Maven central repository.
@@ -22,13 +22,14 @@ intellij {
     version ideaVersion
     plugins 'yaml'
     downloadSources Boolean.valueOf(sources)
-    patchPluginXml {
-        sinceBuild = ideaBranch
-        untilBuild = '*.*'
-        version = '1.0.1-SNAPSHOT'
-    }
 }
 
+//Add required variables to build plugin (version, since-build, until-build)
+patchPluginXml {
+    sinceBuild = ideaBranch
+    untilBuild = '*.*'
+    version = '1.0.1-SNAPSHOT'
+}
 
 //Declare project dependencies
 dependencies {
@@ -64,21 +65,21 @@ release {
 
 //FindBugs support that uses a template which generates a report.
 tasks.withType(FindBugs) {
+    ignoreFailures = true
     reports {
         xml.enabled = false
         html.enabled = true
-        ignoreFailures = true
         html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
     }
 }
 
 //CheckStyle support that uses a checkstyle xml file and generates a report based on a template.
 tasks.withType(Checkstyle) {
+    ignoreFailures = true
+    showViolations = false
     reports {
         xml.enabled = false
         html.enabled = true
-        ignoreFailures = true
-        showViolations = false
         html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
     }
 }
