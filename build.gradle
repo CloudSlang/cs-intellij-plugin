@@ -9,28 +9,29 @@ plugins {
 }
 
 //Declare project name and version.
-group 'cs-intellij-plugin'
-version '1.0.1-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 
 //Get dependencies from Maven central repository.
 repositories {
     mavenCentral()
 }
 
+
 //Download Intellij sources to test the plugin.
 intellij {
-    version '2016.3.4'
+    version ideaVersion
     plugins 'yaml'
+    downloadSources Boolean.valueOf(sources)
+    patchPluginXml {
+        sinceBuild = ideaBranch
+        untilBuild = '*.*'
+        version = '1.0.1-SNAPSHOT'
+    }
 }
 
-patchPluginXml {
-    sinceBuild '163.0'
-    untilBuild '*.*'
-}
 
 //Declare project dependencies
 dependencies {
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
     compile('io.cloudslang.lang:cloudslang-entities:1.0.3') {
         transitive = false
     }
@@ -53,8 +54,8 @@ dependencies {
 
 //Set the sources and target compatibility with Java 8 (or other versions that have to
 // match the Java version used in Gradle as well)
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
 
 //Perform the release while ignoring any unversioned files (as they are not needed).
 release {
