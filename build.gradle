@@ -19,9 +19,9 @@ repositories {
 
 //Download Intellij sources to test the plugin.
 intellij {
-    version = ideaVersion
-    plugins = 'yaml'
-    downloadSources = Boolean.valueOf(sources)
+    version ideaVersion
+    plugins 'yaml'
+    downloadSources sources
     patchPluginXml {
         sinceBuild = ideaBranch
         untilBuild = '*.*'
