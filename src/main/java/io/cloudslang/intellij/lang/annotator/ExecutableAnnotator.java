@@ -27,6 +27,7 @@ import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
+import io.cloudslang.lang.compiler.modeller.model.Executable;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
@@ -48,11 +49,11 @@ import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -99,7 +100,9 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             SlangModeller slangModeller = provider.slangModeller();
             YAMLFile yamlFile = (YAMLFile) file;
 
-            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
+            Path yamlFilePath = Paths.get(yamlFile.getVirtualFile().getPath()).toAbsolutePath();
+            SlangSource slangSource = SlangSource.fromFile(yamlFilePath.toFile());
+//            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
                 MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
