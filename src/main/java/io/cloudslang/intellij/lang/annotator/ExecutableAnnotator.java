@@ -27,7 +27,6 @@ import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangSource;
 import io.cloudslang.lang.compiler.modeller.SlangModeller;
-import io.cloudslang.lang.compiler.modeller.model.Executable;
 import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
@@ -49,22 +48,18 @@ import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.StringReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangFile;
 import static io.cloudslang.intellij.lang.CloudSlangFileUtils.isCloudSlangSystemPropertiesFile;
 import static java.lang.Boolean.TRUE;
 import static java.lang.String.format;
 import static java.util.regex.Pattern.compile;
-import static java.util.stream.Collectors.toList;
 
 
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
