@@ -49,6 +49,8 @@ import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -99,7 +101,9 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             SlangModeller slangModeller = provider.slangModeller();
             YAMLFile yamlFile = (YAMLFile) file;
 
-            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
+            Path yamlFilePath = Paths.get(yamlFile.getVirtualFile().getPath()).toAbsolutePath();
+            SlangSource slangSource = SlangSource.fromFile(yamlFilePath.toFile());
+//            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
                 MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
