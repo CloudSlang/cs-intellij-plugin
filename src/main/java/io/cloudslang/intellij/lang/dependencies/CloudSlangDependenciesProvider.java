@@ -250,6 +250,7 @@ public class CloudSlangDependenciesProvider {
     public DoTransformer doTransformer() {
         DoTransformer doTransformer = new DoTransformer();
         doTransformer.setPreCompileValidator(precompileValidator());
+        doTransformer.setExecutableValidator(executableValidator());
 
         return doTransformer;
     }
