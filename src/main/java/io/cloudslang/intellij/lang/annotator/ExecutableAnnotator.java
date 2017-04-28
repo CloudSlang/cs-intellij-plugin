@@ -101,9 +101,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             SlangModeller slangModeller = provider.slangModeller();
             YAMLFile yamlFile = (YAMLFile) file;
 
-            Path yamlFilePath = Paths.get(yamlFile.getVirtualFile().getPath()).toAbsolutePath();
-            SlangSource slangSource = SlangSource.fromFile(yamlFilePath.toFile());
-//            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
+            SlangSource slangSource = new SlangSource(yamlFile.getText(), yamlFile.getName());
             try {
                 MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
