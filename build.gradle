@@ -33,17 +33,17 @@ patchPluginXml {
 
 //Declare project dependencies
 dependencies {
-    compile('io.cloudslang.lang:cloudslang-entities:1.0.3') {
+    compile('io.cloudslang.lang:cloudslang-entities:1.0.5') {
         transitive = false
     }
-    compile('io.cloudslang.lang:cloudslang-compiler:1.0.3') {
+    compile('io.cloudslang.lang:cloudslang-compiler:1.0.5') {
         transitive = false
     }
     compile 'org.apache.commons:commons-collections4:4.1'
     compile ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    compile 'io.cloudslang.lang:cloudslang-spi:1.0.3'
+    compile 'io.cloudslang.lang:cloudslang-spi:1.0.5'
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'commons-logging:commons-logging:1.2'
     compile 'org.javassist:javassist:3.20.0-GA'

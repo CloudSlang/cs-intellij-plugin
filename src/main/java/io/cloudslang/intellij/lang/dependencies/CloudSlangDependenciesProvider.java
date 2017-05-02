@@ -150,16 +150,17 @@ public class CloudSlangDependenciesProvider {
 
     public MetadataExtractor metadataExtractor() {
         MetadataExtractorImpl metadataExtractor = new MetadataExtractorImpl();
-        metadataExtractor.setMetadataValidator(metadataValidator());
         metadataExtractor.setMetadataModeller(metadataModeller());
         metadataExtractor.setMetadataParser(metadataParser());
+        metadataExtractor.setMetadataValidator(metadataValidator());
         return metadataExtractor;
     }
 
     public MetadataValidator metadataValidator() {
-        return new MetadataValidatorImpl();
+        MetadataValidatorImpl metadataValidator = new MetadataValidatorImpl();
+        metadataValidator.setMetadataParser(metadataParser());
+        return metadataValidator;
     }
-
 
     public MetadataParser metadataParser() {
         MetadataParser metadataParser = new MetadataParser();
@@ -249,6 +250,7 @@ public class CloudSlangDependenciesProvider {
     public DoTransformer doTransformer() {
         DoTransformer doTransformer = new DoTransformer();
         doTransformer.setPreCompileValidator(precompileValidator());
+        doTransformer.setExecutableValidator(executableValidator());
 
         return doTransformer;
     }
