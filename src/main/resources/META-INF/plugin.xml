@@ -6,16 +6,18 @@
 
     <description><![CDATA[
     This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
-    CloudSlang is a flow-based orchestration tool for managing deployed applications. It allows you to rapidly automate your DevOps and everyday IT operations use cases using ready-made workflows or create custom workflows using a YAML-based DSL.
+    CloudSlang is a flow-based orchestration tool for managing deployed applications.
+    It allows you to rapidly automate your DevOps and everyday IT operations use cases using ready-made workflows
+    or create custom workflows using a YAML-based DSL.
     ]]></description>
 
     <change-notes><![CDATA[
     <ol type="1">
       <li>New CloudSlang project creation</li>
       <li>Live templates e.g: flow, operation, input, output, step, for, java_action etc.</li>
-      <li>Supports CloudSlang file validation and Error highlighting</li>
-      <li>Completion support for CloudSlang keywords</li>
-      <li>Syntax highlighting</li>
+      <li>Supports CloudSlang file validation and Error highlighting.</li>
+      <li>Completion support for CloudSlang keywords.</li>
+      <li>Syntax highlighting.</li>
       <li>CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)</li>
     </ol>
     ]]>
