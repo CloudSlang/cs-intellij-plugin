@@ -12,7 +12,7 @@
     <variable name="result_1" expression="" defaultValue="&quot;SUCCESS&quot;" alwaysStopAt="true" />
     <variable name="success_condition" expression="" defaultValue="&quot;returnCode == '0'&quot;" alwaysStopAt="true" />
     <variable name="result_2" expression="" defaultValue="&quot;FAILURE&quot;" alwaysStopAt="true" />
-    <variable name="operation_description" expression="" defaultValue="&quot;Generated operation description&quot;" alwaysStopAt="false" />
+    <variable name="operation_description" expression="" defaultValue="&quot;Generated operation description.&quot;" alwaysStopAt="false" />
     <variable name="input_1_name" expression="input_1" defaultValue="" alwaysStopAt="false" />
     <variable name="input_2_name" expression="input_2" defaultValue="" alwaysStopAt="false" />
     <variable name="output_name" expression="output" defaultValue="" alwaysStopAt="false" />
@@ -50,8 +50,8 @@
     <variable name="result_2_name" expression="result_2" defaultValue="" alwaysStopAt="false" />
     <variable name="result_1_description" expression="" defaultValue="&quot;Flow completed successfully.&quot;" alwaysStopAt="false" />
     <variable name="result_2_description" expression="" defaultValue="&quot;Failure occurred during execution.&quot;" alwaysStopAt="false" />
-    <variable name="standard_description" expression="" defaultValue="&quot;Generated description&quot;" alwaysStopAt="false" />
-    <variable name="flow_description" expression="" defaultValue="&quot;Generated flow description&quot;" alwaysStopAt="false" />
+    <variable name="standard_description" expression="" defaultValue="&quot;Generated description.&quot;" alwaysStopAt="false" />
+    <variable name="flow_description" expression="" defaultValue="&quot;Generated flow description.&quot;" alwaysStopAt="false" />
     <context>
       <option name="CloudSlang" value="true" />
     </context>

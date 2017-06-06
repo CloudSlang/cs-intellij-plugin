@@ -19,31 +19,31 @@ repositories {
 
 //Download Intellij sources to test the plugin.
 intellij {
-    version ideaVersion
+    version '2016.3.4'
     plugins 'yaml'
-    downloadSources Boolean.valueOf(sources)
+    downloadSources false
 }
 
 //Add required variables to build plugin (version, since-build, until-build)
 patchPluginXml {
-    sinceBuild = ideaBranch
+    sinceBuild = '163'
     untilBuild = '*.*'
     version = '1.0.1-SNAPSHOT'
 }
 
 //Declare project dependencies
 dependencies {
-    compile('io.cloudslang.lang:cloudslang-entities:1.0.5') {
+    compile('io.cloudslang.lang:cloudslang-entities:1.0.6') {
         transitive = false
     }
-    compile('io.cloudslang.lang:cloudslang-compiler:1.0.5') {
+    compile('io.cloudslang.lang:cloudslang-compiler:1.0.6') {
         transitive = false
     }
     compile 'org.apache.commons:commons-collections4:4.1'
     compile ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    compile 'io.cloudslang.lang:cloudslang-spi:1.0.5'
+    compile 'io.cloudslang.lang:cloudslang-spi:1.0.6'
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'commons-logging:commons-logging:1.2'
     compile 'org.javassist:javassist:3.20.0-GA'
@@ -55,8 +55,8 @@ dependencies {
 
 //Set the sources and target compatibility with Java 8 (or other versions that have to
 // match the Java version used in Gradle as well)
-sourceCompatibility = javaVersion
-targetCompatibility = javaVersion
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 //Perform the release while ignoring any unversioned files (as they are not needed).
 release {

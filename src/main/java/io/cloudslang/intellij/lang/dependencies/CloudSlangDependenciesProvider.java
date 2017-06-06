@@ -1,5 +1,5 @@
 /*******************************************************************************
- * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
+ * (c) Copyright 2016-2017 Hewlett-Packard Enterprise Development Company, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
@@ -72,11 +72,9 @@ public class CloudSlangDependenciesProvider {
         return yaml;
     }
 
-
     public DummyEncryptor dummyEncryptor() {
         return new DummyEncryptor();
     }
-
 
     public YamlParser yamlParser() {
         YamlParser yamlParser = new YamlParser() {
@@ -90,11 +88,9 @@ public class CloudSlangDependenciesProvider {
         return yamlParser;
     }
 
-
     public CachedPrecompileService cachedPrecompileService() {
         return new CachedPrecompileServiceImpl();
     }
-
 
     public PreCompileValidator precompileValidator() {
         PreCompileValidatorImpl preCompileValidator = new PreCompileValidatorImpl();
@@ -103,14 +99,12 @@ public class CloudSlangDependenciesProvider {
         return preCompileValidator;
     }
 
-
     public ExecutableValidator executableValidator() {
         ExecutableValidatorImpl executableValidator = new ExecutableValidatorImpl();
         executableValidator.setSystemPropertyValidator(systemPropertyValidator());
 
         return executableValidator;
     }
-
 
     public ExecutionPlanBuilder executionPlanBuilder() {
         ExecutionPlanBuilder executionPlanBuilder = new ExecutionPlanBuilder();
@@ -119,21 +113,17 @@ public class CloudSlangDependenciesProvider {
         return executionPlanBuilder;
     }
 
-
     public ExecutionStepFactory stepFactory() {
         return new ExecutionStepFactory();
     }
-
 
     public SystemPropertyValidator systemPropertyValidator() {
         return new SystemPropertyValidatorImpl();
     }
 
-
     public CompileValidator compileValidator() {
         return new CompileValidatorImpl();
     }
-
 
     public DependenciesHelper dependenciesHelper() {
         DependenciesHelper dependenciesHelper = new DependenciesHelper();
@@ -142,11 +132,9 @@ public class CloudSlangDependenciesProvider {
         return dependenciesHelper;
     }
 
-
     public DependencyFormatValidator dependencyFormatValidator() {
         return new DependencyFormatValidator();
     }
-
 
     public MetadataExtractor metadataExtractor() {
         MetadataExtractorImpl metadataExtractor = new MetadataExtractorImpl();
@@ -156,28 +144,25 @@ public class CloudSlangDependenciesProvider {
         return metadataExtractor;
     }
 
-    public MetadataValidator metadataValidator() {
-        MetadataValidatorImpl metadataValidator = new MetadataValidatorImpl();
-        metadataValidator.setMetadataParser(metadataParser());
-        return metadataValidator;
-    }
-
     public MetadataParser metadataParser() {
         MetadataParser metadataParser = new MetadataParser();
         metadataParser.setParserExceptionHandler(parserExceptionHandler());
         return metadataParser;
     }
 
+    public MetadataValidator metadataValidator() {
+        MetadataValidatorImpl metadataValidator = new MetadataValidatorImpl();
+        metadataValidator.setMetadataParser(metadataParser());
+        return metadataValidator;
+    }
 
     public ParserExceptionHandler parserExceptionHandler() {
         return new ParserExceptionHandler();
     }
 
-
     public MetadataModeller metadataModeller() {
         return new MetadataModellerImpl();
     }
-
 
     public ScoreCompiler scoreCompiler() {
         ScoreCompilerImpl scoreCompiler = new ScoreCompilerImpl();
@@ -187,7 +172,6 @@ public class CloudSlangDependenciesProvider {
 
         return scoreCompiler;
     }
-
 
     public SlangCompiler slangCompiler() {
         SlangCompilerImpl slangCompiler = new SlangCompilerImpl();
@@ -202,13 +186,11 @@ public class CloudSlangDependenciesProvider {
         return slangCompiler;
     }
 
-
     public SlangModeller slangModeller() {
         SlangModellerImpl slangModeller = new SlangModellerImpl();
         slangModeller.setExecutableBuilder(executableBuilder());
         return slangModeller;
     }
-
 
     public PublishTransformer publishTransformer() {
         PublishTransformer publishTransformer = new PublishTransformer();
@@ -217,14 +199,12 @@ public class CloudSlangDependenciesProvider {
         return publishTransformer;
     }
 
-
     public OutputsTransformer outputsTransformer() {
         OutputsTransformer outputsTransformer = new OutputsTransformer();
         setAbstractOutputTransformerDependencies(outputsTransformer);
 
         return outputsTransformer;
     }
-
 
     public PythonActionTransformer pythonActionTransformer() {
         PythonActionTransformer pythonActionTransformer = new PythonActionTransformer();
@@ -233,7 +213,6 @@ public class CloudSlangDependenciesProvider {
         return pythonActionTransformer;
     }
 
-
     public BreakTransformer breakTransformer() {
         BreakTransformer breakTransformer = new BreakTransformer();
         breakTransformer.setExecutableValidator(executableValidator());
@@ -241,11 +220,9 @@ public class CloudSlangDependenciesProvider {
         return breakTransformer;
     }
 
-
     public NavigateTransformer navigateTransformer() {
         return new NavigateTransformer();
     }
-
 
     public DoTransformer doTransformer() {
         DoTransformer doTransformer = new DoTransformer();
@@ -255,7 +232,6 @@ public class CloudSlangDependenciesProvider {
         return doTransformer;
     }
 
-
     public ResultsTransformer resultsTransformer() {
         ResultsTransformer resultsTransformer = new ResultsTransformer();
         resultsTransformer.setPreCompileValidator(precompileValidator());
@@ -264,11 +240,9 @@ public class CloudSlangDependenciesProvider {
         return resultsTransformer;
     }
 
-
     public WorkFlowTransformer workFlowTransformer() {
         return new WorkFlowTransformer();
     }
-
 
     public InputsTransformer inputsTransformer() {
         InputsTransformer inputsTransformer = new InputsTransformer();
@@ -277,13 +251,11 @@ public class CloudSlangDependenciesProvider {
         return inputsTransformer;
     }
 
-
     public JavaActionTransformer javaActionTransformer() {
         JavaActionTransformer javaActionTransformer = new JavaActionTransformer();
         javaActionTransformer.setDependencyFormatValidator(dependencyFormatValidator());
         return javaActionTransformer;
     }
-
 
     public ParallelLoopForTransformer parallelLoopForTransformer() {
         ParallelLoopForTransformer parallelLoopForTransformer = new ParallelLoopForTransformer();
@@ -292,14 +264,12 @@ public class CloudSlangDependenciesProvider {
         return parallelLoopForTransformer;
     }
 
-
     public ForTransformer forTransformer() {
         ForTransformer forTransformer = new ForTransformer();
         setExecutableValidator(forTransformer);
 
         return forTransformer;
     }
-
 
     public ExecutableBuilder executableBuilder() {
         ExecutableBuilder executableBuilder = new ExecutableBuilder();
@@ -319,11 +289,9 @@ public class CloudSlangDependenciesProvider {
         abstractInputsTransformer.setPreCompileValidator(precompileValidator());
     }
 
-
     public TransformersHandler transformersHandler() {
         return new TransformersHandler();
     }
-
 
     public List<Transformer> transformers() {
         List<Transformer> transformers = new ArrayList<>();

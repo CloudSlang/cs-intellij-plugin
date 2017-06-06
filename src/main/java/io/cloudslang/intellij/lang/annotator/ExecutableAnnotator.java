@@ -1,5 +1,5 @@
 /*******************************************************************************
- * (c) Copyright 2016 Hewlett-Packard Development Company, L.P.
+ * (c) Copyright 2016-2017 Hewlett-Packard Enterprise Development Company, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
@@ -31,6 +31,7 @@ import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
+import io.cloudslang.lang.entities.SensitivityLevel;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
@@ -55,6 +56,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -106,7 +108,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
                 MetadataModellingResult metadataModellingResult = metadataExtractor.extractMetadataModellingResult(slangSource, true);
                 ParsedSlang parsedSlang = yamlParser.parse(slangSource);
                 ParseModellingResult parseModellingResult = yamlParser.validate(parsedSlang);
-                ExecutableModellingResult modellingResult = slangModeller.createModel(parseModellingResult);
+                SensitivityLevel sensitivityLevel = SensitivityLevel.ENCRYPTED;
+                ExecutableModellingResult modellingResult = slangModeller.createModel(parseModellingResult, sensitivityLevel);
                 List<RuntimeException> runtimeExceptions = mergeModellingResults(metadataModellingResult, modellingResult);
                 return new ExecutableModellingResult(null, runtimeExceptions);
             } catch (RuntimeException e) {
@@ -223,15 +226,11 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
             return null;
         }
         Optional<YAMLPsiElement> matchingNode = yamlElements.stream().filter(e -> hasAcceptedName(e, possibleName)).findFirst();
-        if (matchingNode.isPresent()) {
-            return matchingNode.get();
-        } else {
-            return yamlElements.stream()
-                    .map(e -> findChildRecursively(e, possibleName))
-                    .filter(e -> e != null)
-                    .findFirst()
-                    .orElse(null);
-        }
+        return matchingNode.orElseGet(() -> yamlElements.stream()
+                .map(e -> findChildRecursively(e, possibleName))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElse(null));
     }
 
     private boolean hasAcceptedName(YAMLPsiElement e, String[] possibleName) {
