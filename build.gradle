@@ -2,14 +2,15 @@
 plugins {
     id 'net.researchgate.release' version '2.6.0'
     id 'org.jetbrains.intellij' version "0.2.8"
-    id 'checkstyle'
-    id 'findbugs'
-    id 'java'
-    id 'idea'
 }
 
+apply plugin: 'findbugs'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'checkstyle'
+
 //Declare project version.
-version = pluginVersion
+version = version
 
 //Get dependencies from Maven central repository.
 repositories {
@@ -24,11 +25,16 @@ intellij {
     downloadSources Boolean.valueOf(sources)
 }
 
+publishPlugin {
+    username publishUsername
+    password publishPassword
+}
+
 //Add required variables to build plugin (version, since-build, until-build)
 patchPluginXml {
     sinceBuild = ideaBranch
     untilBuild = '*.*'
-    version = pluginVersion
+    version = version
 }
 
 //Declare project dependencies
