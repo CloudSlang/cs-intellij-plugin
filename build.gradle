@@ -1,7 +1,7 @@
 //Import plugins needed to build and test the project.
 plugins {
     id 'net.researchgate.release' version '2.6.0'
-    id 'org.jetbrains.intellij' version "0.2.8"
+    id 'org.jetbrains.intellij' version "0.2.18"
 }
 
 apply plugin: 'findbugs'
@@ -67,6 +67,7 @@ targetCompatibility = javaVersion
 //Perform the release while ignoring any unversioned files (as they are not needed).
 release {
     failOnUnversionedFiles = false
+    revertOnFail = true
 }
 
 //FindBugs support that uses a template which generates a report.
