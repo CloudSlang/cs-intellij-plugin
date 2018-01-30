@@ -20,36 +20,25 @@ repositories {
 
 //Download Intellij sources to test the plugin.
 intellij {
-    version ideaVersion
+    version '2016.3.4'
     plugins 'yaml'
     downloadSources Boolean.valueOf(sources)
-}
-
-publishPlugin {
-    username publishUsername
-    password publishPassword
-}
-
-//Add required variables to build plugin (version, since-build, until-build)
-patchPluginXml {
-    sinceBuild = ideaBranch
-    untilBuild = '*.*'
-    version = version
+    updateSinceUntilBuild false
 }
 
 //Declare project dependencies
 dependencies {
-    compile("io.cloudslang.lang:cloudslang-entities:${cloudslangVersion}") {
+    compile("io.cloudslang.lang:cloudslang-entities:1.0.16") {
         transitive = false
     }
-    compile("io.cloudslang.lang:cloudslang-compiler:${cloudslangVersion}") {
+    compile("io.cloudslang.lang:cloudslang-compiler:1.0.16") {
         transitive = false
     }
     compile 'org.apache.commons:commons-collections4:4.1'
     compile ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    compile "io.cloudslang.lang:cloudslang-spi:${cloudslangVersion}"
+    compile "io.cloudslang.lang:cloudslang-spi:1.0.16"
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'commons-logging:commons-logging:1.2'
     compile 'org.javassist:javassist:3.20.0-GA'
