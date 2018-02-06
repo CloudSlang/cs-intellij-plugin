@@ -1,5 +1,6 @@
 //Import plugins needed to build and test the project.
 plugins {
+    id 'com.gradle.plugin-publish' version '0.9.7'
     id 'net.researchgate.release' version '2.6.0'
     id 'org.jetbrains.intellij' version "0.2.18"
 }
@@ -17,13 +18,17 @@ repositories {
     mavenCentral()
 }
 
-
 //Download Intellij sources to test the plugin.
 intellij {
     version '2016.3.4'
     plugins 'yaml'
     downloadSources Boolean.valueOf(sources)
     updateSinceUntilBuild false
+}
+
+publishPlugin {
+    username publishUsername
+    password publishPassword
 }
 
 //Declare project dependencies

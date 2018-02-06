@@ -5,19 +5,43 @@
     <category>Languages</category>
 
     <description><![CDATA[
+    <h1>IntelliJ CloudSlang plugin</h1>
+    <br/>
     This plugin provides <a href="http://cloudslang.io/">CloudSlang</a> support in IntelliJ IDEA.<br>
     CloudSlang is a flow-based orchestration tool for managing deployed applications.
     It allows you to rapidly automate your DevOps and everyday IT operations use cases using ready-made workflows
     or create custom workflows using a YAML-based DSL.
+    <br/>
+    <br/>
+
+    <b>Features</b>
+      <ul>
+      <li>New CloudSlang project creation</li>
+      <li>Live templates e.g: flow, java_operation, python_operation, input, output, step, for, java_action etc.</li>
+      <li>Supports CloudSlang file validation and Error highlighting.</li>
+      <li>Completion support for CloudSlang keywords.</li>
+      <li>Syntax highlighting.</li>
+      <li>CloudSlang file type support (.sl, .sl.yaml, .sl.yml, .prop.sl)</li>
+    </ul>
+    <br/>
     ]]></description>
 
     <change-notes><![CDATA[
-    <ol type="1">
-      <li>Updated CloudSlang dependencies version to 1.0.16.</li>
-      <li>Updated Live Templates to latest DSL changes.</li>
-      <li>Fixed an error in the error handler where it did not show the line number where the error has occurred.</li>
-      <li>Separated the operation Live Template into java_operation and python_operation, that generate different ops.</li>
-    </ol>
+    <ul>
+        <li>1.0.3
+            <ol>
+              <li>Updated CloudSlang dependencies version to 1.0.16.</li>
+              <li>Updated Live Templates to latest DSL changes.</li>
+              <li>Fixed an error in the error handler where it did not show the line number where the error has occurred.</li>
+              <li>Separated the operation Live Template into java_operation and python_operation, that generate different ops.</li>
+            </ol>
+        </li>
+        <li>1.0.0
+            <ol>
+                <li>Initial Release for IDEA</li>
+            </ol>
+        </li>
+        </ul>
     ]]>
     </change-notes>
 
