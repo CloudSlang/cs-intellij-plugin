@@ -1,66 +1,40 @@
-/*******************************************************************************
- * (c) Copyright 2016-2017 Hewlett-Packard Enterprise Development Company, L.P.
+/*
+ * (c) Copyright 2016-2018 Micro Focus, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
  * The Apache License is available at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- *******************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.cloudslang.intellij.lang.dependencies;
 
+import com.google.common.collect.Lists;
 import io.cloudslang.lang.compiler.MetadataExtractor;
 import io.cloudslang.lang.compiler.MetadataExtractorImpl;
 import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangCompilerImpl;
 import io.cloudslang.lang.compiler.caching.CachedPrecompileService;
 import io.cloudslang.lang.compiler.caching.CachedPrecompileServiceImpl;
-import io.cloudslang.lang.compiler.modeller.DependenciesHelper;
-import io.cloudslang.lang.compiler.modeller.ExecutableBuilder;
-import io.cloudslang.lang.compiler.modeller.MetadataModeller;
-import io.cloudslang.lang.compiler.modeller.MetadataModellerImpl;
-import io.cloudslang.lang.compiler.modeller.SlangModeller;
-import io.cloudslang.lang.compiler.modeller.SlangModellerImpl;
-import io.cloudslang.lang.compiler.modeller.TransformersHandler;
-import io.cloudslang.lang.compiler.modeller.transformers.AbstractForTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.AbstractInputsTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.AbstractOutputsTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.BreakTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.DependencyFormatValidator;
-import io.cloudslang.lang.compiler.modeller.transformers.DoTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.ForTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.InputsTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.JavaActionTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.NavigateTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.OutputsTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.ParallelLoopForTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.PublishTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.PythonActionTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.ResultsTransformer;
-import io.cloudslang.lang.compiler.modeller.transformers.Transformer;
-import io.cloudslang.lang.compiler.modeller.transformers.WorkFlowTransformer;
+import io.cloudslang.lang.compiler.modeller.*;
+import io.cloudslang.lang.compiler.modeller.transformers.*;
 import io.cloudslang.lang.compiler.parser.MetadataParser;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.utils.MetadataValidator;
 import io.cloudslang.lang.compiler.parser.utils.MetadataValidatorImpl;
 import io.cloudslang.lang.compiler.parser.utils.ParserExceptionHandler;
-import io.cloudslang.lang.compiler.scorecompiler.ExecutionPlanBuilder;
-import io.cloudslang.lang.compiler.scorecompiler.ExecutionStepFactory;
-import io.cloudslang.lang.compiler.scorecompiler.ScoreCompiler;
-import io.cloudslang.lang.compiler.scorecompiler.ScoreCompilerImpl;
-import io.cloudslang.lang.compiler.validator.CompileValidator;
-import io.cloudslang.lang.compiler.validator.CompileValidatorImpl;
-import io.cloudslang.lang.compiler.validator.ExecutableValidator;
-import io.cloudslang.lang.compiler.validator.ExecutableValidatorImpl;
-import io.cloudslang.lang.compiler.validator.PreCompileValidator;
-import io.cloudslang.lang.compiler.validator.PreCompileValidatorImpl;
-import io.cloudslang.lang.compiler.validator.SystemPropertyValidator;
-import io.cloudslang.lang.compiler.validator.SystemPropertyValidatorImpl;
+import io.cloudslang.lang.compiler.scorecompiler.*;
+import io.cloudslang.lang.compiler.validator.*;
 import io.cloudslang.lang.entities.encryption.DummyEncryptor;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -94,7 +68,6 @@ public class CloudSlangDependenciesProvider {
 
     public PreCompileValidator precompileValidator() {
         PreCompileValidatorImpl preCompileValidator = new PreCompileValidatorImpl();
-
         preCompileValidator.setExecutableValidator(executableValidator());
         return preCompileValidator;
     }
@@ -102,19 +75,32 @@ public class CloudSlangDependenciesProvider {
     public ExecutableValidator executableValidator() {
         ExecutableValidatorImpl executableValidator = new ExecutableValidatorImpl();
         executableValidator.setSystemPropertyValidator(systemPropertyValidator());
-
         return executableValidator;
+    }
+
+    public PreCompileValidator externalPrecompileValidator() {
+        PreCompileValidatorImpl preCompileValidator = new PreCompileValidatorImpl();
+        preCompileValidator.setExecutableValidator(externalExecutableValidator());
+        return preCompileValidator;
+    }
+
+    public ExecutableValidator externalExecutableValidator() {
+        return new DefaultExternalExecutableValidator();
     }
 
     public ExecutionPlanBuilder executionPlanBuilder() {
         ExecutionPlanBuilder executionPlanBuilder = new ExecutionPlanBuilder();
         executionPlanBuilder.setStepFactory(stepFactory());
-
+        executionPlanBuilder.setExternalStepFactory(externalStepFactory());
         return executionPlanBuilder;
     }
 
     public ExecutionStepFactory stepFactory() {
         return new ExecutionStepFactory();
+    }
+
+    public ExternalExecutionStepFactory externalStepFactory() {
+        return new DefaultExternalExecutionStepFactory();
     }
 
     public SystemPropertyValidator systemPropertyValidator() {
@@ -127,7 +113,6 @@ public class CloudSlangDependenciesProvider {
 
     public DependenciesHelper dependenciesHelper() {
         DependenciesHelper dependenciesHelper = new DependenciesHelper();
-
         dependenciesHelper.setPublishTransformer(publishTransformer());
         return dependenciesHelper;
     }
@@ -199,6 +184,14 @@ public class CloudSlangDependenciesProvider {
         return publishTransformer;
     }
 
+    public PublishTransformer externalPublishTransformer() {
+        PublishTransformer externalPublish = new PublishTransformer();
+        setAbstractOutputTransformerDependencies(externalPublish);
+        externalPublish.setType(Transformer.Type.EXTERNAL);
+
+        return externalPublish;
+    }
+
     public OutputsTransformer outputsTransformer() {
         OutputsTransformer outputsTransformer = new OutputsTransformer();
         setAbstractOutputTransformerDependencies(outputsTransformer);
@@ -221,7 +214,16 @@ public class CloudSlangDependenciesProvider {
     }
 
     public NavigateTransformer navigateTransformer() {
-        return new NavigateTransformer();
+        final NavigateTransformer navigateTransformer = new NavigateTransformer();
+        navigateTransformer.setExecutableValidator(executableValidator());
+        return navigateTransformer;
+    }
+
+    public NavigateTransformer externalNavigateTransformer() {
+        final NavigateTransformer externalNavigate = new NavigateTransformer();
+        externalNavigate.setExecutableValidator(externalExecutableValidator());
+        externalNavigate.setType(Transformer.Type.EXTERNAL);
+        return externalNavigate;
     }
 
     public DoTransformer doTransformer() {
@@ -230,6 +232,14 @@ public class CloudSlangDependenciesProvider {
         doTransformer.setExecutableValidator(executableValidator());
 
         return doTransformer;
+    }
+
+    public DoExternalTransformer doExternalTransformer() {
+        DoExternalTransformer doExternalTransformer = new DoExternalTransformer();
+        doExternalTransformer.setPreCompileValidator(externalPrecompileValidator());
+        doExternalTransformer.setExecutableValidator(externalExecutableValidator());
+
+        return doExternalTransformer;
     }
 
     public ResultsTransformer resultsTransformer() {
@@ -294,22 +304,22 @@ public class CloudSlangDependenciesProvider {
     }
 
     public List<Transformer> transformers() {
-        List<Transformer> transformers = new ArrayList<>();
-
-        transformers.add(pythonActionTransformer());
-        transformers.add(parallelLoopForTransformer());
-        transformers.add(publishTransformer());
-        transformers.add(navigateTransformer());
-        transformers.add(inputsTransformer());
-        transformers.add(workFlowTransformer());
-        transformers.add(resultsTransformer());
-        transformers.add(doTransformer());
-        transformers.add(outputsTransformer());
-        transformers.add(javaActionTransformer());
-        transformers.add(forTransformer());
-        transformers.add(breakTransformer());
-
-        return transformers;
+        return Lists.newArrayList(
+                pythonActionTransformer(),
+                parallelLoopForTransformer(),
+                publishTransformer(),
+                externalPublishTransformer(),
+                navigateTransformer(),
+                externalNavigateTransformer(),
+                inputsTransformer(),
+                workFlowTransformer(),
+                resultsTransformer(),
+                doTransformer(),
+                doExternalTransformer(),
+                outputsTransformer(),
+                javaActionTransformer(),
+                forTransformer(),
+                breakTransformer());
     }
 
     private void setAbstractOutputTransformerDependencies(AbstractOutputsTransformer abstractOutputsTransformer) {
