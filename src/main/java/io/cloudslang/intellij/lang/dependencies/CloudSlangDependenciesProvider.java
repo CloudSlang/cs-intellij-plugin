@@ -1,12 +1,18 @@
-/*******************************************************************************
- * (c) Copyright 2016-2017 Hewlett-Packard Enterprise Development Company, L.P.
+/*
+ * (c) Copyright 2016-2018 Micro Focus, L.P.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Apache License v2.0 which accompany this distribution.
  *
  * The Apache License is available at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- *******************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.cloudslang.intellij.lang.dependencies;
 
 import com.google.common.collect.Lists;
@@ -16,13 +22,7 @@ import io.cloudslang.lang.compiler.SlangCompiler;
 import io.cloudslang.lang.compiler.SlangCompilerImpl;
 import io.cloudslang.lang.compiler.caching.CachedPrecompileService;
 import io.cloudslang.lang.compiler.caching.CachedPrecompileServiceImpl;
-import io.cloudslang.lang.compiler.modeller.DependenciesHelper;
-import io.cloudslang.lang.compiler.modeller.ExecutableBuilder;
-import io.cloudslang.lang.compiler.modeller.MetadataModeller;
-import io.cloudslang.lang.compiler.modeller.MetadataModellerImpl;
-import io.cloudslang.lang.compiler.modeller.SlangModeller;
-import io.cloudslang.lang.compiler.modeller.SlangModellerImpl;
-import io.cloudslang.lang.compiler.modeller.TransformersHandler;
+import io.cloudslang.lang.compiler.modeller.*;
 import io.cloudslang.lang.compiler.modeller.transformers.*;
 import io.cloudslang.lang.compiler.parser.MetadataParser;
 import io.cloudslang.lang.compiler.parser.YamlParser;
@@ -35,7 +35,6 @@ import io.cloudslang.lang.entities.encryption.DummyEncryptor;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
