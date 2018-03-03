@@ -18,12 +18,12 @@ package io.cloudslang.intellij.lang.exceptions;
 
 public class LocatedRuntimeException extends RuntimeException {
 
+    private int lineNumber;
+
     public LocatedRuntimeException(String message, int lineNumber) {
         super(message);
         this.lineNumber = lineNumber;
     }
-
-    private int lineNumber;
 
     public int getLineNumber() {
         return lineNumber;

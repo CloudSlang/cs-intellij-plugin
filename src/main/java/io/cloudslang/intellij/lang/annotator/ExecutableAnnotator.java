@@ -37,10 +37,10 @@ import io.cloudslang.lang.compiler.modeller.result.ExecutableModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.MetadataModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ModellingResult;
 import io.cloudslang.lang.compiler.modeller.result.ParseModellingResult;
-import io.cloudslang.lang.entities.SensitivityLevel;
 import io.cloudslang.lang.compiler.modeller.result.SystemPropertyModellingResult;
 import io.cloudslang.lang.compiler.parser.YamlParser;
 import io.cloudslang.lang.compiler.parser.model.ParsedSlang;
+import io.cloudslang.lang.entities.SensitivityLevel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -56,8 +56,6 @@ import org.jetbrains.yaml.psi.impl.YAMLBlockMappingImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -79,16 +77,14 @@ import static java.util.stream.Collectors.toList;
 public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List<RuntimeException>> {
 
 
-
     private static final String MESSAGE_DELIMITER_STRING = "(?=in \'.*\', line (\\d+), column \\d+)";
     private static final String INPUT_KEY = "@input";
     private static final String PRIVATE = "private";
-    private static Pattern linePattern = compile("line (\\d+), column \\d+");
-    private static final Pattern keyInListPattern = compile("\\s*-\\s+([\\w]+):?.*");
-    private static final String[] keysForDocumentation = new String[]{"inputs", "outputs", "results"};
-    private static final String[] keysForDescription = new String[]{"@input", "@output", "@result"};
+    private static final Pattern KEY_IN_LIST_PATTERN = compile("\\s*-\\s+([\\w]+):?.*");
+    private static final String[] KEYS_FOR_DOCUMENTATION = new String[]{"inputs", "outputs", "results"};
+    private static final String[] KEYS_FOR_DESCRIPTION = new String[]{"@input", "@output", "@result"};
     private static final String MISSING_DOCUMENTATION_FOR_NAME_PATTERN = "Missing description for '%s'";
-
+    private static Pattern linePattern = compile("line (\\d+), column \\d+");
     private CloudSlangDependenciesProvider provider = new CloudSlangDependenciesProvider();
 
     @Nullable
@@ -245,8 +241,8 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
 
     private void createWarningsForMissingElementsInDescription(YAMLDocument yamlDocument, YAMLFile yamlFile, AnnotationHolder holder) {
         List<PsiElement> commentsList = Arrays.stream(yamlFile.getChildren()).filter(e -> e instanceof PsiComment).collect(toList());
-        for (int index = 0; index < keysForDocumentation.length; index++) {
-            createWarningsIfNecessary(keysForDescription[index], commentsList, holder, getElementNamePairs(yamlDocument, keysForDocumentation[index]));
+        for (int index = 0; index < KEYS_FOR_DOCUMENTATION.length; index++) {
+            createWarningsIfNecessary(KEYS_FOR_DESCRIPTION[index], commentsList, holder, getElementNamePairs(yamlDocument, KEYS_FOR_DOCUMENTATION[index]));
         }
     }
 
@@ -300,7 +296,7 @@ public class ExecutableAnnotator extends ExternalAnnotator<ModellingResult, List
         List<Pair<PsiElement, String>> elementStringPairs = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new StringReader(psiElement.getText()))) {
             for (String line; (line = reader.readLine()) != null;) {
-                final Matcher matcher = keyInListPattern.matcher(line);
+                final Matcher matcher = KEY_IN_LIST_PATTERN.matcher(line);
                 if (matcher.find()) {
                     String elementNameGroup = matcher.group(1);
                     YAMLPsiElement childElement = findChildRecursively((YAMLPsiElement) psiElement, new String[]{elementNameGroup});

@@ -15,7 +15,7 @@ Contribution Guidelines
 
 ## Environment Setup
 
-The plugin is built using [Gradle v3.5](https://gradle.org/releases)
+The plugin is built using [Gradle v4.6](https://gradle.org/releases)
 
 **Requirements:** Java 8 JDK installed and set as Environment Variable.
    
@@ -27,10 +27,10 @@ The plugin is built using [Gradle v3.5](https://gradle.org/releases)
 There is no need to download any other prerequisites as the project will build itself using the Gradle Wrapper.
 
     For linux:
-        ./gradlew build
+        ./gradlew
     
     For Windows:
-        gradlew.bat build
+        gradlew.bat
         
 After the project has finished downloading and setting itself up, you can start testing it.
 
@@ -42,7 +42,7 @@ Run the gradle wrapper using this command (replace host and port):
 
     gradlew *taskName -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3129
 
-    *taskName = build, runIde, others.
+    *taskName = runIde, others.
 
 <a name="run-and-debug-the-code"/> 
 

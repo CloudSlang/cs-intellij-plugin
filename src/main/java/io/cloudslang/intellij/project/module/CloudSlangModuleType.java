@@ -15,12 +15,13 @@
 
 package io.cloudslang.intellij.project.module;
 
-import io.cloudslang.intellij.lang.CloudSlangIcons;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
+import io.cloudslang.intellij.lang.CloudSlangIcons;
 import io.cloudslang.intellij.project.wizard.CloudSlangModuleBuilder;
-import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
 
 
 public class CloudSlangModuleType extends ModuleType<CloudSlangModuleBuilder> {
