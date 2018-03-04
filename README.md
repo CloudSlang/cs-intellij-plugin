@@ -16,7 +16,8 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 1. [Features](#features)  
 2. [Installation](#installation)  
 3. [Getting Started](#getting-started)
-4. [Contribution Guideline](#contribution-guideline)
+4. [Build and test locally](#build-and-test)
+5. [Contribution Guideline](#contribution-guideline)
 
 <a name="features"/>
  
@@ -33,7 +34,7 @@ This repository contains an IntelliJ plugin that provides support for [CloudSlan
 ## Installation
 
 1. Install the CloudSlang IntelliJ Plugin in IntelliJ using the **Plugin Installation Wizard** from **File** > **Settings** > **Plugins** > **Browse repositories...** and search for: **CloudSlang plugin.** 
-3. Click __Apply__ button of the __Settings__ dialog.
+2. Click __Apply__ button of the __Settings__ dialog.
 
 > Following the system prompt that appears, restart IntelliJ IDEA to activate the installed plugin, or postpone it, at your choice.
 
@@ -102,6 +103,14 @@ To see the complete list of CloudSlang keywords, press **Ctrl + Space**
 Errors are marked with a red underline inside files. Hover over the underlined item to see the error messages:
 
 ![CloudSlang File Type](/screenshots/error-highlighting.png)
+
+<a name="build-and-test"/>
+
+Build and Test locally
+----------------------
+
+ * "gradlew assemble" to build plugin in build/distributions
+ * "gradlew runIde" to run IntelliJ IDEA with CloudSlang plugin
 
 <a name="contribution-guideline"/>
 

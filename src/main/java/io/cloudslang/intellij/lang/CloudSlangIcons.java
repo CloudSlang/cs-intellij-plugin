@@ -17,7 +17,7 @@ package io.cloudslang.intellij.lang;
 
 import com.intellij.openapi.util.IconLoader;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 
 public class CloudSlangIcons {

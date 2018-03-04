@@ -15,10 +15,10 @@
 
 package io.cloudslang.intellij.lang.highlighter;
 
-import io.cloudslang.intellij.lang.CloudSlangFileType;
-import io.cloudslang.intellij.lang.CloudSlangFileUtils;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.vfs.VirtualFile;
+import io.cloudslang.intellij.lang.CloudSlangFileType;
+import io.cloudslang.intellij.lang.CloudSlangFileUtils;
 
 
 public class CloudSlangProblemFileHighlightFilter implements Condition<VirtualFile> {

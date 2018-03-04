@@ -16,11 +16,10 @@
 package io.cloudslang.intellij.lang;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
-
-import javax.swing.Icon;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
+
+import javax.swing.*;
 
 public class CloudSlangFileType extends LanguageFileType {
 

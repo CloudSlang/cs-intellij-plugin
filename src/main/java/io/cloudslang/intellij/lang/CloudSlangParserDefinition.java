@@ -34,7 +34,7 @@ import org.jetbrains.yaml.psi.impl.YAMLFileImpl;
 
 public class CloudSlangParserDefinition extends YAMLParserDefinition {
 
-    private static final TokenSet myCommentTokens = TokenSet.create(YAMLTokenTypes.COMMENT);
+    private static final TokenSet MY_COMMENT_TOKENS = TokenSet.create(YAMLTokenTypes.COMMENT);
 
     @NotNull
     public Lexer createLexer(final Project project) {
@@ -57,7 +57,7 @@ public class CloudSlangParserDefinition extends YAMLParserDefinition {
 
     @NotNull
     public TokenSet getCommentTokens() {
-        return myCommentTokens;
+        return MY_COMMENT_TOKENS;
     }
 
     @NotNull
