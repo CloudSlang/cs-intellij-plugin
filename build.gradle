@@ -26,10 +26,10 @@ intellij {
 }
 
 dependencies {
-    compile("io.cloudslang.lang:cloudslang-entities:1.0.19") {
+    compile("io.cloudslang.lang:cloudslang-entities:1.0.34") {
         transitive = false
     }
-    compile("io.cloudslang.lang:cloudslang-compiler:1.0.19") {
+    compile("io.cloudslang.lang:cloudslang-compiler:1.0.34") {
         transitive = false
     }
     compile 'org.apache.commons:commons-collections4:4.1'
