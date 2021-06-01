@@ -54,7 +54,7 @@ public class CloudSlangModuleType extends ModuleType<CloudSlangModuleBuilder> {
         return "Create a new project for CloudSlang content";
     }
 
-    @Override
+    
     public Icon getBigIcon() {
         return CloudSlangIcons.RUN_ICON;
     }
