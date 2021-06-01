@@ -19,13 +19,12 @@ import com.intellij.openapi.fileTypes.FileNameMatcher;
 import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.yaml.YAMLFileTypeLoader;
+import com.intellij.openapi.fileTypes.FileTypeFactory;
 
 
-public class CloudSlangFileTypeFactory extends YAMLFileTypeLoader {
+public class CloudSlangFileTypeFactory extends FileTypeFactory {
 
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-        super.createFileTypes(fileTypeConsumer);
         fileTypeConsumer.consume(CloudSlangFileType.INSTANCE, new FileNameMatcher() {
             @Override
             public boolean accept(@NonNls @NotNull String s) {
