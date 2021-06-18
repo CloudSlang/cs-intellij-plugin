@@ -15,14 +15,14 @@ Contribution Guidelines
 
 ## Environment Setup
 
-The plugin is built using [Gradle v4.6](https://gradle.org/releases)
+The plugin is built using [Gradle v7.0.2](https://gradle.org/releases)
 
-**Requirements:** Java 8 JDK installed and set as Environment Variable.
+**Requirements:** Java 11 JDK installed and set as Environment Variable.
    
    ***To check that you have Java installed, run java -version:***
     
     $ java -version
-    java version "1.8.0_60"  
+    java version "11.0.11"  
    
 There is no need to download any other prerequisites as the project will build itself using the Gradle Wrapper.
 
@@ -52,7 +52,7 @@ To run and debug the plugin:
 
     gradlew runIde
     
-This task will download and run **Intellij IDEA 2016.3.4 IC**, which will open in a new window, with the plugin loaded. 
+This task will download and run **Intellij IDEA 2021.1.1 IC**, which will open in a new window, with the plugin loaded. 
 
 After debugging, close the window and the task will end. 
 

@@ -56,6 +56,7 @@
     <variable name="input_2_value" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="step_1" expression="" defaultValue="&quot;step_1&quot;" alwaysStopAt="true" />
     <variable name="executable_name" expression="" defaultValue="&quot;operation_name&quot;" alwaysStopAt="true" />
+    <variable name="run_id" expression="" defaultValue="&quot;run_id&quot;" alwaysStopAt="true" />
     <variable name="step_input_1" expression="" defaultValue="&quot;step_input_1&quot;" alwaysStopAt="true" />
     <variable name="step_input_2" expression="" defaultValue="&quot;step_input_2&quot;" alwaysStopAt="true" />
     <variable name="step_output" expression="" defaultValue="&quot;step_output_1&quot;" alwaysStopAt="true" />
