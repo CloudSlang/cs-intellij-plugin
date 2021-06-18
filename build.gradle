@@ -1,17 +1,17 @@
 //Import plugins needed to build and test the project.
 plugins {
-    id 'com.gradle.plugin-publish' version '0.9.7'
-    id 'net.researchgate.release' version '2.6.0'
-    id 'org.jetbrains.intellij' version "0.2.18"
+    id 'com.gradle.plugin-publish' version '0.14.0'
+    id 'net.researchgate.release' version '2.8.1'
+    id 'org.jetbrains.intellij' version '0.7.2'
 }
 
-apply plugin: 'findbugs'
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
 
 //Declare project version.
-version = '1.0.5-SNAPSHOT'
+version = '2.0.0-SNAPSHOT'
 
 //Get dependencies from Maven central repository.
 repositories {
@@ -19,35 +19,34 @@ repositories {
 }
 
 intellij {
-    version '2016.3.4'
-    plugins 'yaml'
+    version '2021.1.1'
+    plugins =['yaml']
     downloadSources = false
     updateSinceUntilBuild = false
 }
 
 dependencies {
-    compile("io.cloudslang.lang:cloudslang-entities:1.0.19") {
+    implementation('io.cloudslang.lang:cloudslang-entities:2.0.0') {
         transitive = false
     }
-    compile("io.cloudslang.lang:cloudslang-compiler:1.0.19") {
+    implementation ('io.cloudslang.lang:cloudslang-compiler:2.0.0') {
         transitive = false
     }
-    compile 'org.apache.commons:commons-collections4:4.1'
-    compile('com.googlecode.lambdaj:lambdaj:2.3.3') {
+    implementation  'org.apache.commons:commons-collections4:4.1'
+    implementation ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    compile "io.cloudslang.lang:cloudslang-spi:1.0.19"
-    compile 'org.apache.commons:commons-lang3:3.3.2'
-    compile 'commons-logging:commons-logging:1.2'
-    compile 'org.javassist:javassist:3.20.0-GA'
-    compile 'org.hamcrest:hamcrest-all:1.3'
-    compile 'org.objenesis:objenesis:1.2'
-    compile 'commons-io:commons-io:2.4'
-    compile 'org.yaml:snakeyaml:1.16'
+    implementation  'io.cloudslang.lang:cloudslang-spi:2.0.0'
+    implementation  'org.apache.commons:commons-lang3:3.12.0'
+    implementation  'commons-logging:commons-logging:1.2'
+    implementation  'org.javassist:javassist:3.28.0-GA'
+    implementation  'org.hamcrest:hamcrest-all:1.3'
+    implementation  'org.objenesis:objenesis:3.2'
+    implementation  'commons-io:commons-io:2.8.0'
+    implementation  'org.yaml:snakeyaml:1.28'
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+
 
 //Perform the release while ignoring any unversioned files (as they are not needed).
 release {
@@ -57,15 +56,7 @@ release {
 
 defaultTasks 'clean', 'build'
 
-//FindBugs support that uses a template which generates a report.
-tasks.withType(FindBugs) {
-    ignoreFailures = true
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')
-    }
-}
+
 
 //CheckStyle support that uses a checkstyle xml file and generates a report based on a template.
 tasks.withType(Checkstyle) {
