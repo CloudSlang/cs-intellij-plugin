@@ -210,4 +210,81 @@
       <option name="CloudSlang" value="true" />
     </context>
   </template>
+
+  <template name="run_id" value="run_id:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_run_id" expression="" defaultValue="run_id:" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+
+  <template name="cs_append" value="cs_append:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_append" expression="" defaultValue="cs_append(${$input_1$},to_append)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+
+  <template name="cs_extract_number" value="cs_extract_number:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_extract_number" expression="" defaultValue="cs_extract_number(${input_1},n_th)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+
+  <template name="cs_substring" value="cs_substring:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_substring" expression="" defaultValue="cs_substring(${input_1},start_position,optional_end_position)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_to_lower" value="cs_to_lower:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_to_lower" expression="" defaultValue="cs_to_lower(${input_1})" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_to_upper" value="cs_to_upper:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_to_upper" expression="" defaultValue="cs_to_upper(${input_1})" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+
+  <template name="cs_prepend" value="cs_prepend:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_pretend" expression="" defaultValue="cs_prepend(${input_1},to_prepend)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_regex" value="cs_regex:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_regex" expression="" defaultValue="cs_regex(${input_1},regex,optional_split_lines)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_replace" value="cs_replace:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_replace" expression="" defaultValue="cs_replace(${input_1},old_value,new_value,count)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_round" value="cs_round:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_round" expression="" defaultValue="cs_round(${input_1})" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_xpath_query" value="cs_xpath_query:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_xpath_query" expression="" defaultValue="cs_xpath_query(${input_1},xpath)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
+  <template name="cs_json_query" value="cs_json_query:" description="CloudSlang Template" toReformat="false" toShortenFQNames="true">
+    <variable name="default_cs_json_query" expression="" defaultValue="cs_json_query(${input_1},json_path)" alwaysStopAt="true" />
+    <context>
+      <option name="CloudSlang" value="true" />
+    </context>
+  </template>
 </templateSet>
