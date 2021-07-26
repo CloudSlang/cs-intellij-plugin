@@ -17,6 +17,9 @@ version = '2.0.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+checkstyle {
+    toolVersion "7.8.2"
+}
 
 intellij {
     version '2021.1.1'
@@ -26,17 +29,17 @@ intellij {
 }
 
 dependencies {
-    implementation('io.cloudslang.lang:cloudslang-entities:2.0.0') {
+    implementation('io.cloudslang.lang:cloudslang-entities:2.0.5') {
         transitive = false
     }
-    implementation ('io.cloudslang.lang:cloudslang-compiler:2.0.0') {
+    implementation ('io.cloudslang.lang:cloudslang-compiler:2.0.5') {
         transitive = false
     }
     implementation  'org.apache.commons:commons-collections4:4.1'
     implementation ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    implementation  'io.cloudslang.lang:cloudslang-spi:2.0.0'
+    implementation  'io.cloudslang.lang:cloudslang-spi:2.0.5'
     implementation  'org.apache.commons:commons-lang3:3.12.0'
     implementation  'commons-logging:commons-logging:1.2'
     implementation  'org.javassist:javassist:3.28.0-GA'
