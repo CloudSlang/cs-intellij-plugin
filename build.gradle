@@ -26,24 +26,24 @@ intellij {
 }
 
 dependencies {
-    implementation('io.cloudslang.lang:cloudslang-entities:2.0.5') {
+    implementation('io.cloudslang.lang:cloudslang-entities:2.0.80') {
         transitive = false
     }
-    implementation ('io.cloudslang.lang:cloudslang-compiler:2.0.5') {
+    implementation ('io.cloudslang.lang:cloudslang-compiler:2.0.80') {
         transitive = false
     }
-    implementation  'org.apache.commons:commons-collections4:4.1'
+    implementation 'org.apache.commons:commons-collections4:4.4'
     implementation ('com.googlecode.lambdaj:lambdaj:2.3.3') {
         transitive = false
     }
-    implementation  'io.cloudslang.lang:cloudslang-spi:2.0.5'
+    implementation 'io.cloudslang.lang:cloudslang-spi:2.0.80'
     implementation  'org.apache.commons:commons-lang3:3.12.0'
     implementation  'commons-logging:commons-logging:1.2'
-    implementation  'org.javassist:javassist:3.28.0-GA'
+    implementation 'org.javassist:javassist:3.29.2-GA'
     implementation  'org.hamcrest:hamcrest-all:1.3'
     implementation  'org.objenesis:objenesis:3.2'
-    implementation  'commons-io:commons-io:2.8.0'
-    implementation  'org.yaml:snakeyaml:1.28'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.yaml:snakeyaml:2.0'
 }
 
 
